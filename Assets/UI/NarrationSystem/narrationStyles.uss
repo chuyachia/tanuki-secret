@@ -1,0 +1,29 @@
+.narrative-text--container {
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.narative-text--text {
+    -unity-font: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial");
+    font-size: 64px;
+    color: rgba(255, 82, 82, 255);
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+    margin-top: 1%;
+    margin-bottom: 2px;
+    opacity: 0;
+    visibility:hidden;
+    transition-property: opacity, visibility;
+    transition-timing-function: ease;
+    transition-duration: 1s;
+}
+
+.narrative-text--text--active{
+    opacity: 1;
+    visibility:visible;
+
+}
+

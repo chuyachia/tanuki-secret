@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0e8d49b5d24cb89248c3083195308ed7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _squirrel: {fileID: 5117540126111232891, guid: 784644c51dcf069bc929ff4670e07f96,
+      type: 3}
+  - _nut: {fileID: 1936454911222086544, guid: 82a5df8f768c8ae39a770239a8e8757f, type: 3}
+  - _nutPool: {fileID: 11400000, guid: 13599d248c8a49aadafc96a68a41e3a9, type: 2}
+  - _squirrelPool: {fileID: 11400000, guid: 9f1dc9692eb350773b6a49f00394b8c3, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

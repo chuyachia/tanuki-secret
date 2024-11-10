@@ -2,28 +2,22 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    font-size: 64px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    -unity-font: url("project://database/Assets/Fonts/Gargle%20Rg.otf?fileID=12800000&guid=fb38aef403f516b4bbbcf03498ccaf85&type=3#Gargle Rg");
 }
 
 .narative-text--text {
-    -unity-font: url("project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial");
-    font-size: 64px;
-    color: rgba(255, 82, 82, 255);
-    letter-spacing: 2px;
-    word-spacing: 4px;
-    -unity-text-align: middle-center;
-    -unity-font-style: normal;
     margin-top: 1%;
     margin-bottom: 2px;
     opacity: 0;
-    visibility:hidden;
+    visibility: hidden;
     transition-property: opacity, visibility;
     transition-timing-function: ease;
     transition-duration: 1s;
 }
 
-.narrative-text--text--active{
+.narrative-text--text--active {
     opacity: 1;
-    visibility:visible;
-
+    visibility: visible;
 }
-

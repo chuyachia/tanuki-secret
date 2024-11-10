@@ -16,7 +16,8 @@ public class AreaChangeTrigger : MonoBehaviour{
 
     private void DisplayMessage()
     {
-        if (firstOccurence)
+        
+        if (firstOccurence & !NarrationDisplayer.messageDisplayCoroutineActive) 
         {
             AreaEntered?.Invoke(textToDisplay);
             firstOccurence = false;

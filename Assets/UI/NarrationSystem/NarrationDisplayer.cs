@@ -13,7 +13,7 @@ public class NarrationDisplayer : MonoBehaviour
 
     private VisualElement rootEl;
     private VisualElement textContainer;
-    bool activeCoroutine = false;
+    public static bool messageDisplayCoroutineActive = false; // this ensures that we're not adding text elements if the animation coroutine is being played, the AreaChangeTrigger access it.
     
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class NarrationDisplayer : MonoBehaviour
 
     private void OnThingHappened(List<string> messages)
     {
-        if (!activeCoroutine){
+        if (!messageDisplayCoroutineActive){
             InitiatilizeSentences(messages);
             StartCoroutine("FadeInSentencesCoroutine");
         }
@@ -58,7 +58,7 @@ public class NarrationDisplayer : MonoBehaviour
 
     IEnumerator FadeInSentencesCoroutine()
     {
-        activeCoroutine = true;
+        messageDisplayCoroutineActive = true;
         
         // Fade in each sentence one by one
         foreach (var child in textContainer.hierarchy.Children()){
@@ -79,7 +79,7 @@ public class NarrationDisplayer : MonoBehaviour
 
         DestroySentenceElements(); // Clean the text container so other trigger sentences can be displayed
 
-        activeCoroutine = false;
+        messageDisplayCoroutineActive = false;
     }
 
     private void DestroySentenceElements()

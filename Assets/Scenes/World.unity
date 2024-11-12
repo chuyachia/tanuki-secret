@@ -2382,7 +2382,7 @@ GameObject:
   - component: {fileID: 927571346}
   - component: {fileID: 927571347}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: SquirrelLevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2419,12 +2419,14 @@ MonoBehaviour:
     type: 3}
   _squirrelPrefab: {fileID: 5117540126111232891, guid: 784644c51dcf069bc929ff4670e07f96,
     type: 3}
+  _nutBucketPrefab: {fileID: 1401930070987731476, guid: 28c84c7ef49f77f80832b811a471b435,
+    type: 3}
   _spawnRadius: 15
   _spawnHeight: 10
   _squirrelCount: 5
   _nutCount: 5
   _targetReachedThreshold: 4
-  _nextNutAppearsIn: 0.5
+  _nextNutAppearsIn: 2
 --- !u!1 &1027710619
 GameObject:
   m_ObjectHideFlags: 0

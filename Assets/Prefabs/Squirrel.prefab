@@ -34086,9 +34086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _rotationSpeed: 5
-  _jumpProbability: 0.1
+  _airSpeed: 3
+  _jumpProbability: 0.05
   _jumpHeight: 5
   _gravity: 9.81
-  _jumpCooldown: 1
-  _modelLength: 4
+  _jumpCooldown: 2

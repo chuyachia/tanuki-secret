@@ -3,12 +3,11 @@ using UnityEngine;
 public class SquirrelBehaviour : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _rotationSpeed = 5f;
+    [SerializeField] private float _airSpeed = 2f;
     [SerializeField] private float _jumpProbability = 0.1f;
     [SerializeField] private float _jumpHeight = 5f;
     [SerializeField] private float _gravity = 9.81f;
     [SerializeField] private float _jumpCooldown = 1f;
-    [SerializeField] private float _modelLength = 4f;
 
     public GameObject Target { set; private get; }
 
@@ -45,8 +44,9 @@ public class SquirrelBehaviour : MonoBehaviour
             {
                 return;
             }
-            Quaternion targetRotation = Quaternion.LookRotation(_steerDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+            // TODO adjust rotation based on real model
+            // Quaternion targetRotation = Quaternion.LookRotation(_steerDirection);
+            // transform.rotation = targetRotation;
         }
     }
 
@@ -82,6 +82,11 @@ public class SquirrelBehaviour : MonoBehaviour
         }
     }
 
+    float GetSpeed()
+    {
+        return _isGrounded ? _speed : _airSpeed;
+    }
+
     void Update()
     {
         _positionChange = Vector3.zero;
@@ -94,7 +99,7 @@ public class SquirrelBehaviour : MonoBehaviour
             Steer();
         }
         _positionChange += new Vector3(0f, _verticalSpeed, 0f) * Time.deltaTime;
-        _positionChange += _steerDirection * _speed * Time.deltaTime;
+        _positionChange += _steerDirection * GetSpeed() * Time.deltaTime;
         transform.position += _positionChange;
     }
 }

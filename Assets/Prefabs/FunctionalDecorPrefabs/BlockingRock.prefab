@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 320914121618744012}
   - component: {fileID: 3216470552988343174}
   - component: {fileID: 2127538284606062354}
+  - component: {fileID: 7632746081802801296}
   m_Layer: 0
   m_Name: BlockingRock
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7632746081802801296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845688483212423671}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.74356997, y: 0.783637, z: 1.250516}
+  m_Center: {x: 0.06770201, y: 0.11869249, z: 0}

@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Offset: {x: 0, y: 30, z: -30}
+  Offset: {x: 0, y: 40, z: -35}
   SmoothSpeed: 0.4
 --- !u!114 &8892847212225662020
 MonoBehaviour:
@@ -150,5 +150,5 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0.5
   sharedProfile: {fileID: 11400000, guid: eaa10ac0a18b6a542a6aef23d279acd8, type: 2}

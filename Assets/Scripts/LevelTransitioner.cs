@@ -26,7 +26,7 @@ public class LevelTransitioner : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         
         foreach (GameObject tileToUnload in tilesToUnload){
-            Destroy(tileToUnload, 1f);
+            Destroy(tileToUnload, .1f);
         }
 
         transitionCollider.isTrigger = false;

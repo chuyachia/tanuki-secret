@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Offset: {x: 0, y: 25, z: -25}
+  Offset: {x: 0, y: 30, z: -30}
   SmoothSpeed: 0.4
 --- !u!114 &8892847212225662020
 MonoBehaviour:

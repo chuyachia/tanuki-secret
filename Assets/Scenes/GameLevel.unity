@@ -2817,6 +2817,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5920349835061089462, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: MoveSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5920349835061089462, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: Acceleration
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5920349835061089463, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
       propertyPath: m_Name

@@ -42,6 +42,7 @@ public class SquirrelLevelManager : MonoBehaviour
             AssignAvailableNutToSquirrel(i);
         }
         _nutBucket = Instantiate(_nutBucketPrefab, transform.position, Quaternion.identity);
+        EventManager.Instance.RegisterGetNutEventListener(OnNutCollectedByPlayer);
     }
 
     void UpdateSquirrelTarget()
@@ -165,5 +166,11 @@ public class SquirrelLevelManager : MonoBehaviour
         {
             _nextNutTimer = _nextNutAppearsIn;
         }
+    }
+
+    public void OnNutCollectedByPlayer(GameObject nut)
+    {
+        Debug.Log("Player picked a nut");
+        RemoveFromScene(nut, _nutPool);
     }
 }

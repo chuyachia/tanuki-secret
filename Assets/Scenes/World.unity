@@ -5336,6 +5336,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 607523879018029751, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_Height
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 607523879018029751, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 607523879018029751, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 607523879018029751, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: maxSlopeAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: groundCheckDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: climbableSurface.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: climableSurfaceCheckDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5920349835061089463, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
       propertyPath: m_Name

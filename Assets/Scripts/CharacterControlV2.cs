@@ -8,7 +8,6 @@ public class CharacterControlV2 : MonoBehaviour
     [SerializeField] private float climSpeed = 3f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float maxSlopeAngle = 45f;
     [SerializeField] private LayerMask climbableSurface;
     [SerializeField] private float groundCheckDistance = 2f;
     [SerializeField] private float climableSurfaceCheckDistance = 2f;
@@ -21,11 +20,13 @@ public class CharacterControlV2 : MonoBehaviour
     private bool shouldJump;
     private bool isClimbing;
     private Vector3 climbDirection;
+    private float initialSlopeLimit;
 
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        initialSlopeLimit = characterController.slopeLimit;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -51,6 +52,7 @@ public class CharacterControlV2 : MonoBehaviour
         if (shouldClimb && Physics.Raycast(transform.position, transform.forward, out hitInfo, climableSurfaceCheckDistance, climbableSurface))
         {
             isClimbing = true;
+            characterController.slopeLimit = 90f;
             return;
         }
         if (!isClimbing)
@@ -95,6 +97,10 @@ public class CharacterControlV2 : MonoBehaviour
     void Move()
     {
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        if (isGrounded)
+        {
+            characterController.slopeLimit = initialSlopeLimit;
+        }
 
         Vector3 moveDirection = transform.right * inputHorizontal + transform.forward * inputVertical;
 
@@ -112,11 +118,6 @@ public class CharacterControlV2 : MonoBehaviour
         else
         {
             velocity.y += gravity * Time.deltaTime;
-        }
-
-        if (isGrounded && Vector3.Angle(Vector3.up, characterController.velocity) > maxSlopeAngle)
-        {
-            velocity = new Vector3(0, velocity.y, 0);
         }
 
         Vector3 move = moveDirection * moveSpeed;

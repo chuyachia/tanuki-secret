@@ -1569,6 +1569,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 607523879018029751, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5910469227042929944, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: maxSlopeAngle
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5920349835061089463, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
       propertyPath: m_Name
@@ -1644,5 +1654,15 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 191994020}
+    - target: {fileID: 5920349835729781026, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171048265463479496, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127, type: 3}

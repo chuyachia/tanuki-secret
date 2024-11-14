@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Nut
+  - NutBucket
   layers:
   - Default
   - TransparentFX

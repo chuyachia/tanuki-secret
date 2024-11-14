@@ -168,7 +168,7 @@ Transform:
   - {fileID: 357757065}
   - {fileID: 693970406}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &14734136
 MonoBehaviour:
@@ -1832,6 +1832,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 0
   animatedRock: {fileID: 522550510}
+--- !u!114 &1296677231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296677225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToDisplay:
+  - Entering D1
+  - (Singing Cranes)
 --- !u!1 &1333954082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1957,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40104d08b6d3b0343bc231c329d1db44, type: 3}
+--- !u!1001 &1600007567
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8957495932410715620, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: subjectsToObserve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715620, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: subjectsToObserve.Array.data[0]
+      value: 
+      objectReference: {fileID: 2140275077}
+    - target: {fileID: 8957495932410715620, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: subjectsToObserve.Array.data[1]
+      value: 
+      objectReference: {fileID: 1877243043}
+    - target: {fileID: 8957495932410715620, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: subjectsToObserve.Array.data[2]
+      value: 
+      objectReference: {fileID: 1296677231}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715621, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957495932410715627, guid: 3aaab804f6f11c1429ecdd92565e996a,
+        type: 3}
+      propertyPath: m_Name
+      value: UI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3aaab804f6f11c1429ecdd92565e996a, type: 3}
 --- !u!1 &1678574028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,10 +2146,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8892847212225662016, guid: cfd03089808865743832735d3324fb05,
+        type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
@@ -2491,7 +2600,7 @@ PrefabInstance:
     - target: {fileID: 7705352608792070573, guid: 48742d96f0b8b5f40b8a0a806ada39b4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7705352608792070573, guid: 48742d96f0b8b5f40b8a0a806ada39b4,
         type: 3}
@@ -2570,6 +2679,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 0
   animatedRock: {fileID: 1973292807}
+--- !u!114 &1877243043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128786853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToDisplay:
+  - Entering C1
+  - (Deers)
 --- !u!114 &1955718335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,7 +2741,7 @@ PrefabInstance:
     - target: {fileID: 801580967482021856, guid: d81a08dde830c5c4a867f8d7b4518056,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 801580967482021856, guid: d81a08dde830c5c4a867f8d7b4518056,
         type: 3}
@@ -2817,16 +2941,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5920349835061089462, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
-        type: 3}
-      propertyPath: MoveSpeed
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5920349835061089462, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
-        type: 3}
-      propertyPath: Acceleration
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 5920349835061089463, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
       propertyPath: m_Name
@@ -2840,7 +2954,7 @@ PrefabInstance:
     - target: {fileID: 5920349835061089464, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5920349835061089464, guid: 18a1ebc8fe70fc34b85b3d10bbe2f127,
         type: 3}
@@ -2944,6 +3058,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOpen: 0
   animatedRock: {fileID: 9178625}
+--- !u!114 &2140275077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140275073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToDisplay:
+  - Entering B1
+  - (Squirrels)
 --- !u!1001 &1095716137177625469
 PrefabInstance:
   m_ObjectHideFlags: 0

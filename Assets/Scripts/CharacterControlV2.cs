@@ -37,7 +37,7 @@ public class CharacterControlV2 : MonoBehaviour
         {
             return;
         }
-        if (hit.gameObject.CompareTag("Nut") && hit.gameObject.activeSelf && shouldInteract)
+        if (hit.gameObject.CompareTag("Nut") && hit.gameObject.activeSelf && !hasNut)
         {
             Debug.Log("Pick up a nut");
             EventManager.Instance.InvokeGetNutEvent(hit.gameObject);
@@ -46,7 +46,7 @@ public class CharacterControlV2 : MonoBehaviour
 
             return;
         }
-        if (hit.gameObject.CompareTag("NutBucket") && hasNut && shouldInteract)
+        if (hit.gameObject.CompareTag("NutBucket") && hasNut)
         {
             Debug.Log("Put nut in bucket");
             EventManager.Instance.InvokePutNutInBucketEvent();

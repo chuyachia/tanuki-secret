@@ -180,7 +180,6 @@ public class SquirrelLevelManager : MonoBehaviour
 
     public void OnNutCollectedByPlayer(GameObject nut)
     {
-        Debug.Log("Player picked a nut");
         RemoveFromScene(nut, _nutPool);
     }
 

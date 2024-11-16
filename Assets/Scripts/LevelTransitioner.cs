@@ -7,8 +7,10 @@ public class LevelTransitioner : MonoBehaviour
 
     [SerializeField] private List<GameObject> tilesToLoad;
     [SerializeField] private List<GameObject> tilesToUnload;
-
+    [SerializeField] private GameObject backColliderGameObject;
     private Collider transitionCollider;
+    
+
 
 
     private void Start() {
@@ -17,21 +19,17 @@ public class LevelTransitioner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         
-        foreach (GameObject tileToLoad in tilesToLoad){
-            tileToLoad.SetActive(true);
-        }
+        if (other.CompareTag("Player")){
+            
+            foreach (GameObject tileToLoad in tilesToLoad){
+                tileToLoad.SetActive(true);
+            }
 
+            foreach (GameObject tileToUnload in tilesToUnload){
+                Destroy(tileToUnload, .1f);
+            }
+            backColliderGameObject.SetActive(true);
+        }
     } 
-
-    private void OnTriggerExit(Collider other) {
-        
-        foreach (GameObject tileToUnload in tilesToUnload){
-            Destroy(tileToUnload, .1f);
-        }
-
-        transitionCollider.isTrigger = false;
-
-    }
-
 
 }

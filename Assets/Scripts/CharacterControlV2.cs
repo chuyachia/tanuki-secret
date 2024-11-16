@@ -11,6 +11,7 @@ public class CharacterControlV2 : MonoBehaviour
     [SerializeField] private LayerMask climbableSurface;
     [SerializeField] private float groundCheckDistance = 2f;
     [SerializeField] private float climableSurfaceCheckDistance = 2f;
+    [SerializeField] private Animator animationController;
 
     private Vector3 velocity;
 
@@ -137,6 +138,16 @@ public class CharacterControlV2 : MonoBehaviour
         }
 
         Vector3 move = moveDirection.normalized * moveSpeed;
+
+        if (move != Vector3.zero){
+            animationController.SetBool("isWalking", true);
+        }
+        else{
+            animationController.SetBool("isWalking", false);
+        }
+
+        
+
         characterController.Move((move + velocity) * Time.deltaTime);
     }
 }

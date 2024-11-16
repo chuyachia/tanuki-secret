@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 675e551a78a7f3840a9969e852980d36
+guid: a21e6792762ece9458aed23ac0f6640d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Tanuki Walk
+      name: WALK
       takeName: CINEMA_4D_Main
       internalID: -1498010087492872569
       firstFrame: 0

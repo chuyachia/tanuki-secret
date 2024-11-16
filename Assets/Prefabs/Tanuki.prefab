@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5920349835061089464}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &5920349834903716737
 Light:
@@ -145,8 +145,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6171048265463479496}
   - {fileID: 5920349834903716736}
+  - {fileID: 3478331569408916711}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,7 +166,6 @@ MonoBehaviour:
   climSpeed: 3
   jumpHeight: 3
   gravity: -9.81
-  maxSlopeAngle: 45
   climbableSurface:
     serializedVersion: 2
     m_Bits: 0
@@ -190,105 +189,78 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.24, z: 0}
---- !u!1001 &5920349835382283043
+--- !u!1001 &4021500472024652556
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 5920349835061089464}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.34
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.46
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.67
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9063079
+      value: 0.92387956
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.42261827
+      value: -0.38268343
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 675e551a78a7f3840a9969e852980d36,
+    - target: {fileID: 919132149155446097, guid: ecd4b953dc209024da2e0533925bfbfe,
         type: 3}
       propertyPath: m_Name
-      value: Tanuki_WALK_ANIM
+      value: Tanuki
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 675e551a78a7f3840a9969e852980d36, type: 3}
---- !u!4 &6171048265463479496 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: ecd4b953dc209024da2e0533925bfbfe, type: 3}
+--- !u!4 &3478331569408916711 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 675e551a78a7f3840a9969e852980d36,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ecd4b953dc209024da2e0533925bfbfe,
     type: 3}
-  m_PrefabInstance: {fileID: 5920349835382283043}
+  m_PrefabInstance: {fileID: 4021500472024652556}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6838759049065784946 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 675e551a78a7f3840a9969e852980d36,
-    type: 3}
-  m_PrefabInstance: {fileID: 5920349835382283043}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &5920349834991279615
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6838759049065784946}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 77f425f2efce40d4c8d0da795dc886ab, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

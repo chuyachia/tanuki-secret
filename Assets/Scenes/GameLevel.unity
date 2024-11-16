@@ -348,9 +348,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
+      propertyPath: tilesToLoad.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
       propertyPath: tilesToLoad.Array.data[0]
       value: 
       objectReference: {fileID: 1678574028}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
+      propertyPath: tilesToLoad.Array.data[1]
+      value: 
+      objectReference: {fileID: 1293072890}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
       propertyPath: tilesToUnload.Array.data[0]
@@ -2002,7 +2012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1293072891
 Transform:
   m_ObjectHideFlags: 0
@@ -2042,6 +2052,9 @@ MonoBehaviour:
   _targetReachedThreshold: 2
   _nextNutAppearsIn: 2
   _doorToNextLevel: {fileID: 1877243040}
+  _typeOfNuts:
+  - {fileID: 2100000, guid: 2f80ed671eb710e6e98a79704e5df2df, type: 2}
+  - {fileID: 2100000, guid: 43101272af6cf33fb8893a55f8adddcd, type: 2}
 --- !u!1 &1296677225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6056390361438157887, guid: a6124504d2d146d4290d48286650cecc,
@@ -2284,6 +2297,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053680, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_Name
@@ -2453,7 +2471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1678574029
 Transform:
   m_ObjectHideFlags: 0

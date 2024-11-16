@@ -1943,12 +1943,16 @@ MonoBehaviour:
     type: 3}
   _nutBucketPrefab: {fileID: 1401930070987731476, guid: 28c84c7ef49f77f80832b811a471b435,
     type: 3}
-  _spawnRadius: 15
+  _nutSpawnRadius: 5
+  _bucketSpawnRadius: 2
   _squirrelCount: 5
   _nutCount: 5
   _targetReachedThreshold: 4
   _nextNutAppearsIn: 2
   _doorToNextLevel: {fileID: 0}
+  _typeOfNuts:
+  - {fileID: 2100000, guid: 2f80ed671eb710e6e98a79704e5df2df, type: 2}
+  - {fileID: 2100000, guid: 43101272af6cf33fb8893a55f8adddcd, type: 2}
 --- !u!1001 &966740680
 PrefabInstance:
   m_ObjectHideFlags: 0

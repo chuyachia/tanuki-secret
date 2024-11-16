@@ -559,8 +559,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioData:
   - eventType: 0
+    clip: {fileID: 8300000, guid: 7d4d42b64b28dc943a5fe602a46ce996, type: 3}
+    baseVolume: 10
+    loop: 0
+    spatialBlend: 1
+  - eventType: 1
     clip: {fileID: 8300000, guid: 1502ceabb3d600a45bd80f51253b9eab, type: 3}
-    baseVolume: 1
+    baseVolume: 10
     loop: 0
     spatialBlend: 1
 --- !u!4 &295207148
@@ -2386,7 +2391,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 69.9
+      value: 66.3
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -2396,7 +2401,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 84.2
+      value: 168.8
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}

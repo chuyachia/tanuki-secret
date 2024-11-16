@@ -21,7 +21,7 @@ public class EventManager
     }
 
     private UnityEvent<GameObject> getNutEvent;
-    private UnityEvent<GameObject>  putNutInBucket;
+    private UnityEvent<GameObject> putNutInBucket;
 
     private EventManager()
     {
@@ -39,12 +39,12 @@ public class EventManager
         getNutEvent.RemoveListener(action);
     }
 
-    public void RegisterPutNutInBucketEventListener(UnityAction<GameObject>  action)
+    public void RegisterPutNutInBucketEventListener(UnityAction<GameObject> action)
     {
         putNutInBucket.AddListener(action);
     }
 
-    public void UnregisterPutNutInBucketEventListener(UnityAction<GameObject>  action)
+    public void UnregisterPutNutInBucketEventListener(UnityAction<GameObject> action)
     {
         putNutInBucket.RemoveListener(action);
     }

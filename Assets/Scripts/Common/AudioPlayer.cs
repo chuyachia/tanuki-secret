@@ -43,27 +43,27 @@ public class AudioPlayer : MonoBehaviour
     {
         // Subscribe to events
         EventManager.Instance.RegisterGetNutEventListener(OnGetNut);
-       // EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
+        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
     }
 
     private void OnDisable()
     {
         // Unsubscribe from events
         EventManager.Instance.UnregisterGetNutEventListener(OnGetNut);
-       // EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
+        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
 
     }
 
-  //  private void OnPutNutInBucket()
-  //  {
-//        PlaySound(AudioEventType.putNutInBucket);
-  //  }
+      private void OnPutNutInBucket(GameObject bucket)
+      {
+            PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 2f);
+      }
 
 
     // Event handlers
     private void OnGetNut(GameObject nut)
     {
-        PlaySound(AudioEventType.GetNut, nut.transform.position);
+        PlaySound(AudioEventType.GetNut, nut.transform.position, 2f);
     }
 
     private void PlaySound(AudioEventType eventType, Vector3 position, float volumeMultiplier = 1.0f)

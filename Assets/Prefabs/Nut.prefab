@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7816413072943937860}
   - component: {fileID: 933941101799007420}
   - component: {fileID: 8849887779565373644}
-  - component: {fileID: 5181826829251733582}
+  - component: {fileID: 4285068947248524672}
   m_Layer: 0
   m_Name: Nut
   m_TagString: Nut
@@ -34073,8 +34073,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838045066877494201}
   m_Mesh: {fileID: 0}
---- !u!64 &5181826829251733582
-MeshCollider:
+--- !u!65 &4285068947248524672
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34083,7 +34083,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.4080576, y: 0.91730404, z: 1.3716049}
+  m_Center: {x: 0.49235326, y: 0.45406878, z: 0.54476166}

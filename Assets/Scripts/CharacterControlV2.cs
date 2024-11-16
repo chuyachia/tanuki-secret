@@ -16,11 +16,13 @@ public class CharacterControlV2 : MonoBehaviour
 
     private float inputHorizontal;
     private float inputVertical;
-    private bool shouldClimb;
+    private bool shouldInteract;
     private bool shouldJump;
     private bool isClimbing;
     private Vector3 climbDirection;
     private float initialSlopeLimit;
+    private bool hasNut;
+    private bool collisionHit;
 
 
     void Start()
@@ -31,16 +33,25 @@ public class CharacterControlV2 : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Nut") && hit.gameObject.activeSelf)
+        if (collisionHit)
         {
-
-            EventManager.Instance.InvokeGetNutEvent(hit.gameObject);
             return;
         }
-        if (hit.gameObject.CompareTag("NutBucket"))
+        if (hit.gameObject.CompareTag("Nut") && hit.gameObject.activeSelf && shouldInteract)
         {
+            Debug.Log("Pick up a nut");
+            EventManager.Instance.InvokeGetNutEvent(hit.gameObject);
+            hasNut = true;
+            collisionHit = true;
 
+            return;
+        }
+        if (hit.gameObject.CompareTag("NutBucket") && hasNut && shouldInteract)
+        {
             Debug.Log("Put nut in bucket");
+            EventManager.Instance.InvokePutNutInBucketEvent();
+            hasNut = false;
+            collisionHit = true;
             return;
         }
     }
@@ -49,7 +60,7 @@ public class CharacterControlV2 : MonoBehaviour
     {
 
         RaycastHit hitInfo;
-        if (shouldClimb && Physics.Raycast(transform.position, transform.forward, out hitInfo, climableSurfaceCheckDistance, climbableSurface))
+        if (shouldInteract && Physics.Raycast(transform.position, transform.forward, out hitInfo, climableSurfaceCheckDistance, climbableSurface))
         {
             isClimbing = true;
             characterController.slopeLimit = 90f;
@@ -74,10 +85,15 @@ public class CharacterControlV2 : MonoBehaviour
 
     void Update()
     {
+        collisionHit = false;
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
-        shouldClimb = Input.GetKeyDown(KeyCode.E);
+        shouldInteract = Input.GetKeyDown(KeyCode.E);
         shouldJump = Input.GetKeyDown(KeyCode.Space);
+    }
+
+    void FixedUpdate()
+    {
         CheckClimbState();
         if (isClimbing)
         {
@@ -120,7 +136,7 @@ public class CharacterControlV2 : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
         }
 
-        Vector3 move = moveDirection * moveSpeed;
+        Vector3 move = moveDirection.normalized * moveSpeed;
         characterController.Move((move + velocity) * Time.deltaTime);
     }
 }

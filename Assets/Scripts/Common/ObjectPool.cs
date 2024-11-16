@@ -34,4 +34,12 @@ public class ObjectPool
         _pool.Add(instance);
         instance.gameObject.SetActive(false);
     }
+
+    public void DestroyAll()
+    {
+        foreach (GameObject instance in _pool)
+        {
+            Object.Destroy(instance);
+        }
+    }
 }

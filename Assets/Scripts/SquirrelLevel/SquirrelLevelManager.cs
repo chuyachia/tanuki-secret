@@ -9,11 +9,11 @@ public class SquirrelLevelManager : MonoBehaviour
     [SerializeField] private GameObject _squirrelPrefab;
     [SerializeField] private GameObject _nutBucketPrefab;
     [SerializeField] private float _spawnRadius = 5f;
-    [SerializeField] private float _spawnHeight = 10f;
     [SerializeField] private int _squirrelCount = 5;
     [SerializeField] private int _nutCount = 5;
     [SerializeField] private float _targetReachedThreshold = 4f;
     [SerializeField] private float _nextNutAppearsIn = 2f;
+    [SerializeField] private Door _doorToNextLevel;
 
     private ObjectPool _nutPool;
     private ObjectPool _squirrelPool;
@@ -43,6 +43,16 @@ public class SquirrelLevelManager : MonoBehaviour
         }
         _nutBucket = Instantiate(_nutBucketPrefab, transform.position, Quaternion.identity);
         EventManager.Instance.RegisterGetNutEventListener(OnNutCollectedByPlayer);
+        EventManager.Instance.RegisterPutNutInBucketEventListener(OpenDoorToNextLevel);
+    }
+
+    void OnDestroy()
+    {
+        _squirrelPool.DestroyAll();
+        _nutPool.DestroyAll();
+        Destroy(_nutBucket);
+        EventManager.Instance.UnregisterGetNutEventListener(OnNutCollectedByPlayer);
+        EventManager.Instance.UnregisterPutNutInBucketEventListener(OpenDoorToNextLevel);
     }
 
     void UpdateSquirrelTarget()
@@ -152,7 +162,7 @@ public class SquirrelLevelManager : MonoBehaviour
     {
         GameObject instance = pool.Get();
         Vector2 randomPosition = Random.insideUnitCircle * _spawnRadius;
-        instance.transform.position = new Vector3(transform.position.x + randomPosition.x, _spawnHeight, transform.position.z + randomPosition.y);
+        instance.transform.position = new Vector3(transform.position.x + randomPosition.x, transform.position.y, transform.position.z + randomPosition.y);
         // TODO adjust rotation based on real model
         // instance.transform.rotation = Utils.RandomRotationRoundY();
         return instance;
@@ -172,5 +182,10 @@ public class SquirrelLevelManager : MonoBehaviour
     {
         Debug.Log("Player picked a nut");
         RemoveFromScene(nut, _nutPool);
+    }
+
+    public void OpenDoorToNextLevel()
+    {
+        _doorToNextLevel.ToggleDoor(true);
     }
 }

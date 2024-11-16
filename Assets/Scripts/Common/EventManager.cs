@@ -21,10 +21,12 @@ public class EventManager
     }
 
     private UnityEvent<GameObject> getNutEvent;
+    private UnityEvent putNutInBucket;
 
     private EventManager()
     {
         getNutEvent = new UnityEvent<GameObject>();
+        putNutInBucket = new UnityEvent();
     }
 
     public void RegisterGetNutEventListener(UnityAction<GameObject> action)
@@ -32,13 +34,29 @@ public class EventManager
         getNutEvent.AddListener(action);
     }
 
-    public void UnregisterGetNuEventListener(UnityAction<GameObject> action)
+    public void UnregisterGetNutEventListener(UnityAction<GameObject> action)
     {
         getNutEvent.RemoveListener(action);
     }
 
+    public void RegisterPutNutInBucketEventListener(UnityAction action)
+    {
+        putNutInBucket.AddListener(action);
+    }
+
+    public void UnregisterPutNutInBucketEventListener(UnityAction action)
+    {
+        putNutInBucket.RemoveListener(action);
+    }
+
+
     public void InvokeGetNutEvent(GameObject nut)
     {
         getNutEvent.Invoke(nut);
+    }
+
+    public void InvokePutNutInBucketEvent()
+    {
+        putNutInBucket.Invoke();
     }
 }

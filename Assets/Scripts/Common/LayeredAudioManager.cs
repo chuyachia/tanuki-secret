@@ -10,13 +10,10 @@ public enum MusicLayer
     Drums,
     Strings,
     Guitar,
-    Leads
-}
-
-public enum AmbientType
-{
+    
+    // Ambient sounds
     Crickets
-    // Add more ambient types as needed
+
 }
 
 public class LayeredAudioManager : MonoBehaviour
@@ -26,28 +23,16 @@ public class LayeredAudioManager : MonoBehaviour
     {
         public MusicLayer layer;
         public AudioClip clip;
+        public AudioMixerGroup audioMixerGroup;
         public float volume = 0.7f;
         [Range(0, 1)] public float currentVolume = 0f;
         public float fadeTime = 1f;
-    }
-
-    [System.Serializable]
-    public class AmbientSoundData
-    {
-        public AmbientType type;
-        public AudioClip clip;
-        public float volume = 0.5f;
-        [Range(0, 1)] public float currentVolume = 0f;
-        public float fadeTime = 2f;
         public bool playOnStart = false;
     }
-
     [Header("Audio Setup")]
     [SerializeField] private MusicLayerData[] musicLayers;
-    [SerializeField] private AmbientSoundData[] ambientSounds;
     
     private Dictionary<MusicLayer, AudioSource> musicSources = new Dictionary<MusicLayer, AudioSource>();
-    private Dictionary<AmbientType, AudioSource> ambientSources = new Dictionary<AmbientType, AudioSource>();
     private Dictionary<AudioSource, Coroutine> fadeCoroutines = new Dictionary<AudioSource, Coroutine>();
 
     private void Awake()
@@ -68,21 +53,11 @@ public class LayeredAudioManager : MonoBehaviour
             source.loop = true;
             source.playOnAwake = false;
             musicSources[layer.layer] = source;
-        }
-
-        // Setup ambient sounds
-        foreach (var ambient in ambientSounds)
-        {
-            var source = gameObject.AddComponent<AudioSource>();
-            source.clip = ambient.clip;
-            source.volume = 0;
-            source.loop = true;
-            source.playOnAwake = false;
-            ambientSources[ambient.type] = source;
-
-            if (ambient.playOnStart)
+            source.outputAudioMixerGroup = layer.audioMixerGroup;
+            
+            if (layer.playOnStart)
             {
-                StartAmbientSound(ambient.type);
+                StartMusicLayer(layer.layer);
             }
         }
     }
@@ -104,7 +79,6 @@ public class LayeredAudioManager : MonoBehaviour
     // Example event handler
     private void OnStartMusicLayer(MusicLayer musicLayer)
     {
-        // Example: Start synths after first transition
         StartMusicLayer(musicLayer);
     }
 
@@ -131,31 +105,6 @@ public class LayeredAudioManager : MonoBehaviour
         if (layerData == null) return;
 
         StartFade(source, 0f, layerData.fadeTime, true);
-    }
-
-    public void StartAmbientSound(AmbientType type)
-    {
-        if (!ambientSources.TryGetValue(type, out AudioSource source)) return;
-
-        AmbientSoundData ambientData = ambientSounds.FirstOrDefault(a => a.type == type);
-        if (ambientData == null) return;
-
-        if (!source.isPlaying)
-        {
-            source.Play();
-        }
-
-        StartFade(source, ambientData.volume, ambientData.fadeTime);
-    }
-
-    public void StopAmbientSound(AmbientType type)
-    {
-        if (!ambientSources.TryGetValue(type, out AudioSource source)) return;
-
-        AmbientSoundData ambientData = ambientSounds.FirstOrDefault(a => a.type == type);
-        if (ambientData == null) return;
-
-        StartFade(source, 0f, ambientData.fadeTime, true);
     }
 
     private void StartFade(AudioSource source, float targetVolume, float fadeTime, bool stopAfterFade = false)

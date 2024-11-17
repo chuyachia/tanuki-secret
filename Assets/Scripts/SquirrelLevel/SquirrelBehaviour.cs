@@ -16,7 +16,7 @@ public class SquirrelBehaviour : MonoBehaviour
         set
         {
             _target = value;
-            if (value != null && value.CompareTag("NutBucket"))
+            if (value != null && value.CompareTag(Constants.Tags.NutBucket))
             {
                 _steerTowardsTargetTimer = _pauseBeforeGoToTarget;
             }
@@ -122,17 +122,17 @@ public class SquirrelBehaviour : MonoBehaviour
         {
             _steerTowardsTargetTimer -= Time.fixedDeltaTime;
         }
-        _animator.SetBool("isGrounded", _isGrounded);
+        _animator.SetBool(Constants.AnimatorState.IsGrounded, _isGrounded);
         ApplyGravity();
         if (_target != null && _steerTowardsTargetTimer <= 0)
         {
             Jump();
             Steer();
-            _animator.SetBool("isWalking", true);
+            _animator.SetBool(Constants.AnimatorState.IsWalking, true);
         }
         else
         {
-            _animator.SetBool("isWalking", false);
+            _animator.SetBool(Constants.AnimatorState.IsWalking, false);
         }
         FlipModel(_steerDirection.x);
         Vector3 positionChange = Vector3.zero;

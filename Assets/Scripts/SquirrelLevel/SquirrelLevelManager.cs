@@ -14,7 +14,7 @@ public class SquirrelLevelManager : MonoBehaviour
     [SerializeField] private float _targetReachedThreshold = 4f;
     [SerializeField] private float _nextNutAppearsIn = 2f;
     [SerializeField] private Door _doorToNextLevel;
-    [SerializeField] private List<Material> _typeOfNuts;
+    [SerializeField] private List<Material> _nutTypes;
     [SerializeField] private float _bucketDistance = 3f;
 
     private ObjectPool _nutPool;
@@ -23,7 +23,7 @@ public class SquirrelLevelManager : MonoBehaviour
 
     private Queue<GameObject> _nutsToAssign;
     private Dictionary<int, GameObject> _squirrelToTarget;
-    private Dictionary<int, int> _nutIdToBucket;
+    private Dictionary<int, int> _nutIdToNutType;
     private float _nextNutTimer = 0f;
     private int _nutsToSpawn = 0;
     private int _playerTargetBucketId = -1;
@@ -32,7 +32,7 @@ public class SquirrelLevelManager : MonoBehaviour
     {
         _nutPool = new ObjectPool(_nutPrefab);
         _nutsToAssign = new Queue<GameObject>();
-        _nutIdToBucket = new Dictionary<int, int>();
+        _nutIdToNutType = new Dictionary<int, int>();
         _squirrelToTarget = new Dictionary<int, GameObject>();
         _squirrels = new List<GameObject>();
         _buckets = new List<GameObject>();
@@ -49,9 +49,9 @@ public class SquirrelLevelManager : MonoBehaviour
             AssignAvailableNutToSquirrel(i);
         }
 
-        float totalLength = (_typeOfNuts.Count - 1) * _bucketDistance;
+        float totalLength = (_nutTypes.Count - 1) * _bucketDistance;
         float startOffset = -totalLength / 2;
-        for (int i = 0; i < _typeOfNuts.Count; i++)
+        for (int i = 0; i < _nutTypes.Count; i++)
         {
             Vector3 position = transform.position + new Vector3(startOffset + i * _bucketDistance, 0, 0);
             GameObject bucket = Instantiate(_nutBucketPrefab, position, Quaternion.identity);
@@ -80,25 +80,36 @@ public class SquirrelLevelManager : MonoBehaviour
             }
             else if ((Utils.StripYDimension(currentTarget.transform.position) - Utils.StripYDimension(currentSquirrel.transform.position)).sqrMagnitude < _targetReachedThreshold)
             {
-                if (currentTarget.CompareTag("Nut"))
+                if (currentTarget.CompareTag(Constants.Tags.Nut))
                 {
+                    ShowNutInMouth(currentSquirrel, currentTarget);
                     RemoveFromScene(currentTarget, _nutPool);
-                    if (_nutIdToBucket.TryGetValue(currentTarget.GetInstanceID(), out int bucketIndex))
+                    if (_nutIdToNutType.TryGetValue(currentTarget.GetInstanceID(), out int nutType))
                     {
-                        AssignTargetToSquirrel(_buckets[bucketIndex], i);
+                        AssignTargetToSquirrel(_buckets[nutType], i);
                     }
                     else
                     {
                         AssignAvailableNutToSquirrel(i);
-
                     }
                 }
-                else // reached bucket
+                else if (currentTarget.CompareTag(Constants.Tags.NutBucket))
                 {
+                    HideNutInMouth(currentSquirrel);
                     AssignAvailableNutToSquirrel(i);
                 }
             }
         }
+    }
+
+    void ShowNutInMouth(GameObject squirrel, GameObject currentTarget)
+    {
+        Utils.ActivateChildAndCopyMaterialFromTarget(squirrel.transform, currentTarget, 1, Constants.Tags.NutInMouth);
+    }
+
+    void HideNutInMouth(GameObject squirrel)
+    {
+        Utils.DeactivteChild(squirrel.transform, 1, Constants.Tags.NutInMouth);
     }
 
     void AssignAvailableNutToSquirrel(int squirrelIndex)
@@ -177,12 +188,12 @@ public class SquirrelLevelManager : MonoBehaviour
     GameObject AssignNutType(GameObject nut)
     {
         Renderer renderer = nut.GetComponent<Renderer>();
-        int nutType = Random.Range(0, _typeOfNuts.Count);
+        int nutType = Random.Range(0, _nutTypes.Count);
         if (renderer != null)
         {
-            renderer.material = _typeOfNuts[nutType];
+            renderer.material = _nutTypes[nutType];
         }
-        AddOrUpdateDict(nut.GetInstanceID(), nutType, _nutIdToBucket);
+        AddOrUpdateDict(nut.GetInstanceID(), nutType, _nutIdToNutType);
         return nut;
     }
 
@@ -217,9 +228,8 @@ public class SquirrelLevelManager : MonoBehaviour
 
     public void OnNutCollectedByPlayer(GameObject nut)
     {
-        Debug.Log("Pick up a nut");
         GameObject targetBucket = null;
-        if (_nutIdToBucket.TryGetValue(nut.GetInstanceID(), out int bucketIndex))
+        if (_nutIdToNutType.TryGetValue(nut.GetInstanceID(), out int bucketIndex))
         {
             targetBucket = _buckets[bucketIndex];
         }
@@ -238,12 +248,7 @@ public class SquirrelLevelManager : MonoBehaviour
     {
         if (bucket.GetInstanceID() == _playerTargetBucketId)
         {
-            Debug.Log("Right bucket");
             _doorToNextLevel.ToggleDoor(true);
-        }
-        else
-        {
-            Debug.Log("Wrong bucket");
         }
     }
 }

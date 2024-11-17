@@ -25,10 +25,10 @@ public class LayeredAudioManager : MonoBehaviour
         public AudioClip clip;
         public AudioMixerGroup audioMixerGroup;
         public float volume = 0.7f;
-        [Range(0, 1)] public float currentVolume = 0f;
         public float fadeTime = 1f;
         public bool playOnStart = false;
     }
+
     [Header("Audio Setup")]
     [SerializeField] private MusicLayerData[] musicLayers;
     

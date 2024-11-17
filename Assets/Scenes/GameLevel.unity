@@ -570,9 +570,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1502ceabb3d600a45bd80f51253b9eab, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.8
+    baseVolume: 1
     loop: 0
-    spatialBlend: 1
+    spatialBlend: 0.5
     pitch: 1
 --- !u!4 &295207148
 Transform:
@@ -1431,31 +1431,27 @@ MonoBehaviour:
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    currentVolume: 0
-    fadeTime: 5
-    playOnStart: 1
+    fadeTime: 2
+    playOnStart: 0
   - layer: 0
     clip: {fileID: 8300000, guid: e6b1670fd9d9176479dc9c95c3ced2ce, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    currentVolume: 0
-    fadeTime: 2
+    fadeTime: 5
     playOnStart: 0
   - layer: 2
     clip: {fileID: 8300000, guid: acda2fe2bffc8794f881f444f3ba2eb2, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    currentVolume: 0
-    fadeTime: 2
+    fadeTime: 10
     playOnStart: 0
   - layer: 3
     clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    currentVolume: 0
     fadeTime: 2
     playOnStart: 1
 --- !u!4 &679734180 stripped
@@ -2229,7 +2225,8 @@ MonoBehaviour:
   textToDisplay:
   - Entering D1
   - (Singing Cranes)
-  musicLayer: 2
+  tracksToPlay: 
+  tracksToStop: 
 --- !u!4 &1314930599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091142502864856007, guid: b1c2a1a96e8309d478748743c3d6ecc8,
@@ -2475,7 +2472,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61.4
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -2485,7 +2482,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 106.1
+      value: 99.7
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -3350,7 +3347,8 @@ MonoBehaviour:
   textToDisplay:
   - Entering C1
   - (Deers)
-  musicLayer: 0
+  tracksToPlay: 03000000
+  tracksToStop: 0000000002000000
 --- !u!4 &1904474200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091142502864856007, guid: b1c2a1a96e8309d478748743c3d6ecc8,
@@ -3614,7 +3612,8 @@ MonoBehaviour:
   textToDisplay:
   - Entering B1
   - (Squirrels)
-  musicLayer: 1
+  tracksToPlay: 000000000100000002000000
+  tracksToStop: 03000000
 --- !u!1001 &1095716137177625469
 PrefabInstance:
   m_ObjectHideFlags: 0

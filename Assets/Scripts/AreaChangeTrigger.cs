@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.XR;
 
 
 
 public class AreaChangeTrigger : MonoBehaviour{
     [SerializeField] List<string> textToDisplay;
-    [SerializeField] MusicLayer musicLayer;
+    [SerializeField] MusicLayer[] tracksToPlay;
+    [SerializeField] MusicLayer[] tracksToStop;
+
     private bool firstOccurence = true;
 
     public event Action<List<string>> AreaEntered;
@@ -15,12 +18,26 @@ public class AreaChangeTrigger : MonoBehaviour{
         private void OnTriggerEnter(Collider other)
     {
         DisplayMessage(); // only displayed the first time the player enters the area. Other logic related to area change could be implemented
-        ActivateMusic(musicLayer);
+        StopTracks(tracksToStop);
+        PlayTracks(tracksToPlay);
+        
     }
 
-    private static void ActivateMusic(MusicLayer musicLayer)
+
+    private void StopTracks(MusicLayer[] tracksToStop)
     {
-        EventManager.Instance.InvokeStartMusicLayerEvent(musicLayer);
+        if (tracksToStop == null) return;
+        foreach(MusicLayer track in tracksToStop){
+            EventManager.Instance.InvokeStopMusicLayerEvent(track);
+        }
+    }
+    private void PlayTracks(MusicLayer[] tracksToPlay)
+    {
+        if (tracksToPlay == null) return;
+
+        foreach(MusicLayer track in tracksToPlay){
+            EventManager.Instance.InvokeStartMusicLayerEvent(track);
+        }
     }
 
     private void DisplayMessage()

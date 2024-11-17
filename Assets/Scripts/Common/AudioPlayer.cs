@@ -6,9 +6,12 @@ using UnityEngine.Audio;
 // Define audio events that correspond to game events
 public enum AudioEventType
 {
+    // SFX
     GetNut,
     putNutInBucket,
-    // Add more audio events as needed
+    // Ambient
+
+    // Music
 }
 
 // Audio player that responds to game events
@@ -19,9 +22,11 @@ public class AudioPlayer : MonoBehaviour
     {
         public AudioEventType eventType;
         public AudioClip clip;
+        public AudioMixerGroup audioMixerGroup;
         public float baseVolume = 1.0f;
         public bool loop = false;
         public float spatialBlend = 0f; // 0 = 2D, 1 = 3D
+        public float pitch = 1f;
     }
 
     [SerializeField] private AudioData[] audioData;
@@ -82,6 +87,7 @@ public class AudioPlayer : MonoBehaviour
             source.volume = data.baseVolume * volumeMultiplier;
             source.loop = data.loop;
             source.spatialBlend = data.spatialBlend;
+            source.pitch = data.pitch;
 
             if (data.spatialBlend > 0)
             {

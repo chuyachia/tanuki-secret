@@ -163,15 +163,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  airSpeed: 1
   climSpeed: 3
-  jumpHeight: 5
+  jumpHeight: 1
   gravity: -9.81
   climbableSurface:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckDistance: 2
+  groundCheckDistance: 1
   climableSurfaceCheckDistance: 2
-  animationController: {fileID: 8208080634371107411}
 --- !u!143 &5532589272841159625
 CharacterController:
   m_ObjectHideFlags: 0

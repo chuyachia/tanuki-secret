@@ -35,7 +35,6 @@ public class SquirrelLevelManager : MonoBehaviour
         _squirrelToTarget = new Dictionary<int, GameObject>();
         _squirrels = new List<GameObject>();
         _buckets = new List<GameObject>();
-
         for (int i = 0; i < _nutCount; i++)
         {
             _nutsToAssign.Enqueue(AssignNutType(AddToSceneFromPool(_nutPool)));
@@ -162,7 +161,6 @@ public class SquirrelLevelManager : MonoBehaviour
                 while (_nutsToSpawn > 0)
                 {
                     _nutsToAssign.Enqueue(AssignNutType(AddToSceneFromPool(_nutPool)));
-                    // assign new nut to a random squirrel?
                     _nutsToSpawn--;
                 }
             }
@@ -192,8 +190,6 @@ public class SquirrelLevelManager : MonoBehaviour
         GameObject instance = pool.Get();
         instance.transform.position = GetRandomPositionWithinCircle(0, _nutSpawnRadius);
         instance.transform.parent = transform;
-        // TODO adjust rotation based on real model
-        // instance.transform.rotation = Utils.RandomRotationRoundY();
         return instance;
     }
 

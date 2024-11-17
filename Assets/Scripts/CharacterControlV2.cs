@@ -2,34 +2,36 @@ using UnityEngine;
 
 public class CharacterControlV2 : MonoBehaviour
 {
-    private CharacterController characterController;
-
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float airSpeed = 1f;
     [SerializeField] private float climSpeed = 3f;
     [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private LayerMask climbableSurface;
-    [SerializeField] private float groundCheckDistance = 2f;
     [SerializeField] private float climableSurfaceCheckDistance = 2f;
-    [SerializeField] private Animator animationController;
 
+
+    private CharacterController characterController;
+    private Animator animationController;
     private Vector3 velocity;
-
     private float inputHorizontal;
     private float inputVertical;
     private bool shouldInteract;
     private bool shouldJump;
     private bool isClimbing;
+    private bool isGrounded;
     private Vector3 climbDirection;
     private float initialSlopeLimit;
     private bool hasNut;
     private bool collisionHit;
-
+    private float initialXScale;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animationController = GetComponentInChildren<Animator>();
         initialSlopeLimit = characterController.slopeLimit;
+        initialXScale = transform.localScale.x;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -57,11 +59,10 @@ public class CharacterControlV2 : MonoBehaviour
         }
     }
 
-    void CheckClimbState()
+    void UpdateClimbState()
     {
 
-        RaycastHit hitInfo;
-        if (shouldInteract && Physics.Raycast(transform.position, transform.forward, out hitInfo, climableSurfaceCheckDistance, climbableSurface))
+        if (shouldInteract && Physics.Raycast(transform.position, transform.forward, climableSurfaceCheckDistance, climbableSurface))
         {
             isClimbing = true;
             characterController.slopeLimit = 90f;
@@ -86,7 +87,6 @@ public class CharacterControlV2 : MonoBehaviour
 
     void Update()
     {
-        collisionHit = false;
         inputHorizontal = Input.GetAxis("Horizontal");
         inputVertical = Input.GetAxis("Vertical");
         shouldInteract = Input.GetKeyDown(KeyCode.E);
@@ -95,59 +95,88 @@ public class CharacterControlV2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckClimbState();
+        ResetCollistionState();
+        UpdateClimbState();
         if (isClimbing)
         {
             Climb();
         }
         else
         {
+            UpdateGroundedState();
+            ApplyGravity();
+            FlipModelOnHorizontalInput();
+            Jump();
             Move();
         }
     }
 
-    void Climb()
+    void ResetCollistionState()
     {
-        characterController.Move(climbDirection * climSpeed * inputVertical * Time.deltaTime);
+        collisionHit = false;
     }
 
-    void Move()
+    void Climb()
     {
-        bool isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        characterController.Move(climSpeed * inputVertical * Time.fixedDeltaTime * climbDirection);
+    }
+
+    void UpdateGroundedState()
+    {
+        isGrounded = characterController.isGrounded;
         if (isGrounded)
         {
             characterController.slopeLimit = initialSlopeLimit;
         }
+        animationController.SetBool("isGrounded", isGrounded);
+    }
 
-        Vector3 moveDirection = transform.right * inputHorizontal + transform.forward * inputVertical;
-
-        if (isGrounded)
+    void ApplyGravity()
+    {
+        if (!isGrounded)
         {
-            if (shouldJump)
-            {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
-            else
-            {
-                velocity.y = -2f;
-            }
+            velocity.y += gravity * Time.fixedDeltaTime;
+        }
+    }
+
+    float GetSpeed()
+    {
+        return isGrounded ? moveSpeed : airSpeed;
+    }
+
+    void Jump()
+    {
+        if (isGrounded && shouldJump)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+    }
+
+    void Move()
+    {
+        Vector3 moveDirection = transform.right * inputHorizontal + transform.forward * inputVertical;
+        Vector3 move = moveDirection.normalized * GetSpeed();
+        if (move != Vector3.zero)
+        {
+            animationController.SetBool("isWalking", true);
         }
         else
         {
-            velocity.y += gravity * Time.deltaTime;
-        }
-
-        Vector3 move = moveDirection.normalized * moveSpeed;
-
-        if (move != Vector3.zero){
-            animationController.SetBool("isWalking", true);
-        }
-        else{
             animationController.SetBool("isWalking", false);
         }
 
-        
+        characterController.Move((move + velocity) * Time.fixedDeltaTime);
+    }
 
-        characterController.Move((move + velocity) * Time.deltaTime);
+    void FlipModelOnHorizontalInput()
+    {
+        if (inputHorizontal < 0)
+        {
+            transform.localScale = new Vector3(initialXScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (inputHorizontal > 0)
+        {
+            transform.localScale = new Vector3(-initialXScale, transform.localScale.y, transform.localScale.z);
+        }
     }
 }

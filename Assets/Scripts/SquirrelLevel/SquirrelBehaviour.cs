@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class SquirrelBehaviour : MonoBehaviour
@@ -6,27 +7,42 @@ public class SquirrelBehaviour : MonoBehaviour
     [SerializeField] private float _airSpeed = 2f;
     [SerializeField] private float _jumpProbability = 0.1f;
     [SerializeField] private float _jumpHeight = 5f;
-    [SerializeField] private float _gravity = 9.81f;
+    [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private float _jumpCooldown = 1f;
+    [SerializeField] private float _pauseBeforeGoToTarget = 1f;
 
-    public GameObject Target { set; private get; }
-
+    public GameObject Target
+    {
+        set
+        {
+            _target = value;
+            if (value != null && value.CompareTag("NutBucket"))
+            {
+                _steerTowardsTargetTimer = _pauseBeforeGoToTarget;
+            }
+        }
+    }
+    private float _steerTowardsTargetTimer;
+    private GameObject _target;
     private float _verticalSpeed = 0f;
     private Vector3 _steerDirection = new Vector3();
     private Vector3 _previousSteerDirection = new Vector3();
     private bool _isGrounded = true;
     private float _groundLevel;
     private float _jumpCooldownTimer = 0f;
-    private Vector3 _positionChange = Vector3.zero;
+    private float _initialXScale;
+    private Animator _animator;
 
     void Start()
     {
         _groundLevel = transform.position.y;
+        _initialXScale = transform.localScale.x;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     Vector3 GetSteerDirection()
     {
-        return (Utils.StripYDimension(Target.transform.position) - Utils.StripYDimension(transform.position)).normalized;
+        return (Utils.StripYDimension(_target.transform.position) - Utils.StripYDimension(transform.position)).normalized;
     }
 
 
@@ -44,16 +60,15 @@ public class SquirrelBehaviour : MonoBehaviour
             {
                 return;
             }
-            // TODO adjust rotation based on real model
-            // Quaternion targetRotation = Quaternion.LookRotation(_steerDirection);
-            // transform.rotation = targetRotation;
         }
     }
 
-
-    void CheckJump()
+    void UpdateGroundedState()
     {
-        _jumpCooldownTimer -= Time.deltaTime;
+        if (_jumpCooldownTimer > 0)
+        {
+            _jumpCooldownTimer -= Time.fixedDeltaTime;
+        }
         if (transform.position.y <= _groundLevel)
         {
             _isGrounded = true;
@@ -69,7 +84,7 @@ public class SquirrelBehaviour : MonoBehaviour
     {
         if (!_isGrounded)
         {
-            _verticalSpeed -= _gravity * Time.deltaTime;
+            _verticalSpeed += _gravity * Time.fixedDeltaTime;
         }
     }
 
@@ -77,7 +92,7 @@ public class SquirrelBehaviour : MonoBehaviour
     {
         if (_isGrounded && _jumpCooldownTimer <= 0f && Random.value < _jumpProbability)
         {
-            _verticalSpeed = _jumpHeight;
+            _verticalSpeed = Mathf.Sqrt(_jumpHeight * -2f * _gravity); ;
             _jumpCooldownTimer = _jumpCooldown;
         }
     }
@@ -87,19 +102,42 @@ public class SquirrelBehaviour : MonoBehaviour
         return _isGrounded ? _speed : _airSpeed;
     }
 
-    void Update()
+    void FlipModel(float xMove)
     {
-        _positionChange = Vector3.zero;
+        if (xMove < 0)
+        {
+            transform.localScale = new Vector3(_initialXScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (xMove > 0)
+        {
+            transform.localScale = new Vector3(-_initialXScale, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+    void FixedUpdate()
+    {
         _steerDirection = Vector3.zero;
-        CheckJump();
+        UpdateGroundedState();
+        if (_steerTowardsTargetTimer > 0)
+        {
+            _steerTowardsTargetTimer -= Time.fixedDeltaTime;
+        }
+        _animator.SetBool("isGrounded", _isGrounded);
         ApplyGravity();
-        if (Target != null)
+        if (_target != null && _steerTowardsTargetTimer <= 0)
         {
             Jump();
             Steer();
+            _animator.SetBool("isWalking", true);
         }
-        _positionChange += new Vector3(0f, _verticalSpeed, 0f) * Time.deltaTime;
-        _positionChange += _steerDirection * GetSpeed() * Time.deltaTime;
-        transform.position += _positionChange;
+        else
+        {
+            _animator.SetBool("isWalking", false);
+        }
+        FlipModel(_steerDirection.x);
+        Vector3 positionChange = Vector3.zero;
+        positionChange += new Vector3(0f, _verticalSpeed, 0f) * Time.fixedDeltaTime;
+        positionChange += _steerDirection * GetSpeed() * Time.fixedDeltaTime;
+        transform.position += positionChange;
     }
 }

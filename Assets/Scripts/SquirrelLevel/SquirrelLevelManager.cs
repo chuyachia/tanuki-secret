@@ -26,6 +26,7 @@ public class SquirrelLevelManager : MonoBehaviour
     private Dictionary<int, int> _nutIdToBucket;
     private float _nextNutTimer = 0f;
     private int _nutsToSpawn = 0;
+    private int _playerTargetBucketId = -1;
 
     void Start()
     {
@@ -58,13 +59,13 @@ public class SquirrelLevelManager : MonoBehaviour
             _buckets.Add(bucket);
         }
         EventManager.Instance.RegisterGetNutEventListener(OnNutCollectedByPlayer);
-        EventManager.Instance.RegisterPutNutInBucketEventListener(OpenDoorToNextLevel);
+        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPlayerPutNutToBucket);
     }
 
     void OnDestroy()
     {
         EventManager.Instance.UnregisterGetNutEventListener(OnNutCollectedByPlayer);
-        EventManager.Instance.UnregisterPutNutInBucketEventListener(OpenDoorToNextLevel);
+        EventManager.Instance.UnregisterPutNutInBucketEventListener(OnPlayerPutNutToBucket);
     }
 
     void UpdateSquirrelTarget()
@@ -82,9 +83,9 @@ public class SquirrelLevelManager : MonoBehaviour
                 if (currentTarget.CompareTag("Nut"))
                 {
                     RemoveFromScene(currentTarget, _nutPool);
-                    if (_nutIdToBucket.TryGetValue(currentTarget.GetInstanceID(), out int bucketId))
+                    if (_nutIdToBucket.TryGetValue(currentTarget.GetInstanceID(), out int bucketIndex))
                     {
-                        AssignTargetToSquirrel(_buckets[bucketId], i);
+                        AssignTargetToSquirrel(_buckets[bucketIndex], i);
                     }
                     else
                     {
@@ -216,11 +217,33 @@ public class SquirrelLevelManager : MonoBehaviour
 
     public void OnNutCollectedByPlayer(GameObject nut)
     {
+        Debug.Log("Pick up a nut");
+        GameObject targetBucket = null;
+        if (_nutIdToBucket.TryGetValue(nut.GetInstanceID(), out int bucketIndex))
+        {
+            targetBucket = _buckets[bucketIndex];
+        }
+        if (targetBucket != null)
+        {
+            _playerTargetBucketId = targetBucket.GetInstanceID();
+        }
+        else
+        {
+            _playerTargetBucketId = _buckets[0].GetInstanceID();
+        }
         RemoveFromScene(nut, _nutPool);
     }
 
-    public void OpenDoorToNextLevel()
+    public void OnPlayerPutNutToBucket(GameObject bucket)
     {
-        _doorToNextLevel.ToggleDoor(true);
+        if (bucket.GetInstanceID() == _playerTargetBucketId)
+        {
+            Debug.Log("Right bucket");
+            _doorToNextLevel.ToggleDoor(true);
+        }
+        else
+        {
+            Debug.Log("Wrong bucket");
+        }
     }
 }

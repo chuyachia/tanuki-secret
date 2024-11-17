@@ -9,27 +9,32 @@ public class LevelTransitioner : MonoBehaviour
     [SerializeField] private List<GameObject> tilesToUnload;
     [SerializeField] private GameObject backColliderGameObject;
     private Collider transitionCollider;
-    
 
 
 
-    private void Start() {
-        transitionCollider = GetComponent<Collider>();      
+
+    private void Start()
+    {
+        transitionCollider = GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        
-        if (other.CompareTag("Player")){
-            
-            foreach (GameObject tileToLoad in tilesToLoad){
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag(Constants.Tags.Player))
+        {
+
+            foreach (GameObject tileToLoad in tilesToLoad)
+            {
                 tileToLoad.SetActive(true);
             }
 
-            foreach (GameObject tileToUnload in tilesToUnload){
+            foreach (GameObject tileToUnload in tilesToUnload)
+            {
                 Destroy(tileToUnload, .1f);
             }
             backColliderGameObject.SetActive(true);
         }
-    } 
+    }
 
 }

@@ -15,9 +15,9 @@ public class Interruptor : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if it's the player entering the trigger
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(Constants.Tags.Player))
         {
-                connectedDoor.ToggleDoor(true);
+            connectedDoor.ToggleDoor(true);
         }
     }
 

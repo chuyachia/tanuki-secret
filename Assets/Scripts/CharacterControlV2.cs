@@ -40,21 +40,32 @@ public class CharacterControlV2 : MonoBehaviour
         {
             return;
         }
-        if (hit.gameObject.CompareTag("Nut") && hit.gameObject.activeSelf && !hasNut)
+        if (hit.gameObject.CompareTag(Constants.Tags.Nut) && hit.gameObject.activeSelf && !hasNut)
         {
+            ShowNutInMouth(hit.gameObject);
             EventManager.Instance.InvokeGetNutEvent(hit.gameObject);
             hasNut = true;
             collisionHit = true;
-
             return;
         }
-        if (hit.gameObject.CompareTag("NutBucket") && hasNut)
+        if (hit.gameObject.CompareTag(Constants.Tags.NutBucket) && hasNut)
         {
+            HideNutInMouth();
             EventManager.Instance.InvokePutNutInBucketEvent(hit.gameObject);
             hasNut = false;
             collisionHit = true;
             return;
         }
+    }
+
+    void ShowNutInMouth(GameObject nut)
+    {
+        Utils.ActivateChildAndCopyMaterialFromTarget(transform, nut, 2, Constants.Tags.NutInMouth);
+    }
+
+    void HideNutInMouth()
+    {
+        Utils.DeactivteChild(transform, 2, Constants.Tags.NutInMouth);
     }
 
     void UpdateClimbState()
@@ -126,7 +137,7 @@ public class CharacterControlV2 : MonoBehaviour
         {
             characterController.slopeLimit = initialSlopeLimit;
         }
-        animationController.SetBool("isGrounded", isGrounded);
+        animationController.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
     }
 
     void ApplyGravity()
@@ -156,11 +167,11 @@ public class CharacterControlV2 : MonoBehaviour
         Vector3 move = moveDirection.normalized * GetSpeed();
         if (move != Vector3.zero)
         {
-            animationController.SetBool("isWalking", true);
+            animationController.SetBool(Constants.AnimatorState.IsWalking, true);
         }
         else
         {
-            animationController.SetBool("isWalking", false);
+            animationController.SetBool(Constants.AnimatorState.IsWalking, false);
         }
 
         characterController.Move((move + velocity) * Time.fixedDeltaTime);

@@ -2186,7 +2186,7 @@ MonoBehaviour:
   _targetReachedThreshold: 2
   _nextNutAppearsIn: 2
   _doorToNextLevel: {fileID: 1877243040}
-  _typeOfNuts:
+  _nutTypes:
   - {fileID: 2100000, guid: 2f80ed671eb710e6e98a79704e5df2df, type: 2}
   - {fileID: 2100000, guid: 43101272af6cf33fb8893a55f8adddcd, type: 2}
   _bucketDistance: 10

@@ -2046,7 +2046,7 @@ MonoBehaviour:
     type: 3}
   _nutBucketPrefab: {fileID: 1401930070987731476, guid: 28c84c7ef49f77f80832b811a471b435,
     type: 3}
-  _nutSpawnRadius: 20
+  _nutSpawnRadius: 23
   _squirrelCount: 5
   _nutCount: 5
   _targetReachedThreshold: 2
@@ -2055,7 +2055,7 @@ MonoBehaviour:
   _typeOfNuts:
   - {fileID: 2100000, guid: 2f80ed671eb710e6e98a79704e5df2df, type: 2}
   - {fileID: 2100000, guid: 43101272af6cf33fb8893a55f8adddcd, type: 2}
-  _bucketDistance: 6
+  _bucketDistance: 10
 --- !u!1 &1296677225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6056390361438157887, guid: a6124504d2d146d4290d48286650cecc,

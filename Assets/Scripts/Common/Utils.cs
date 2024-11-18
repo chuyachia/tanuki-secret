@@ -14,6 +14,13 @@ public static class Utils
         return Quaternion.Euler(0f, randomYRotation, 0f);
     }
 
+    public static Vector3 JitterPosition(Vector3 originalPosition, float jitterAmount)
+    {
+        float jitterX = Random.Range(-jitterAmount, jitterAmount);
+        float jitterZ = Random.Range(-jitterAmount, jitterAmount);
+        return originalPosition + new Vector3(jitterX, 0f, jitterZ);
+    }
+
     public static void ActivateChildAndCopyMaterialFromTarget(Transform currentObject, GameObject target, int childIndex, string childTag)
     {
         if (currentObject.childCount < childIndex + 1)

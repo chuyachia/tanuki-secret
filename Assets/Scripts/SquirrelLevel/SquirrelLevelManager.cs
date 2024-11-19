@@ -78,7 +78,7 @@ public class SquirrelLevelManager : MonoBehaviour
             {
                 AssignAvailableNutToSquirrel(i);
             }
-            else if ((Utils.StripYDimension(currentTarget.transform.position) - Utils.StripYDimension(currentSquirrel.transform.position)).sqrMagnitude < _targetReachedThreshold)
+            else if (Utils.DistanceToTargetWithinThreshold(currentSquirrel.transform.position, currentTarget.transform.position, _targetReachedThreshold))
             {
                 if (currentTarget.CompareTag(Constants.Tags.Nut))
                 {

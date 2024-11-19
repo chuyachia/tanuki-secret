@@ -8,6 +8,16 @@ public static class Utils
         return new Vector3(v3.x, 0, v3.z);
     }
 
+    public static bool DistanceToTargetWithinThreshold(Vector3 source, Vector3 target, float threshold)
+    {
+        return (Utils.StripYDimension(target) - Utils.StripYDimension(source)).sqrMagnitude < threshold;
+    }
+
+    public static bool DistanceToTargetAboveThreshold(Vector3 source, Vector3 target, float threshold)
+    {
+        return (Utils.StripYDimension(target) - Utils.StripYDimension(source)).sqrMagnitude > threshold;
+    }
+
     public static Quaternion RandomRotationRoundY()
     {
         float randomYRotation = Random.Range(0f, 360f);

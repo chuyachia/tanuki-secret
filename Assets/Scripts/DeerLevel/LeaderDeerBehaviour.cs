@@ -5,13 +5,19 @@ using UnityEngine;
 
 public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
 {
-    [SerializeField] private float targetReachedSquaredDistance;
-    private List<GameObject> waypoints = new List<GameObject>();
-    private int currentWaypoint = 0;
+    [SerializeField] private float targetReachedSquaredDistance = 2f;
+    private List<GameObject> targets = new List<GameObject>();
+    private int currentTarget = 0;
 
-    public void StartJourney(List<GameObject> waypoints)
+    public void StartMove(List<GameObject> waypoints)
     {
-        this.waypoints.AddRange(waypoints);
+        targets.AddRange(waypoints);
+    }
+
+    public void ResetMoveState()
+    {
+        targets.Clear();
+        currentTarget = 0;
     }
 
     protected override bool ShouldJump()
@@ -21,16 +27,16 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
 
     void Update()
     {
-        if (currentWaypoint == waypoints.Count)
+        if (currentTarget == targets.Count)
         {
             target = null;
         }
         else
         {
-            target = waypoints[currentWaypoint];
-            if ((Utils.StripYDimension(waypoints[currentWaypoint].transform.position) - Utils.StripYDimension(transform.position)).sqrMagnitude < targetReachedSquaredDistance)
+            target = targets[currentTarget];
+            if (Utils.DistanceToTargetWithinThreshold(transform.position, targets[currentTarget].transform.position, targetReachedSquaredDistance))
             {
-                currentWaypoint++;
+                currentTarget++;
             }
         }
 

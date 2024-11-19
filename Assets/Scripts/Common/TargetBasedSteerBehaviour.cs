@@ -11,7 +11,7 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
     protected float groundLevel;
     protected float verticalSpeed = 0f;
     protected Vector3 steerDirection = new Vector3();
-    public GameObject target;
+    protected GameObject target;
     protected Vector3 previousSteerDirection = new Vector3();
     protected float initialXScale;
     protected Animator animator;

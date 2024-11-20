@@ -61,13 +61,16 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
 
     protected abstract bool ShouldJump();
 
-    protected virtual void Jump()
+    protected virtual bool Jump()
     {
         if (isGrounded && ShouldJump())
         {
             verticalSpeed = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            return true;
         }
+        return false;
     }
+
 
     protected virtual void Steer()
     {

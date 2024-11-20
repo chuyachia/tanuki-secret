@@ -13,5 +13,6 @@ public static class Constants
     {
         public const string IsWalking = "isWalking";
         public const string IsGrounded = "isGrounded";
+        public const string IsAttacking = "isAttacking";
     }
 }

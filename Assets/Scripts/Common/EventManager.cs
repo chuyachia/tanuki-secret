@@ -29,7 +29,9 @@ public class EventManager
     public enum DeerLevelEvent
     {
         WolfCatchDeer,
-        PlayerKillWolf
+        PlayerKillWolf,
+
+        DeerArrivedAtDestination
     }
 
     private UnityEvent<GameObject> getNutEvent;

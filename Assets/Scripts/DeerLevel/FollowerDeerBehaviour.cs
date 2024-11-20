@@ -4,9 +4,9 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 {
 
     [SerializeField] private float jitterAmount = 0.1f;
-    [SerializeField] private float targetReachedSquaredDistance = 2f;
+    [SerializeField] private float targetReachedSquaredDistance = 4f;
 
-    public GameObject Leader
+    public GameObject Target
     {
         set
         {

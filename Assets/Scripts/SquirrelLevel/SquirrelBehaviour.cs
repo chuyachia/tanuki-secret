@@ -3,7 +3,7 @@ using UnityEngine;
 public class SquirrelBehaviour : TargetBasedSteerBehaviour
 {
     [SerializeField] private float jumpProbability = 0.1f;
-    [SerializeField] private float jumpCooldown = 1f;
+    [SerializeField] private float jumpCooldown = 5f;
     [SerializeField] private float pauseBeforeGoToTarget = 1f;
 
     public GameObject Target
@@ -32,10 +32,14 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
         return steerTowardsTargetTimer <= 0 && base.ShouldMove();
     }
 
-    protected override void Jump()
+    protected override bool Jump()
     {
-        jumpCooldownTimer = jumpCooldown;
-        base.Jump();
+        if (base.Jump())
+        {
+            jumpCooldownTimer = Random.Range(0, jumpCooldown);
+            return true;
+        }
+        return false;
     }
 
     protected override void FixedUpdate()
@@ -50,7 +54,7 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
         }
         base.FixedUpdate();
         animator.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
-        if (steerDirection != Vector3.zero )
+        if (steerDirection != Vector3.zero)
         {
             animator.SetBool(Constants.AnimatorState.IsWalking, true);
         }

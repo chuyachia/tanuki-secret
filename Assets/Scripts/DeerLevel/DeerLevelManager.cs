@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class DeerLevelManager : MonoBehaviour
 
     [SerializeField] private GameObject deerPrefab;
     [SerializeField] private GameObject wolfPrefab;
+    [SerializeField] private GameObject bitingLogoPrefab;
     [SerializeField] private List<GameObject> waypoints;
     [SerializeField] private int numberOfDeers = 5;
     [SerializeField] private float spacingHorizontal = 6f;
@@ -17,6 +19,7 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private float wolfAttackInterval = 2f;
     [SerializeField] private float wolfAttackProbability = 0.5f;
     [SerializeField] private float wolfAppearDistance = 12f;
+    [SerializeField] private Vector3 biteLogoShowOffset = new Vector3(0f, 1f, -1f);
 
     private GameObject leaderDeer;
     private Dictionary<int, GameObject> runningDeers;
@@ -25,9 +28,11 @@ public class DeerLevelManager : MonoBehaviour
     private List<GameObject> eatingWolves;
 
     private Vector3 playerTriggerPositon = Vector3.zero;
-    private bool journeyStarted = false;
+    private bool journeyStarted;
+    private bool arrivedAtDestination;
     private ObjectPool wolfPool;
     private ObjectPool deerPool;
+    private ObjectPool biteLogoPool;
     private float wolfAttackTimer = 0f;
     private int deerTargetId;
 
@@ -40,6 +45,7 @@ public class DeerLevelManager : MonoBehaviour
         journeyStarted = false;
         wolfPool = new ObjectPool(wolfPrefab);
         deerPool = new ObjectPool(deerPrefab);
+        biteLogoPool = new ObjectPool(bitingLogoPrefab);
         PlaceDeersInPosition();
         deerTargetId = numberOfDeers - 1;
         EventManager.Instance.RegisterDeerLevelEventListener(HandleEvent);
@@ -65,16 +71,35 @@ public class DeerLevelManager : MonoBehaviour
                     runningWolves.Remove(targets[0].GetInstanceID());
                     break;
                 }
+            case EventManager.DeerLevelEvent.DeerArrivedAtDestination:
+                {
+                    arrivedAtDestination = true;
+                    foreach (GameObject follower in runningDeers.Values)
+                    {
+                        follower.GetComponent<FollowerDeerBehaviour>().Target = null;
+                    }
+                    break;
+                }
         }
     }
 
     void WolfEatDeer(GameObject wolf, GameObject deer)
     {
-        deer.GetComponent<FollowerDeerBehaviour>().Leader = null;
+        deer.GetComponent<FollowerDeerBehaviour>().Target = null;
         runningDeers.Remove(deer.GetInstanceID());
         runningWolves.Remove(wolf.GetInstanceID());
         deadDeers.Add(deer);
         eatingWolves.Add(wolf);
+        StartCoroutine(ShowBiteLogoCoroutine(wolf.transform.position + biteLogoShowOffset));
+    }
+
+    IEnumerator ShowBiteLogoCoroutine(Vector3 position)
+    {
+        GameObject biteLogo = biteLogoPool.Get();
+        biteLogo.transform.parent = transform;
+        biteLogo.transform.position = position;
+        yield return new WaitForSeconds(2f);
+        biteLogoPool.Reclaim(biteLogo);
     }
 
     void Update()
@@ -88,17 +113,20 @@ public class DeerLevelManager : MonoBehaviour
         }
         else
         {
-            AddWolf();
-            SetWolfTargetDeer();
-            if (Utils.DistanceToTargetAboveThreshold(player.transform.position, leaderDeer.transform.position, maxSquaredDistanceFromDeerGroup))
+            if (!arrivedAtDestination)
             {
-                Debug.Log("Strayed away from the group");
-                ResetGame();
-            }
-            if (runningDeers.Count == 0)
-            {
-                Debug.Log("Only one deer left");
-                ResetGame();
+                WolfAppear();
+                SetWolfTargetDeer();
+                if (Utils.DistanceToTargetAboveThreshold(player.transform.position, leaderDeer.transform.position, maxSquaredDistanceFromDeerGroup))
+                {
+                    Debug.Log("Strayed away from the group");
+                    ResetGame();
+                }
+                if (runningDeers.Count == 0)
+                {
+                    Debug.Log("Only one deer left");
+                    ResetGame();
+                }
             }
         }
     }
@@ -138,7 +166,7 @@ public class DeerLevelManager : MonoBehaviour
         foreach (GameObject follower in runningDeers.Values)
         {
             FollowerDeerBehaviour followerDeerBehaviour = follower.GetComponent<FollowerDeerBehaviour>();
-            followerDeerBehaviour.Leader = leaderDeer;
+            followerDeerBehaviour.Target = leaderDeer;
         }
     }
 
@@ -162,7 +190,7 @@ public class DeerLevelManager : MonoBehaviour
         }
     }
 
-    void AddWolf()
+    void WolfAppear()
     {
         if (wolfAttackTimer > 0)
         {
@@ -173,7 +201,9 @@ public class DeerLevelManager : MonoBehaviour
         {
             GameObject wolf = wolfPool.Get();
             runningWolves.Add(wolf.GetInstanceID(), wolf);
-            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * wolfAppearDistance, 5f);
+            int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+
+            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * randomSign * wolfAppearDistance, 5f);
             wolf.transform.parent = transform;
             wolfAttackTimer = wolfAttackInterval;
         }
@@ -214,7 +244,7 @@ public class DeerLevelManager : MonoBehaviour
                     runningDeers.Add(deer.GetInstanceID(), deer);
                     FollowerDeerBehaviour followerDeerBehaviour = deer.GetComponent<FollowerDeerBehaviour>();
                     followerDeerBehaviour.enabled = true;
-                    followerDeerBehaviour.Leader = null;
+                    followerDeerBehaviour.Target = null;
                     followerDeerBehaviour.deerPositionParamters = new DeerPositionParamters(row, i, objectsInRow, spacingHorizontal, spacingVertical);
                     deer.GetComponent<LeaderDeerBehaviour>().enabled = false;
                 }

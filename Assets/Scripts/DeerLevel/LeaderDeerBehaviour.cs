@@ -37,6 +37,7 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
         if (currentTarget == targets.Count)
         {
             target = null;
+
         }
         else
         {
@@ -44,6 +45,10 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
             if (Utils.DistanceToTargetWithinThreshold(transform.position, targets[currentTarget].transform.position, targetReachedSquaredDistance))
             {
                 currentTarget++;
+                if (currentTarget == targets.Count)
+                {
+                    EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { }, EventManager.DeerLevelEvent.DeerArrivedAtDestination);
+                }
             }
         }
     }

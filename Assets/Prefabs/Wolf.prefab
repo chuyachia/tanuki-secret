@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 7
+  speed: 10
   airSpeed: 2
   targetReachedSquaredDistance: 2
 --- !u!136 &3708650779653776661

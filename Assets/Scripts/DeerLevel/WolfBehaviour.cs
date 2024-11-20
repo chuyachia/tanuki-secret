@@ -1,9 +1,11 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class WolfBehaviour : TargetBasedSteerBehaviour
 {
     [SerializeField] private float targetReachedSquaredDistance = 2f;
+
+    private Animator animator;
 
     public GameObject Target
     {
@@ -13,6 +15,11 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
         }
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     void Update()
     {
@@ -24,6 +31,7 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
         {
             EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject, target }, EventManager.DeerLevelEvent.WolfCatchDeer);
             target = null;
+            animator.SetBool(Constants.AnimatorState.IsAttacking, true);
         }
     }
 
@@ -34,11 +42,6 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
         {
             EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject }, EventManager.DeerLevelEvent.PlayerKillWolf);
         }
-    }
-
-    protected override bool ShouldMove()
-    {
-        return target != null;
     }
 
     protected override bool ShouldJump()

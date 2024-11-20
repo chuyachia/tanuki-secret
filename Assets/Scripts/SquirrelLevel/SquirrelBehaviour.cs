@@ -19,6 +19,13 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
     }
     private float steerTowardsTargetTimer;
     private float jumpCooldownTimer = 0f;
+    private Animator animator;
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     protected override bool ShouldMove()
     {
@@ -42,6 +49,15 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
             steerTowardsTargetTimer -= Time.fixedDeltaTime;
         }
         base.FixedUpdate();
+        animator.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
+        if (steerDirection != Vector3.zero )
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+        }
+        else
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+        }
     }
 
     protected override bool ShouldJump()

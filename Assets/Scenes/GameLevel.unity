@@ -5713,9 +5713,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c4a5cfa379b3400b5da71c18063a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderDeerPrefab: {fileID: 3780175872382976492, guid: 66014ccd489b68abdbc07b13f3bb9587,
+  deerPrefab: {fileID: 3780175872382976492, guid: 66014ccd489b68abdbc07b13f3bb9587,
     type: 3}
-  followerPrefab: {fileID: 6595346234549356559, guid: e1ac3d724fdc0908fa2d9c8f140b35a6,
+  wolfPrefab: {fileID: 3152593260158545153, guid: 2047449d44ff7e84b8bdcf65cd254135,
     type: 3}
   waypoints:
   - {fileID: 355225964}
@@ -5725,11 +5725,14 @@ MonoBehaviour:
   - {fileID: 1397217665}
   - {fileID: 1386368984}
   numberOfDeers: 5
-  spacingHorizontal: 4
-  spacingVertical: 4
+  spacingHorizontal: 6
+  spacingVertical: 6
   player: {fileID: 1186104591}
-  targetReachedSquaredDistance: 2
+  targetReachedSquaredDistance: 4
   maxSquaredDistanceFromDeerGroup: 400
+  wolfAttackInterval: 2
+  wolfAttackProbability: 1
+  wolfAppearDistance: 12
 --- !u!4 &1904474200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091142502864856007, guid: b1c2a1a96e8309d478748743c3d6ecc8,

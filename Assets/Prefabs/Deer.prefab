@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3780175872382976490}
   - component: {fileID: 3780175872382976493}
+  - component: {fileID: 3001310491750601522}
   m_Layer: 0
-  m_Name: LeaderDeer
-  m_TagString: Untagged
+  m_Name: Deer
+  m_TagString: Deer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3780175872382976492}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ee5f31521a09ea5699a4b4aada141b7, type: 3}
   m_Name: 
@@ -49,8 +50,24 @@ MonoBehaviour:
   jumpHeight: 5
   speed: 5
   airSpeed: 2
-  waypoints: []
   targetReachedSquaredDistance: 2
+--- !u!114 &3001310491750601522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780175872382976492}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c19085929664b3be3a56988d6d472505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: -9.81
+  jumpHeight: 5
+  speed: 5
+  airSpeed: 2
+  jitterAmount: 1
 --- !u!1001 &3780175871919572496
 PrefabInstance:
   m_ObjectHideFlags: 0

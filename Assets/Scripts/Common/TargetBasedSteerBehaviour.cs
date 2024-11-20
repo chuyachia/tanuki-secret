@@ -14,13 +14,11 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
     protected GameObject target;
     protected Vector3 previousSteerDirection = new Vector3();
     protected float initialXScale;
-    protected Animator animator;
 
     protected virtual void Start()
     {
         groundLevel = transform.position.y;
         initialXScale = transform.localScale.x;
-        animator = GetComponentInChildren<Animator>();
     }
 
     protected virtual void FixedUpdate()
@@ -33,10 +31,6 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
             Jump();
             Steer();
             FlipModel(steerDirection.x);
-        }
-        else
-        {
-            animator.SetBool(Constants.AnimatorState.IsWalking, false);
         }
         Vector3 positionChange = Vector3.zero;
         positionChange += new Vector3(0f, verticalSpeed, 0f) * Time.fixedDeltaTime;
@@ -55,7 +49,6 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
         {
             isGrounded = false;
         }
-        animator.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
     }
 
     void ApplyGravity()
@@ -86,15 +79,6 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
         {
             previousSteerDirection = steerDirection;
             steerDirection = GetSteerDirection();
-        }
-
-        if (steerDirection != Vector3.zero)
-        {
-            animator.SetBool(Constants.AnimatorState.IsWalking, true);
-        }
-        else
-        {
-            animator.SetBool(Constants.AnimatorState.IsWalking, false);
         }
     }
 

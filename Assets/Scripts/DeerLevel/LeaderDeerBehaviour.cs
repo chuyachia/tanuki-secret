@@ -8,6 +8,13 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
     [SerializeField] private float targetReachedSquaredDistance = 2f;
     private List<GameObject> targets = new List<GameObject>();
     private int currentTarget = 0;
+    private Animator animator;
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     public void StartMove(List<GameObject> waypoints)
     {
@@ -39,6 +46,18 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
                 currentTarget++;
             }
         }
+    }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (steerDirection != Vector3.zero)
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+        }
+        else
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+        }
     }
 }

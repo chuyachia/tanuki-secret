@@ -6,6 +6,7 @@ public static class Constants
         public const string NutBucket = "NutBucket";
         public const string NutInMouth = "NutInMouth";
         public const string Player = "Player";
+        public const string Deer = "Deer";
     }
 
     public static class AnimatorState

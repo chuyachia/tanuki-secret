@@ -4,6 +4,8 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 {
 
     [SerializeField] private float jitterAmount = 0.1f;
+    [SerializeField] private float targetReachedSquaredDistance = 2f;
+
     public GameObject Leader
     {
         set
@@ -13,6 +15,13 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
     }
 
     public DeerPositionParamters deerPositionParamters;
+    private Animator animator;
+
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     protected override Vector3 GetTargetPosition()
     {
@@ -30,5 +39,23 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
     protected override bool ShouldJump()
     {
         return false;
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (steerDirection != Vector3.zero)
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+        }
+        else
+        {
+            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+        }
+    }
+
+    protected override bool ShouldMove()
+    {
+        return base.ShouldMove() && Utils.DistanceToTargetAboveThreshold(transform.position, target.transform.position, targetReachedSquaredDistance);
     }
 }

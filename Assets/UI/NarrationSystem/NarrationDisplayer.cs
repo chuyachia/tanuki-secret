@@ -29,7 +29,6 @@ public class NarrationDisplayer : MonoBehaviour
     // initialize UI
     rootEl = uiDoc.rootVisualElement;
     textContainer = rootEl.Q(className: "narrative-text--container");
-
     }
 
     private void OnDestroy() // To prevent error in case the observer is deleted for some reason

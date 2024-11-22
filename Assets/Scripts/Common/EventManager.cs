@@ -29,21 +29,21 @@ public class EventManager
     public enum DeerLevelEvent
     {
         WolfCatchDeer,
-        PlayerKillWolf,
+        WolfFlee,
 
-        DeerArrivedAtDestination
+        DeerArrivedAtDestination,
+        PlayerTooFarFromDeers,
+        NotEnoughDeersLeft
     }
 
-    private UnityEvent<GameObject> getNutEvent;
-    private UnityEvent<GameObject> putNutInBucket;
+    private UnityEvent<GameObject[], SquirelLevelEvent> squirrelLevelEvent;
     private UnityEvent<GameObject[], DeerLevelEvent> deerLevelEvent;
     private UnityEvent<MusicLayer> startMusicLayerEvent;
     private UnityEvent<MusicLayer> stopMusicLayerEvent;
 
     private EventManager()
     {
-        getNutEvent = new UnityEvent<GameObject>();
-        putNutInBucket = new UnityEvent<GameObject>();
+        squirrelLevelEvent = new UnityEvent<GameObject[], SquirelLevelEvent>();
         deerLevelEvent = new UnityEvent<GameObject[], DeerLevelEvent>();
 
         // Music events
@@ -51,24 +51,14 @@ public class EventManager
         stopMusicLayerEvent = new UnityEvent<MusicLayer>();
     }
 
-    public void RegisterGetNutEventListener(UnityAction<GameObject> action)
+    public void RegisterSquirrelLevelEventListener(UnityAction<GameObject[], SquirelLevelEvent> action)
     {
-        getNutEvent.AddListener(action);
+        squirrelLevelEvent.AddListener(action);
     }
 
-    public void UnregisterGetNutEventListener(UnityAction<GameObject> action)
+    public void UnregisterSquirrelLevelEventListener(UnityAction<GameObject[], SquirelLevelEvent> action)
     {
-        getNutEvent.RemoveListener(action);
-    }
-
-    public void RegisterPutNutInBucketEventListener(UnityAction<GameObject> action)
-    {
-        putNutInBucket.AddListener(action);
-    }
-
-    public void UnregisterPutNutInBucketEventListener(UnityAction<GameObject> action)
-    {
-        putNutInBucket.RemoveListener(action);
+        squirrelLevelEvent.RemoveListener(action);
     }
 
     public void RegisterDeerLevelEventListener(UnityAction<GameObject[], DeerLevelEvent> action)
@@ -103,14 +93,9 @@ public class EventManager
         stopMusicLayerEvent.RemoveListener(listener);
     }
 
-    public void InvokeGetNutEvent(GameObject nut)
+    public void InvokeSquirrelLevelEvent(GameObject[] target, SquirelLevelEvent eventType)
     {
-        getNutEvent.Invoke(nut);
-    }
-
-    public void InvokePutNutInBucketEvent(GameObject bucket)
-    {
-        putNutInBucket.Invoke(bucket);
+        squirrelLevelEvent.Invoke(target, eventType);
     }
 
     public void InvokeDeerLevelEvent(GameObject[] target, DeerLevelEvent eventType)

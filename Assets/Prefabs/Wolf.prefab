@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 10
+  speed: 12
   airSpeed: 2
   targetReachedSquaredDistance: 2
+  fleeDistance: 20
 --- !u!136 &3708650779653776661
 CapsuleCollider:
   m_ObjectHideFlags: 0

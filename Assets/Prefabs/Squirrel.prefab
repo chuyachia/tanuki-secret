@@ -53,6 +53,7 @@ MonoBehaviour:
   jumpProbability: 0.1
   jumpCooldown: 5
   pauseBeforeGoToTarget: 1
+  _targetReachedThreshold: 2
 --- !u!1001 &3325351649719303431
 PrefabInstance:
   m_ObjectHideFlags: 0

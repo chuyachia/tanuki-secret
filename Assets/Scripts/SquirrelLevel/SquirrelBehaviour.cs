@@ -5,18 +5,45 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
     [SerializeField] private float jumpProbability = 0.1f;
     [SerializeField] private float jumpCooldown = 5f;
     [SerializeField] private float pauseBeforeGoToTarget = 1f;
+    [SerializeField] private float _targetReachedThreshold = 2f;
+
 
     public GameObject Target
     {
         set
         {
-            target = value;
-            if (value != null && value.CompareTag(Constants.Tags.NutBucket))
+            if (value == null)
             {
-                steerTowardsTargetTimer = pauseBeforeGoToTarget;
+                targetPosition = transform.position;
+            }
+            else
+            {
+                targetPosition = value.transform.position;
+                if (value.CompareTag(Constants.Tags.NutBucket))
+                {
+                    steerTowardsTargetTimer = pauseBeforeGoToTarget;
+                }
             }
         }
     }
+
+    public Vector3 StayAtPoint
+    {
+        set
+        {
+            targetPosition = value;
+        }
+
+    }
+
+    public float TargetReachedThreshold
+    {
+        get
+        {
+            return _targetReachedThreshold;
+        }
+    }
+
     private float steerTowardsTargetTimer;
     private float jumpCooldownTimer = 0f;
     private Animator animator;
@@ -29,7 +56,7 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
 
     protected override bool ShouldMove()
     {
-        return steerTowardsTargetTimer <= 0 && base.ShouldMove();
+        return steerTowardsTargetTimer <= 0 && Utils.DistanceToTargetAboveThreshold(transform.position, targetPosition, _targetReachedThreshold);
     }
 
     protected override bool Jump()
@@ -42,16 +69,21 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
         return false;
     }
 
-    protected override void FixedUpdate()
+    void Update()
     {
         if (jumpCooldownTimer > 0)
         {
-            jumpCooldownTimer -= Time.fixedDeltaTime;
+            jumpCooldownTimer -= Time.deltaTime;
         }
         if (steerTowardsTargetTimer > 0)
         {
-            steerTowardsTargetTimer -= Time.fixedDeltaTime;
+            steerTowardsTargetTimer -= Time.deltaTime;
         }
+    }
+
+    protected override void FixedUpdate()
+    {
+
         base.FixedUpdate();
         animator.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
         if (steerDirection != Vector3.zero)

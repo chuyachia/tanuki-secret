@@ -11,7 +11,7 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
     protected float groundLevel;
     protected float verticalSpeed = 0f;
     protected Vector3 steerDirection = new Vector3();
-    protected GameObject target;
+    protected Vector3 targetPosition = Vector3.zero;
     protected Vector3 previousSteerDirection = new Vector3();
     protected float initialXScale;
 
@@ -87,17 +87,12 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
 
     protected virtual bool ShouldMove()
     {
-        return target != null;
-    }
-
-    protected virtual Vector3 GetTargetPosition()
-    {
-        return target.transform.position;
+        return targetPosition != transform.position;
     }
 
     Vector3 GetSteerDirection()
     {
-        return (Utils.StripYDimension(GetTargetPosition()) - Utils.StripYDimension(transform.position)).normalized;
+        return (Utils.StripYDimension(targetPosition) - Utils.StripYDimension(transform.position)).normalized;
     }
 
     void FlipModel(float xMove)
@@ -112,7 +107,7 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
         }
     }
 
-    float GetSpeed()
+    protected virtual float GetSpeed()
     {
         return isGrounded ? speed : airSpeed;
     }

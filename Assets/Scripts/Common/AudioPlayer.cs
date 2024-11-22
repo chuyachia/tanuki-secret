@@ -47,22 +47,37 @@ public class AudioPlayer : MonoBehaviour
     private void OnEnable()
     {
         // Subscribe to events
-        EventManager.Instance.RegisterGetNutEventListener(OnGetNut);
-        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
+        EventManager.Instance.RegisterSquirrelLevelEventListener(HandleSquirrelEvent);
     }
 
     private void OnDisable()
     {
         // Unsubscribe from events
-        EventManager.Instance.UnregisterGetNutEventListener(OnGetNut);
-        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPutNutInBucket);
+        EventManager.Instance.UnregisterSquirrelLevelEventListener(HandleSquirrelEvent);
 
     }
 
-      private void OnPutNutInBucket(GameObject bucket)
-      {
-            PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 2f);
-      }
+    private void HandleSquirrelEvent(GameObject[] target, EventManager.SquirelLevelEvent eventType)
+    {
+        switch (eventType)
+        {
+            case EventManager.SquirelLevelEvent.PickUpNut:
+                {
+                    OnGetNut(target[0]);
+                    break;
+                }
+            case EventManager.SquirelLevelEvent.PutNutInBucket:
+                {
+                    OnPutNutInBucket(target[0]);
+                    break;
+                }
+        }
+    }
+
+    private void OnPutNutInBucket(GameObject bucket)
+    {
+        PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 2f);
+    }
 
 
     // Event handlers

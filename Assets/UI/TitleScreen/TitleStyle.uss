@@ -10,8 +10,6 @@
     transition-timing-function: ease-out;
 }
 
-
-
 .title-buffer {
     height: 20%;
 }
@@ -24,12 +22,9 @@
     transition-property: opacity;
     transition-duration: 1s;
     transition-timing-function: ease-out;
-
+    color: rgba(224, 224, 224, 255);
 }
 
-.element--active{
+.element--active {
     opacity: 1;
 }
-
-
-

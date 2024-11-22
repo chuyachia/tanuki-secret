@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -10,11 +11,26 @@ using UnityEngine.UIElements;
 public class TitleScreenManager : MonoBehaviour
 {
     [SerializeField] UIDocument uiDoc;
+    [SerializeField] private PlayableDirector timelineDirector;
     CharacterControlV2 characterControls;
     private VisualElement rootEl;
     private VisualElement titleTextContainer;
     private VisualElement pressStartTextContainer; // the element where we indicate that the player has to press a button to start
     
+    
+
+    private void Awake()
+    {
+        GetUIElements();
+        characterControls = FindObjectOfType<CharacterControlV2>();
+    }
+
+    private void GetUIElements()
+    {
+        rootEl = uiDoc.rootVisualElement;
+        titleTextContainer = rootEl.Q(className: "main-title");
+        pressStartTextContainer = rootEl.Q(className: "press-start-text");
+    }
 
     // display Title - disable all controls
     private void Start() {
@@ -48,6 +64,8 @@ public class TitleScreenManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         titleTextContainer.RemoveFromClassList("element--active");
         pressStartTextContainer.RemoveFromClassList("element--active");
+        yield return new WaitForSeconds(1.0f);
+        timelineDirector.Play();
         yield return new WaitForSeconds(1.0f);
         InputControl.charControlEnabled = true;
         gameObject.SetActive(false);

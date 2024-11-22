@@ -12,17 +12,15 @@ public class TitleScreenManager : MonoBehaviour
 {
     [SerializeField] UIDocument uiDoc;
     [SerializeField] private PlayableDirector timelineDirector;
-    CharacterControlV2 characterControls;
+    [SerializeField] private GameObject starryNightParticleSystem; // to make sure we disable the particle system once we're done with the title screen
+
     private VisualElement rootEl;
     private VisualElement titleTextContainer;
     private VisualElement pressStartTextContainer; // the element where we indicate that the player has to press a button to start
-    
-    
 
     private void Awake()
     {
         GetUIElements();
-        characterControls = FindObjectOfType<CharacterControlV2>();
     }
 
     private void GetUIElements()
@@ -38,7 +36,6 @@ public class TitleScreenManager : MonoBehaviour
         titleTextContainer = rootEl.Q(className: "main-title");
         pressStartTextContainer = rootEl.Q(className: "press-start-text");
 
-        characterControls = FindObjectOfType<CharacterControlV2>();
         DisableCharControls();
         DisableMenuControls();
         StartCoroutine("TitleScreenAppearSequence");
@@ -67,11 +64,10 @@ public class TitleScreenManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         timelineDirector.Play();
         yield return new WaitForSeconds(1.0f);
+        starryNightParticleSystem.SetActive(false);
         InputControl.charControlEnabled = true;
         gameObject.SetActive(false);
     }
-
-
 
     private void DisableCharControls() {
         InputControl.charControlEnabled = false;
@@ -81,19 +77,5 @@ public class TitleScreenManager : MonoBehaviour
     {
         InputControl.menuControlEnabled = false;
     }
-
-
-    private void EnableControls() {
-        characterControls.enabled = true;
-    }
-
-
-    // display press any button and allow player actions
-
-    // Make title screen disappear
-
-    // Play animation bringing the player to the game
-
-    // restore controls when cinematics ended
 
 }

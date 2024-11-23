@@ -40,6 +40,7 @@ public class EventManager
     private UnityEvent<GameObject[], DeerLevelEvent> deerLevelEvent;
     private UnityEvent<MusicLayer> startMusicLayerEvent;
     private UnityEvent<MusicLayer> stopMusicLayerEvent;
+    private UnityEvent<Level> levelEnterEvent;
 
     private EventManager()
     {
@@ -49,6 +50,8 @@ public class EventManager
         // Music events
         startMusicLayerEvent = new UnityEvent<MusicLayer>();
         stopMusicLayerEvent = new UnityEvent<MusicLayer>();
+
+        levelEnterEvent = new UnityEvent<Level>();
     }
 
     public void RegisterSquirrelLevelEventListener(UnityAction<GameObject[], SquirelLevelEvent> action)
@@ -93,6 +96,16 @@ public class EventManager
         stopMusicLayerEvent.RemoveListener(listener);
     }
 
+    public void RegisterLevelEnterEventListener(UnityAction<Level> listner)
+    {
+        levelEnterEvent.AddListener(listner);
+    }
+
+    public void UnregisterLevelEnterEventListener(UnityAction<Level> listner)
+    {
+        levelEnterEvent.RemoveListener(listner);
+    }
+
     public void InvokeSquirrelLevelEvent(GameObject[] target, SquirelLevelEvent eventType)
     {
         squirrelLevelEvent.Invoke(target, eventType);
@@ -114,4 +127,8 @@ public class EventManager
         stopMusicLayerEvent.Invoke(layer);
     }
 
+    public void InvokeLevelEnterEvent(Level level)
+    {
+        levelEnterEvent.Invoke(level);
+    }
 }

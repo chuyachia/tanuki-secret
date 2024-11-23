@@ -184,20 +184,20 @@ public class DeerLevelManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         foreach (GameObject follower in activeDeers.Values)
         {
-            deerPool.Reclaim(follower);
+            Destroy(follower);
         }
         foreach (GameObject deer in inactiveDeers)
         {
-            deerPool.Reclaim(deer);
+            Destroy(deer);
         }
-        deerPool.Reclaim(leaderDeer);
+        Destroy(leaderDeer);
         foreach (GameObject wolf in activeWolves.Values)
         {
-            wolfPool.Reclaim(wolf);
+            Destroy(wolf);
         }
         foreach (GameObject wolf in inactiveWolves)
         {
-            wolfPool.Reclaim(wolf);
+            Destroy(wolf);
         }
 
         leaderDeer = null;
@@ -253,9 +253,9 @@ public class DeerLevelManager : MonoBehaviour
         {
             GameObject wolf = wolfPool.Get();
             activeWolves.TryAdd(wolf.GetInstanceID(), wolf);
-            int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+            // int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
 
-            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * randomSign * wolfAppearDistance, 5f);
+            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * wolfAppearDistance, 10f);
             wolf.transform.parent = transform;
             wolfAttackTimer = wolfAttackInterval;
         }

@@ -8,6 +8,7 @@ TagManager:
   - NutBucket
   - NutInMouth
   - Deer
+  - Wolf
   layers:
   - Default
   - TransparentFX

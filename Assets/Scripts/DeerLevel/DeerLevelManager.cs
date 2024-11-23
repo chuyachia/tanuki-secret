@@ -20,12 +20,15 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private float wolfAttackProbability = 0.5f;
     [SerializeField] private float wolfAppearDistance = 12f;
     [SerializeField] private Vector3 biteLogoShowOffset = new Vector3(0f, 1f, -1f);
+    [SerializeField] private float biteLogoDisappearIn = 2f;
+    [SerializeField] private float wolfFleeDisappearIn = 5f;
+    [SerializeField] private float speedDecrement = 1f;
 
     private GameObject leaderDeer;
-    private Dictionary<int, GameObject> runningDeers;
-    private Dictionary<int, GameObject> runningWolves;
-    private List<GameObject> deadDeers;
-    private List<GameObject> eatingWolves;
+    private Dictionary<int, GameObject> activeDeers;
+    private Dictionary<int, GameObject> activeWolves;
+    private List<GameObject> inactiveDeers;
+    private List<GameObject> inactiveWolves;
 
     private Vector3 playerTriggerPositon = Vector3.zero;
     private bool journeyStarted;
@@ -35,62 +38,100 @@ public class DeerLevelManager : MonoBehaviour
     private ObjectPool biteLogoPool;
     private float wolfAttackTimer = 0f;
     private int deerTargetId;
+    private Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>> eventsToProcess;
+    // private List<Coroutine> coroutines;
 
     void Start()
     {
-        runningDeers = new Dictionary<int, GameObject>();
-        runningWolves = new Dictionary<int, GameObject>();
-        deadDeers = new List<GameObject>();
-        eatingWolves = new List<GameObject>();
+        activeDeers = new Dictionary<int, GameObject>();
+        activeWolves = new Dictionary<int, GameObject>();
+        inactiveDeers = new List<GameObject>();
+        inactiveWolves = new List<GameObject>();
         journeyStarted = false;
         wolfPool = new ObjectPool(wolfPrefab);
         deerPool = new ObjectPool(deerPrefab);
         biteLogoPool = new ObjectPool(bitingLogoPrefab);
+        eventsToProcess = new Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>>();
         PlaceDeersInPosition();
         deerTargetId = numberOfDeers - 1;
-        EventManager.Instance.RegisterDeerLevelEventListener(HandleEvent);
+        EventManager.Instance.RegisterDeerLevelEventListener(QueueEvent);
     }
 
     void OnDestroy()
     {
-        EventManager.Instance.UnregisterDeerLevelEvenListener(HandleEvent);
+        EventManager.Instance.UnregisterDeerLevelEvenListener(QueueEvent);
     }
 
-    void HandleEvent(GameObject[] targets, EventManager.DeerLevelEvent eventType)
+    void QueueEvent(GameObject[] targets, EventManager.DeerLevelEvent eventType)
     {
-        switch (eventType)
+        var eventToQueue = new KeyValuePair<GameObject[], EventManager.DeerLevelEvent>(targets, eventType);
+        eventsToProcess.Enqueue(eventToQueue);
+    }
+
+    void ProcessEvent()
+    {
+        while (eventsToProcess.Count > 0)
         {
-            case EventManager.DeerLevelEvent.WolfCatchDeer:
-                {
-                    WolfEatDeer(targets[0], targets[1]);
-                    break;
-                }
-            case EventManager.DeerLevelEvent.PlayerKillWolf:
-                {
-                    wolfPool.Reclaim(targets[0]);
-                    runningWolves.Remove(targets[0].GetInstanceID());
-                    break;
-                }
-            case EventManager.DeerLevelEvent.DeerArrivedAtDestination:
-                {
-                    arrivedAtDestination = true;
-                    foreach (GameObject follower in runningDeers.Values)
+            KeyValuePair<GameObject[], EventManager.DeerLevelEvent> targetEventTypePair = eventsToProcess.Dequeue();
+            GameObject[] targets = targetEventTypePair.Key;
+            switch (targetEventTypePair.Value)
+            {
+                case EventManager.DeerLevelEvent.WolfCatchDeer:
                     {
-                        follower.GetComponent<FollowerDeerBehaviour>().Target = null;
+                        WolfEatDeer(targets[0], targets[1]);
+                        break;
                     }
-                    break;
-                }
+                case EventManager.DeerLevelEvent.WolfFlee:
+                    {
+                        WolfFlee(targets[0]);
+                        break;
+                    }
+                case EventManager.DeerLevelEvent.DeerArrivedAtDestination:
+                    {
+                        // Door to next level open
+                        arrivedAtDestination = true;
+                        foreach (GameObject deer in activeDeers.Values)
+                        {
+                            deer.GetComponent<FollowerDeerBehaviour>().Target = null;
+                        }
+                        foreach (GameObject deer in inactiveDeers)
+                        {
+                            Destroy(deer);
+                        }
+                        foreach (GameObject wolf in activeWolves.Values)
+                        {
+                            Destroy(wolf);
+                        }
+                        foreach (GameObject wolf in inactiveWolves)
+                        {
+                            Destroy(wolf);
+                        }
+                        break;
+                    }
+            }
         }
     }
 
     void WolfEatDeer(GameObject wolf, GameObject deer)
     {
         deer.GetComponent<FollowerDeerBehaviour>().Target = null;
-        runningDeers.Remove(deer.GetInstanceID());
-        runningWolves.Remove(wolf.GetInstanceID());
-        deadDeers.Add(deer);
-        eatingWolves.Add(wolf);
+        activeDeers.Remove(deer.GetInstanceID());
+        activeWolves.Remove(wolf.GetInstanceID());
+        inactiveDeers.Add(deer);
+        inactiveWolves.Add(wolf);
+        leaderDeer.GetComponent<LeaderDeerBehaviour>().DecreseSpeed(speedDecrement);
+        foreach (GameObject follower in activeDeers.Values)
+        {
+            follower.GetComponent<FollowerDeerBehaviour>().DecreseSpeed(speedDecrement);
+        }
         StartCoroutine(ShowBiteLogoCoroutine(wolf.transform.position + biteLogoShowOffset));
+    }
+
+    void WolfFlee(GameObject wolf)
+    {
+        activeWolves.Remove(wolf.GetInstanceID());
+        inactiveWolves.Add(wolf);
+        StartCoroutine(WolfFleeCoroutine(wolf));
     }
 
     IEnumerator ShowBiteLogoCoroutine(Vector3 position)
@@ -98,12 +139,19 @@ public class DeerLevelManager : MonoBehaviour
         GameObject biteLogo = biteLogoPool.Get();
         biteLogo.transform.parent = transform;
         biteLogo.transform.position = position;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(biteLogoDisappearIn);
         biteLogoPool.Reclaim(biteLogo);
+    }
+
+    IEnumerator WolfFleeCoroutine(GameObject wolf)
+    {
+        yield return new WaitForSeconds(wolfFleeDisappearIn);
+        wolfPool.Reclaim(wolf);
     }
 
     void Update()
     {
+        ProcessEvent();
         if (!journeyStarted)
         {
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerTriggerPositon, targetReachedSquaredDistance))
@@ -119,40 +167,44 @@ public class DeerLevelManager : MonoBehaviour
                 SetWolfTargetDeer();
                 if (Utils.DistanceToTargetAboveThreshold(player.transform.position, leaderDeer.transform.position, maxSquaredDistanceFromDeerGroup))
                 {
-                    Debug.Log("Strayed away from the group");
-                    ResetGame();
+                    EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.PlayerTooFarFromDeers);
+                    StartCoroutine(ResetGame());
                 }
-                if (runningDeers.Count == 0)
+                else if (activeDeers.Count == 0)
                 {
-                    Debug.Log("Only one deer left");
-                    ResetGame();
+                    EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.NotEnoughDeersLeft);
+                    StartCoroutine(ResetGame());
                 }
             }
         }
     }
 
-    void ResetGame()
+    IEnumerator ResetGame()
     {
-        foreach (GameObject follower in runningDeers.Values)
+        yield return new WaitForSeconds(1f);
+        foreach (GameObject follower in activeDeers.Values)
         {
             deerPool.Reclaim(follower);
         }
-        foreach (GameObject deer in deadDeers)
+        foreach (GameObject deer in inactiveDeers)
         {
             deerPool.Reclaim(deer);
         }
         deerPool.Reclaim(leaderDeer);
-        foreach (GameObject wolf in runningWolves.Values)
+        foreach (GameObject wolf in activeWolves.Values)
         {
             wolfPool.Reclaim(wolf);
         }
-        foreach (GameObject wolf in eatingWolves)
+        foreach (GameObject wolf in inactiveWolves)
         {
             wolfPool.Reclaim(wolf);
         }
+
         leaderDeer = null;
-        runningDeers.Clear();
-        runningWolves.Clear();
+        activeDeers.Clear();
+        inactiveDeers.Clear();
+        activeWolves.Clear();
+        inactiveWolves.Clear();
         PlaceDeersInPosition();
         player.transform.position = new Vector3(playerTriggerPositon.x, player.transform.position.y, playerTriggerPositon.z - 5f);
         journeyStarted = false;
@@ -163,7 +215,7 @@ public class DeerLevelManager : MonoBehaviour
         journeyStarted = true;
         LeaderDeerBehaviour leaderDeerBehaviour = leaderDeer.GetComponent<LeaderDeerBehaviour>();
         leaderDeerBehaviour.StartMove(waypoints);
-        foreach (GameObject follower in runningDeers.Values)
+        foreach (GameObject follower in activeDeers.Values)
         {
             FollowerDeerBehaviour followerDeerBehaviour = follower.GetComponent<FollowerDeerBehaviour>();
             followerDeerBehaviour.Target = leaderDeer;
@@ -172,9 +224,9 @@ public class DeerLevelManager : MonoBehaviour
 
     void SetWolfTargetDeer()
     {
-        if (!runningDeers.ContainsKey(deerTargetId) || !runningDeers[deerTargetId].activeSelf)
+        if (!activeDeers.ContainsKey(deerTargetId) || !activeDeers[deerTargetId].activeSelf)
         {
-            List<int> deerId = new List<int>(runningDeers.Keys);
+            List<int> deerId = new List<int>(activeDeers.Keys);
             if (deerId.Count > 0)
             {
                 deerTargetId = deerId[UnityEngine.Random.Range(0, deerId.Count)];
@@ -184,9 +236,9 @@ public class DeerLevelManager : MonoBehaviour
                 return; // no more deers to assign as target, exist early
             }
         }
-        foreach (GameObject wolf in runningWolves.Values)
+        foreach (GameObject wolf in activeWolves.Values)
         {
-            wolf.GetComponent<WolfBehaviour>().Target = runningDeers[deerTargetId];
+            wolf.GetComponent<WolfBehaviour>().DeerTarget = activeDeers[deerTargetId];
         }
     }
 
@@ -194,13 +246,13 @@ public class DeerLevelManager : MonoBehaviour
     {
         if (wolfAttackTimer > 0)
         {
-            wolfAttackTimer -= Time.fixedDeltaTime;
+            wolfAttackTimer -= Time.deltaTime;
         }
 
         if (wolfAttackTimer <= 0 && UnityEngine.Random.value < wolfAttackProbability)
         {
             GameObject wolf = wolfPool.Get();
-            runningWolves.Add(wolf.GetInstanceID(), wolf);
+            activeWolves.TryAdd(wolf.GetInstanceID(), wolf);
             int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
 
             wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * randomSign * wolfAppearDistance, 5f);
@@ -236,16 +288,17 @@ public class DeerLevelManager : MonoBehaviour
                     leaderDeer = deer;
                     LeaderDeerBehaviour leaderDeerBehaviour = deer.GetComponent<LeaderDeerBehaviour>();
                     leaderDeerBehaviour.enabled = true;
-                    deer.GetComponent<FollowerDeerBehaviour>().enabled = false;
                     leaderDeerBehaviour.ResetMoveState();
+                    deer.GetComponent<FollowerDeerBehaviour>().enabled = false;
                 }
                 else
                 {
-                    runningDeers.Add(deer.GetInstanceID(), deer);
+                    activeDeers.TryAdd(deer.GetInstanceID(), deer);
                     FollowerDeerBehaviour followerDeerBehaviour = deer.GetComponent<FollowerDeerBehaviour>();
                     followerDeerBehaviour.enabled = true;
                     followerDeerBehaviour.Target = null;
                     followerDeerBehaviour.deerPositionParamters = new DeerPositionParamters(row, i, objectsInRow, spacingHorizontal, spacingVertical);
+                    followerDeerBehaviour.ResetMoveState();
                     deer.GetComponent<LeaderDeerBehaviour>().enabled = false;
                 }
             }

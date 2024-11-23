@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class SquirrelLevelManager : MonoBehaviour
@@ -11,15 +10,20 @@ public class SquirrelLevelManager : MonoBehaviour
     [SerializeField] private float _nutSpawnRadius = 5f;
     [SerializeField] private int _squirrelCount = 5;
     [SerializeField] private int _nutCount = 5;
-    [SerializeField] private float _targetReachedThreshold = 4f;
     [SerializeField] private float _nextNutAppearsIn = 2f;
     [SerializeField] private Door _doorToNextLevel;
     [SerializeField] private List<Material> _nutTypes;
     [SerializeField] private float _bucketDistance = 3f;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _exitGatherPoint;
+    [SerializeField] private float _distToGatherPoint;
+
+
 
     private ObjectPool _nutPool;
     private List<GameObject> _squirrels;
     private List<GameObject> _buckets;
+    private HashSet<int> _playerPutCorrectBucket;
 
     private Queue<GameObject> _nutsToAssign;
     private Dictionary<int, GameObject> _squirrelToTarget;
@@ -27,6 +31,7 @@ public class SquirrelLevelManager : MonoBehaviour
     private float _nextNutTimer = 0f;
     private int _nutsToSpawn = 0;
     private int _playerTargetBucketId = -1;
+    private bool _levelFinished;
 
     void Start()
     {
@@ -36,6 +41,7 @@ public class SquirrelLevelManager : MonoBehaviour
         _squirrelToTarget = new Dictionary<int, GameObject>();
         _squirrels = new List<GameObject>();
         _buckets = new List<GameObject>();
+        _playerPutCorrectBucket = new HashSet<int>();
         for (int i = 0; i < _nutCount; i++)
         {
             _nutsToAssign.Enqueue(AssignNutType(AddToSceneFromPool(_nutPool)));
@@ -58,14 +64,22 @@ public class SquirrelLevelManager : MonoBehaviour
             bucket.transform.parent = transform;
             _buckets.Add(bucket);
         }
-        EventManager.Instance.RegisterGetNutEventListener(OnNutCollectedByPlayer);
-        EventManager.Instance.RegisterPutNutInBucketEventListener(OnPlayerPutNutToBucket);
+        EventManager.Instance.RegisterSquirrelLevelEventListener(HandleEvent);
     }
 
     void OnDestroy()
     {
-        EventManager.Instance.UnregisterGetNutEventListener(OnNutCollectedByPlayer);
-        EventManager.Instance.UnregisterPutNutInBucketEventListener(OnPlayerPutNutToBucket);
+        EventManager.Instance.UnregisterSquirrelLevelEventListener(HandleEvent);
+    }
+
+    void SquirrelGatherAroundExit()
+    {
+        List<Vector3> positions = Utils.getSemiCircleAroundTargetPosition(_squirrels.Count, _exitGatherPoint.transform.position);
+        for (int i = 0; i < _squirrels.Count; i++)
+        {
+            _squirrels[i].GetComponent<SquirrelBehaviour>().StayAtPoint = positions[i];
+            HideNutInMouth(_squirrels[i]);
+        }
     }
 
     void UpdateSquirrelTarget()
@@ -78,7 +92,7 @@ public class SquirrelLevelManager : MonoBehaviour
             {
                 AssignAvailableNutToSquirrel(i);
             }
-            else if (Utils.DistanceToTargetWithinThreshold(currentSquirrel.transform.position, currentTarget.transform.position, _targetReachedThreshold))
+            else if (Utils.DistanceToTargetWithinThreshold(currentSquirrel.transform.position, currentTarget.transform.position, currentSquirrel.GetComponent<SquirrelBehaviour>().TargetReachedThreshold))
             {
                 if (currentTarget.CompareTag(Constants.Tags.Nut))
                 {
@@ -99,6 +113,10 @@ public class SquirrelLevelManager : MonoBehaviour
                     AssignAvailableNutToSquirrel(i);
                 }
             }
+            // else
+            // {
+            //     currentSquirrel.GetComponent<SquirrelBehaviour>().Target = currentTarget;
+            // }
         }
     }
 
@@ -181,8 +199,19 @@ public class SquirrelLevelManager : MonoBehaviour
 
     void Update()
     {
-        UpdateSquirrelTarget();
-        SpawnNewNuts();
+        if (_playerPutCorrectBucket.Count == _buckets.Count && Utils.DistanceToTargetWithinThreshold(_player.transform.position, _exitGatherPoint.transform.position, _distToGatherPoint))
+        {
+            _levelFinished = true;
+        }
+        if (_levelFinished)
+        {
+            SquirrelGatherAroundExit();
+        }
+        else
+        {
+            UpdateSquirrelTarget();
+            SpawnNewNuts();
+        }
     }
 
     GameObject AssignNutType(GameObject nut)
@@ -226,7 +255,24 @@ public class SquirrelLevelManager : MonoBehaviour
         }
     }
 
-    public void OnNutCollectedByPlayer(GameObject nut)
+    public void HandleEvent(GameObject[] target, EventManager.SquirelLevelEvent eventType)
+    {
+        switch (eventType)
+        {
+            case EventManager.SquirelLevelEvent.PickUpNut:
+                {
+                    OnNutCollectedByPlayer(target[0]);
+                    break;
+                }
+            case EventManager.SquirelLevelEvent.PutNutInBucket:
+                {
+                    OnPlayerPutNutToBucket(target[0]);
+                    break;
+                }
+        }
+    }
+
+    private void OnNutCollectedByPlayer(GameObject nut)
     {
         GameObject targetBucket = null;
         if (_nutIdToNutType.TryGetValue(nut.GetInstanceID(), out int bucketIndex))
@@ -244,11 +290,15 @@ public class SquirrelLevelManager : MonoBehaviour
         RemoveFromScene(nut, _nutPool);
     }
 
-    public void OnPlayerPutNutToBucket(GameObject bucket)
+    private void OnPlayerPutNutToBucket(GameObject bucket)
     {
         if (bucket.GetInstanceID() == _playerTargetBucketId)
         {
-            _doorToNextLevel.ToggleDoor(true);
+            _playerPutCorrectBucket.Add(bucket.GetInstanceID());
+            if (_playerPutCorrectBucket.Count == _buckets.Count)
+            {
+                _doorToNextLevel.ToggleDoor(true);
+            }
         }
     }
 }

@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 5
+  speed: 8
   airSpeed: 2
-  targetReachedSquaredDistance: 2
+  targetReachedSquaredDistance: 4
 --- !u!114 &3001310491750601522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,9 +65,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 5
+  speed: 8
   airSpeed: 2
   jitterAmount: 1
+  targetReachedSquaredDistance: 4
 --- !u!1001 &3780175871919572496
 PrefabInstance:
   m_ObjectHideFlags: 0

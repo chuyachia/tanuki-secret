@@ -43,7 +43,7 @@ public class CharacterControlV2 : MonoBehaviour
         if (hit.gameObject.CompareTag(Constants.Tags.Nut) && hit.gameObject.activeSelf && !hasNut)
         {
             ShowNutInMouth(hit.gameObject);
-            EventManager.Instance.InvokeGetNutEvent(hit.gameObject);
+            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { hit.gameObject }, EventManager.SquirelLevelEvent.PickUpNut);
             hasNut = true;
             collisionHit = true;
             return;
@@ -51,7 +51,7 @@ public class CharacterControlV2 : MonoBehaviour
         if (hit.gameObject.CompareTag(Constants.Tags.NutBucket) && hasNut)
         {
             HideNutInMouth();
-            EventManager.Instance.InvokePutNutInBucketEvent(hit.gameObject);
+            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { hit.gameObject }, EventManager.SquirelLevelEvent.PutNutInBucket);
             hasNut = false;
             collisionHit = true;
             return;

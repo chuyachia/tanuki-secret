@@ -5,14 +5,25 @@ using UnityEngine;
 
 public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
 {
-    [SerializeField] private float targetReachedSquaredDistance = 2f;
+    [SerializeField] private float targetReachedSquaredDistance = 4f;
     private List<GameObject> targets = new List<GameObject>();
     private int currentTarget = 0;
     private Animator animator;
+    private float speedDecrement;
+
+    public void DecreseSpeed(float decrement)
+    {
+        speedDecrement += decrement;
+    }
 
     protected override void Start()
     {
         base.Start();
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    void OnEnable()
+    {
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -25,6 +36,13 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
     {
         targets.Clear();
         currentTarget = 0;
+        speedDecrement = 0f;
+        animator.SetBool(Constants.AnimatorState.IsWalking, false);
+    }
+
+    protected override float GetSpeed()
+    {
+        return speed - speedDecrement;
     }
 
     protected override bool ShouldJump()
@@ -32,16 +50,16 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
         return false;
     }
 
-    void Update()
+    protected override void FixedUpdate()
     {
         if (currentTarget == targets.Count)
         {
-            target = null;
+            targetPosition = transform.position;
 
         }
         else
         {
-            target = targets[currentTarget];
+            targetPosition = targets[currentTarget].transform.position;
             if (Utils.DistanceToTargetWithinThreshold(transform.position, targets[currentTarget].transform.position, targetReachedSquaredDistance))
             {
                 currentTarget++;
@@ -51,10 +69,6 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
                 }
             }
         }
-    }
-
-    protected override void FixedUpdate()
-    {
         base.FixedUpdate();
         if (steerDirection != Vector3.zero)
         {

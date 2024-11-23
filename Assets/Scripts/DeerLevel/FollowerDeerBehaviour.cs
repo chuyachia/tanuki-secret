@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 {
-
     [SerializeField] private float jitterAmount = 0.1f;
     [SerializeField] private float targetReachedSquaredDistance = 4f;
 
@@ -16,24 +15,38 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 
     public DeerPositionParamters deerPositionParamters;
     private Animator animator;
+    private GameObject target;
+    private float speedDecrement;
+
+
+    public void DecreseSpeed(float decrement)
+    {
+        speedDecrement += decrement;
+    }
+
+    void OnEnable()
+    {
+        target = null;
+        animator = GetComponentInChildren<Animator>();
+        speedDecrement = 0f;
+        animator.SetBool(Constants.AnimatorState.IsWalking, false);
+    }
+
+    public void ResetMoveState()
+    {
+        speedDecrement = 0f;
+        animator.SetBool(Constants.AnimatorState.IsWalking, false);
+    }
+
+    protected override float GetSpeed()
+    {
+        return speed - speedDecrement;
+    }
 
     protected override void Start()
     {
         base.Start();
         animator = GetComponentInChildren<Animator>();
-    }
-
-    protected override Vector3 GetTargetPosition()
-    {
-        if (target != null)
-        {
-            Vector3 targetPosition = target.transform.position - new Vector3(deerPositionParamters.NumberInRow * deerPositionParamters.SpacingHorizontal - (deerPositionParamters.ObjectsInRow - 1) * deerPositionParamters.SpacingHorizontal / 2f, 0f, (deerPositionParamters.RowCount - 1) * deerPositionParamters.SpacingVertical);
-            return Utils.JitterPosition(targetPosition, jitterAmount);
-        }
-        else
-        {
-            return transform.position;
-        }
     }
 
     protected override bool ShouldJump()
@@ -43,6 +56,16 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 
     protected override void FixedUpdate()
     {
+        if (target == null)
+        {
+            targetPosition = transform.position;
+        }
+        else
+        {
+            Vector3 position = target.transform.position - new Vector3(deerPositionParamters.NumberInRow * deerPositionParamters.SpacingHorizontal - (deerPositionParamters.ObjectsInRow - 1) * deerPositionParamters.SpacingHorizontal / 2f, 0f, (deerPositionParamters.RowCount - 1) * deerPositionParamters.SpacingVertical);
+            targetPosition = position;
+        }
+
         base.FixedUpdate();
         if (steerDirection != Vector3.zero)
         {
@@ -56,6 +79,6 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 
     protected override bool ShouldMove()
     {
-        return base.ShouldMove() && Utils.DistanceToTargetAboveThreshold(transform.position, target.transform.position, targetReachedSquaredDistance);
+        return Utils.DistanceToTargetAboveThreshold(transform.position, targetPosition, targetReachedSquaredDistance);
     }
 }

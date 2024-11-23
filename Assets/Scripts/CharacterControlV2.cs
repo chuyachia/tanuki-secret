@@ -96,10 +96,12 @@ public class CharacterControlV2 : MonoBehaviour
 
     void Update()
     {
-        inputHorizontal = Input.GetAxis("Horizontal");
-        inputVertical = Input.GetAxis("Vertical");
-        shouldInteract = Input.GetKeyDown(KeyCode.E);
-        shouldJump = Input.GetKeyDown(KeyCode.Space);
+        if (InputControl.charControlEnabled){
+            inputHorizontal = Input.GetAxis("Horizontal");
+            inputVertical = Input.GetAxis("Vertical");
+            shouldInteract = Input.GetKeyDown(KeyCode.E);
+            shouldJump = Input.GetKeyDown(KeyCode.Space);
+        }
     }
 
     void FixedUpdate()

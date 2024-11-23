@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0035897dd9aba5b09b223a5f7902b59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  airSpeed: 1
+  moveSpeed: 10
+  airSpeed: 2
   climSpeed: 3
   jumpHeight: 1
   gravity: -9.81
@@ -189,7 +189,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.03
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.24, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1445240177788518219
 PrefabInstance:
   m_ObjectHideFlags: 0

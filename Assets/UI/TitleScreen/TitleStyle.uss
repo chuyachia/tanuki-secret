@@ -1,0 +1,30 @@
+.main-title {
+    height: 70%;
+    align-items: center;
+    justify-content: center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 85px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 3s;
+    transition-timing-function: ease-out;
+}
+
+.title-buffer {
+    height: 20%;
+}
+
+.press-start-text {
+    -unity-text-align: upper-center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 36px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    color: rgba(224, 224, 224, 255);
+}
+
+.element--active {
+    opacity: 1;
+}

@@ -584,7 +584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &275414299
 Transform:
   m_ObjectHideFlags: 0
@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &357757065
 Transform:
   m_ObjectHideFlags: 0
@@ -1708,7 +1708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &609142300
 Transform:
   m_ObjectHideFlags: 0
@@ -1890,7 +1890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &647673003
 Transform:
   m_ObjectHideFlags: 0
@@ -2225,7 +2225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693970406
 Transform:
   m_ObjectHideFlags: 0
@@ -4269,13 +4269,15 @@ MonoBehaviour:
   _nutSpawnRadius: 23
   _squirrelCount: 5
   _nutCount: 5
-  _targetReachedThreshold: 2
   _nextNutAppearsIn: 2
   _doorToNextLevel: {fileID: 1877243040}
   _nutTypes:
   - {fileID: 2100000, guid: 2f80ed671eb710e6e98a79704e5df2df, type: 2}
   - {fileID: 2100000, guid: 43101272af6cf33fb8893a55f8adddcd, type: 2}
   _bucketDistance: 10
+  _player: {fileID: 0}
+  _exitGatherPoint: {fileID: 0}
+  _distToGatherPoint: 0
 --- !u!1 &1296677225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6056390361438157887, guid: a6124504d2d146d4290d48286650cecc,
@@ -5687,7 +5689,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669938830}
-  m_LocalRotation: {x: 0.04004907, y: -0.83499336, z: 0.061318096, w: 0.5453643}
+  m_LocalRotation: {x: 0.50515145, y: -0.4391388, z: -0.6634664, w: -0.33435246}
   m_LocalPosition: {x: 128.89, y: 61.5, z: 57.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5695,7 +5697,7 @@ Transform:
   - {fileID: 397017533}
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 8.4, y: -113.7, z: 0}
+  m_LocalEulerAnglesHint: {x: -113, y: -254.57, z: 0}
 --- !u!1 &1678574028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5714,7 +5716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1678574029
 Transform:
   m_ObjectHideFlags: 0
@@ -5846,22 +5848,22 @@ PrefabInstance:
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5453643
+      value: -0.33435246
       objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.04004911
+      value: 0.50515145
       objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.83499336
+      value: -0.4391388
       objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.061318137
+      value: -0.6634664
       objectReference: {fileID: 0}
     - target: {fileID: 8892847212225662019, guid: cfd03089808865743832735d3324fb05,
         type: 3}
@@ -5903,7 +5905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1694283117
 Transform:
   m_ObjectHideFlags: 0
@@ -5995,7 +5997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1708888015
 Transform:
   m_ObjectHideFlags: 0
@@ -6519,6 +6521,9 @@ MonoBehaviour:
   wolfAttackProbability: 0.5
   wolfAppearDistance: 24
   biteLogoShowOffset: {x: 0, y: 1, z: -2}
+  biteLogoDisappearIn: 2
+  wolfFleeDisappearIn: 5
+  speedDecrement: 1
 --- !u!4 &1904474200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4091142502864856007, guid: b1c2a1a96e8309d478748743c3d6ecc8,
@@ -7733,7 +7738,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 5000
+    maxNumParticles: 50000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -7793,15 +7798,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 18
+    type: 10
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 37.31, y: 35.4, z: 0}
-    m_Rotation: {x: 0, y: 68.91, z: 0}
-    m_Scale: {x: -267.1, y: 187.2, z: 0}
+    m_Rotation: {x: 90, y: 0, z: 0}
+    m_Scale: {x: 250, y: 250, z: 0}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7880,7 +7885,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 159
+      value: 0.32
       mode: 0
       spread: 0
       speed:
@@ -7938,12 +7943,12 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 3.67
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -7999,7 +8004,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 9.9
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11880,7 +11885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111708962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.730072, y: -18.73159, z: 14.783478}
+  m_LocalPosition: {x: 31.4, y: 50, z: 72.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

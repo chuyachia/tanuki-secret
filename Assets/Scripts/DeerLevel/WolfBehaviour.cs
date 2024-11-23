@@ -1,5 +1,3 @@
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WolfBehaviour : TargetBasedSteerBehaviour
@@ -9,7 +7,6 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
 
     private Animator animator;
     private bool targetIsDeer;
-    private bool isFleeing;
     private bool caughtDeer;
     private GameObject target;
 
@@ -30,11 +27,19 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
         }
     }
 
+    public Vector3 FleeTarget
+    {
+        set
+        {
+            targetPosition = value;
+            targetIsDeer = false;
+        }
+    }
+
     void OnEnable()
     {
-        caughtDeer = false;
-        isFleeing = false;
         targetIsDeer = false;
+        caughtDeer = false;
     }
 
     protected override void Start()
@@ -47,7 +52,7 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
     {
         if (Utils.DistanceToTargetWithinThreshold(transform.position, targetPosition, targetReachedSquaredDistance))
         {
-            if (targetIsDeer && !caughtDeer && !isFleeing)
+            if (targetIsDeer && !caughtDeer)
             {
                 EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject, target }, EventManager.DeerLevelEvent.WolfCatchDeer);
                 targetPosition = transform.position;
@@ -55,19 +60,6 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
                 caughtDeer = true;
             }
 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(Constants.Tags.Player) && !isFleeing && !caughtDeer)
-        {
-            EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject }, EventManager.DeerLevelEvent.WolfFlee);
-            isFleeing = true;
-            Vector3 directionAwayFromCollider = transform.position - other.transform.position;
-            directionAwayFromCollider.Normalize();
-            targetPosition = directionAwayFromCollider * fleeDistance;
-            targetIsDeer = false;
         }
     }
 

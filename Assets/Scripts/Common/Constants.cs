@@ -7,6 +7,7 @@ public static class Constants
         public const string NutInMouth = "NutInMouth";
         public const string Player = "Player";
         public const string Deer = "Deer";
+        public const string Wolf = "Wolf";
     }
 
     public static class AnimatorState

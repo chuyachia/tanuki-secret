@@ -12,26 +12,53 @@ public class CharacterControlV2 : MonoBehaviour
 
 
     private CharacterController characterController;
-    private Animator animationController;
+    private ModelController modelController;
+    private PlayerLevelBehaviour playerLevelBehaviour;
     private Vector3 velocity;
+    private Vector3 move;
     private float inputHorizontal;
     private float inputVertical;
-    private bool shouldInteract;
-    private bool shouldJump;
+    private bool inputInteract;
+    private bool inputSpace;
     private bool isClimbing;
     private bool isGrounded;
     private Vector3 climbDirection;
     private float initialSlopeLimit;
-    private bool hasNut;
     private bool collisionHit;
     private float initialXScale;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        animationController = GetComponentInChildren<Animator>();
+        modelController = GetComponent<ModelController>();
         initialSlopeLimit = characterController.slopeLimit;
         initialXScale = transform.localScale.x;
+        playerLevelBehaviour = new PlayerLevelBehaviour(modelController);
+        EventManager.Instance.RegisterLevelEnterEventListener(ChangeBehaviour);
+    }
+
+    void OnDestroy()
+    {
+        EventManager.Instance.UnregisterLevelEnterEventListener(ChangeBehaviour);
+
+    }
+
+    void ChangeBehaviour(Level level)
+    {
+        playerLevelBehaviour.Cleanup();
+        switch (level)
+        {
+            case Level.Squirrel:
+                {
+                    playerLevelBehaviour = new PlayerSquirrelBehaviour(transform, modelController);
+                    break;
+                }
+            case Level.Deer:
+                {
+                    playerLevelBehaviour = new PlayerDeerBehaviour(transform, modelController);
+                    break;
+                }
+        }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -40,38 +67,13 @@ public class CharacterControlV2 : MonoBehaviour
         {
             return;
         }
-        if (hit.gameObject.CompareTag(Constants.Tags.Nut) && hit.gameObject.activeSelf && !hasNut)
-        {
-            ShowNutInMouth(hit.gameObject);
-            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { hit.gameObject }, EventManager.SquirelLevelEvent.PickUpNut);
-            hasNut = true;
-            collisionHit = true;
-            return;
-        }
-        if (hit.gameObject.CompareTag(Constants.Tags.NutBucket) && hasNut)
-        {
-            HideNutInMouth();
-            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { hit.gameObject }, EventManager.SquirelLevelEvent.PutNutInBucket);
-            hasNut = false;
-            collisionHit = true;
-            return;
-        }
-    }
-
-    void ShowNutInMouth(GameObject nut)
-    {
-        Utils.ActivateChildAndCopyMaterialFromTarget(transform, nut, 2, Constants.Tags.NutInMouth);
-    }
-
-    void HideNutInMouth()
-    {
-        Utils.DeactivteChild(transform, 2, Constants.Tags.NutInMouth);
+        playerLevelBehaviour.HandleControllerColliderHit(hit);
     }
 
     void UpdateClimbState()
     {
 
-        if (shouldInteract && Physics.Raycast(transform.position, transform.forward, climableSurfaceCheckDistance, climbableSurface))
+        if (inputInteract && Physics.Raycast(transform.position, transform.forward, climableSurfaceCheckDistance, climbableSurface))
         {
             isClimbing = true;
             characterController.slopeLimit = 90f;
@@ -96,11 +98,12 @@ public class CharacterControlV2 : MonoBehaviour
 
     void Update()
     {
-        if (InputControl.charControlEnabled){
+        if (InputControl.charControlEnabled)
+        {
             inputHorizontal = Input.GetAxis("Horizontal");
             inputVertical = Input.GetAxis("Vertical");
-            shouldInteract = Input.GetKeyDown(KeyCode.E);
-            shouldJump = Input.GetKeyDown(KeyCode.Space);
+            inputInteract = Input.GetKeyDown(KeyCode.E);
+            inputSpace = Input.GetKeyDown(KeyCode.Space);
         }
     }
 
@@ -120,6 +123,8 @@ public class CharacterControlV2 : MonoBehaviour
             Jump();
             Move();
         }
+        playerLevelBehaviour.UpdateAnimatorBasedOnMovement(move, isGrounded);
+        playerLevelBehaviour.UpdateAnimatorBasedOnInput(inputHorizontal, inputVertical, inputSpace);
     }
 
     void ResetCollistionState()
@@ -139,7 +144,6 @@ public class CharacterControlV2 : MonoBehaviour
         {
             characterController.slopeLimit = initialSlopeLimit;
         }
-        animationController.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
     }
 
     void ApplyGravity()
@@ -157,7 +161,7 @@ public class CharacterControlV2 : MonoBehaviour
 
     void Jump()
     {
-        if (isGrounded && shouldJump)
+        if (isGrounded && inputSpace)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -166,16 +170,7 @@ public class CharacterControlV2 : MonoBehaviour
     void Move()
     {
         Vector3 moveDirection = transform.right * inputHorizontal + transform.forward * inputVertical;
-        Vector3 move = moveDirection.normalized * GetSpeed();
-        if (move != Vector3.zero)
-        {
-            animationController.SetBool(Constants.AnimatorState.IsWalking, true);
-        }
-        else
-        {
-            animationController.SetBool(Constants.AnimatorState.IsWalking, false);
-        }
-
+        move = moveDirection.normalized * GetSpeed();
         characterController.Move((move + velocity) * Time.fixedDeltaTime);
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3708650779653776661}
   m_Layer: 0
   m_Name: Wolf
-  m_TagString: Untagged
+  m_TagString: Wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 12
+  speed: 8
   airSpeed: 2
-  targetReachedSquaredDistance: 2
+  targetReachedSquaredDistance: 4
   fleeDistance: 20
 --- !u!136 &3708650779653776661
 CapsuleCollider:
@@ -60,7 +60,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3152593260158545153}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.0107503
   m_Height: 3.1101074

@@ -37,8 +37,14 @@ public class EventManager
         NotEnoughDeersLeft
     }
 
+    public enum CraneLevelEvent
+    {
+        StartDance
+    }
+
     private UnityEvent<GameObject[], SquirelLevelEvent> squirrelLevelEvent;
     private UnityEvent<GameObject[], DeerLevelEvent> deerLevelEvent;
+    private UnityEvent<GameObject[], CraneLevelEvent> craneLevelEvent;
     private UnityEvent<MusicLayer> startMusicLayerEvent;
     private UnityEvent<MusicLayer> stopMusicLayerEvent;
     private UnityEvent<Level> levelEnterEvent;
@@ -50,7 +56,8 @@ public class EventManager
         // Level events
         squirrelLevelEvent = new UnityEvent<GameObject[], SquirelLevelEvent>();
         deerLevelEvent = new UnityEvent<GameObject[], DeerLevelEvent>();
-        
+        craneLevelEvent = new UnityEvent<GameObject[], CraneLevelEvent>();
+
         // Music events
         startMusicLayerEvent = new UnityEvent<MusicLayer>();
         stopMusicLayerEvent = new UnityEvent<MusicLayer>();
@@ -79,6 +86,16 @@ public class EventManager
     public void UnregisterDeerLevelEvenListener(UnityAction<GameObject[], DeerLevelEvent> action)
     {
         deerLevelEvent.RemoveListener(action);
+    }
+
+    public void RegisterCraneLevelEventListener(UnityAction<GameObject[], CraneLevelEvent> action)
+    {
+        craneLevelEvent.AddListener(action);
+    }
+
+    public void UnregisterCraneLevelEvenListener(UnityAction<GameObject[], CraneLevelEvent> action)
+    {
+        craneLevelEvent.RemoveListener(action);
     }
 
     // Register methods
@@ -141,6 +158,11 @@ public class EventManager
     public void InvokeDeerLevelEvent(GameObject[] target, DeerLevelEvent eventType)
     {
         deerLevelEvent.Invoke(target, eventType);
+    }
+
+    public void InvokeCraneLevelEvent(GameObject[] target, CraneLevelEvent eventType)
+    {
+        craneLevelEvent.Invoke(target, eventType);
     }
 
     // Invoke methods

@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +7,7 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
     private List<GameObject> targets = new List<GameObject>();
     private int currentTarget = 0;
     private Animator animator;
-    private float speedDecrement;
+    private float speedDecrement = 0f;
 
     public void DecreseSpeed(float decrement)
     {
@@ -30,14 +28,6 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
     public void StartMove(List<GameObject> waypoints)
     {
         targets.AddRange(waypoints);
-    }
-
-    public void ResetMoveState()
-    {
-        targets.Clear();
-        currentTarget = 0;
-        speedDecrement = 0f;
-        animator.SetBool(Constants.AnimatorState.IsWalking, false);
     }
 
     protected override float GetSpeed()

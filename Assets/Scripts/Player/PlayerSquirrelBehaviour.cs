@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerSquirrelBehaviour : PlayerLevelBehaviour
+public class PlayerSquirrelBehaviour : PlayerBaseBehaviour
 {
     private bool hasNut;
     private Transform transform;

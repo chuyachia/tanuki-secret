@@ -18,6 +18,11 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
     private GameObject target;
     private float speedDecrement;
 
+    public void CaughtByWolf()
+    {
+        target = null;
+        animator.SetBool(Constants.AnimatorState.IsAttacked, true);
+    }
 
     public void DecreseSpeed(float decrement)
     {
@@ -28,12 +33,6 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
     {
         target = null;
         animator = GetComponentInChildren<Animator>();
-        speedDecrement = 0f;
-        animator.SetBool(Constants.AnimatorState.IsWalking, false);
-    }
-
-    public void ResetMoveState()
-    {
         speedDecrement = 0f;
         animator.SetBool(Constants.AnimatorState.IsWalking, false);
     }

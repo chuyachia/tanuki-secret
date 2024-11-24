@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerDeerBehaviour : PlayerLevelBehaviour
+public class PlayerDeerBehaviour : PlayerBaseBehaviour
 {
     public PlayerDeerBehaviour(Transform transform, ModelController modelController) : base(modelController)
     {

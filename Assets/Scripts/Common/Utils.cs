@@ -66,14 +66,11 @@ public static class Utils
         }
     }
 
-    public static List<Vector3> getSemiCircleAroundTargetPosition(int numberOfObjectsToPlace, Vector3 center)
+    public static List<Vector3> GetCircleAroundTargetPosition(int numberOfObjectsToPlace, Vector3 center, float startAngle, float spanAngle, float radius)
     {
         List<Vector3> result = new List<Vector3>();
-        float startAngle = 90f;
-        float spanAngle = 180f;
         float angleStep = spanAngle / (numberOfObjectsToPlace - 1);
         float angleOffset = startAngle - spanAngle / 2f;
-        float radius = 5f;
         for (int i = 0; i < numberOfObjectsToPlace; i++)
         {
             float angleInDegrees = angleOffset + (i * angleStep);

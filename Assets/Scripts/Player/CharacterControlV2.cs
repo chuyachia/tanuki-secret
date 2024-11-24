@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterControlV2 : MonoBehaviour
@@ -9,11 +10,12 @@ public class CharacterControlV2 : MonoBehaviour
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private LayerMask climbableSurface;
     [SerializeField] private float climableSurfaceCheckDistance = 2f;
+    [SerializeField] private Level defaultLevel;
 
 
     private CharacterController characterController;
     private ModelController modelController;
-    private PlayerLevelBehaviour playerLevelBehaviour;
+    private PlayerBaseBehaviour playerLevelBehaviour;
     private Vector3 velocity;
     private Vector3 move;
     private float inputHorizontal;
@@ -33,8 +35,9 @@ public class CharacterControlV2 : MonoBehaviour
         modelController = GetComponent<ModelController>();
         initialSlopeLimit = characterController.slopeLimit;
         initialXScale = transform.localScale.x;
-        playerLevelBehaviour = new PlayerLevelBehaviour(modelController);
+        playerLevelBehaviour = new PlayerBaseBehaviour(modelController);
         EventManager.Instance.RegisterLevelEnterEventListener(ChangeBehaviour);
+        ChangeBehaviour(defaultLevel);
     }
 
     void OnDestroy()
@@ -56,6 +59,11 @@ public class CharacterControlV2 : MonoBehaviour
             case Level.Deer:
                 {
                     playerLevelBehaviour = new PlayerDeerBehaviour(transform, modelController);
+                    break;
+                }
+            case Level.Crane:
+                {
+                    playerLevelBehaviour = new PlayerCraneBehaviour(transform, modelController);
                     break;
                 }
         }
@@ -103,8 +111,38 @@ public class CharacterControlV2 : MonoBehaviour
             inputHorizontal = Input.GetAxis("Horizontal");
             inputVertical = Input.GetAxis("Vertical");
             inputInteract = Input.GetKeyDown(KeyCode.E);
-            inputSpace = Input.GetKeyDown(KeyCode.Space);
+            inputSpace = Input.GetKey(KeyCode.Space);
         }
+        if (playerLevelBehaviour is PlayerCraneBehaviour && !playerLevelBehaviour.ShouldMove())
+        {
+            PlayerCraneBehaviour craneBehaviour = (PlayerCraneBehaviour)playerLevelBehaviour;
+            craneBehaviour.CraneDanse(inputHorizontal, inputVertical, inputSpace);
+            if (inputHorizontal > 0)
+            {
+                characterController.SimpleMove(Vector3.right * 4f);
+            }
+            else if (inputHorizontal < 0)
+            {
+                characterController.SimpleMove(Vector3.left * 4f);
+            }
+        }
+    }
+
+
+    IEnumerator MoveToTarget(Transform objectToMove, Vector3 targetPosition, float duration)
+    {
+        Vector3 startPosition = objectToMove.position;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float t = timeElapsed / duration;
+            objectToMove.position = Vector3.Lerp(startPosition, targetPosition, t);
+            yield return null;
+        }
+
+        objectToMove.position = targetPosition;
     }
 
     void FixedUpdate()
@@ -115,16 +153,15 @@ public class CharacterControlV2 : MonoBehaviour
         {
             Climb();
         }
-        else
+        else if (playerLevelBehaviour.ShouldMove())
         {
             UpdateGroundedState();
             ApplyGravity();
             FlipModelOnHorizontalInput();
             Jump();
             Move();
+            playerLevelBehaviour.UpdateAnimatorBasedOnMovement(move, isGrounded);
         }
-        playerLevelBehaviour.UpdateAnimatorBasedOnMovement(move, isGrounded);
-        playerLevelBehaviour.UpdateAnimatorBasedOnInput(inputHorizontal, inputVertical, inputSpace);
     }
 
     void ResetCollistionState()

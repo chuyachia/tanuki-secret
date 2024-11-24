@@ -1,40 +1,38 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class ModelController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> modelPrefabs;
-    private static Dictionary<Level, int> levelToModelIndex;
+    [SerializeField] private Level defaultLevel;
 
-    private List<GameObject> models;
+    private Dictionary<Level, GameObject> levelToModel;
+
     public Animator Animator
     {
         get
         {
-            if (models != null && currentModel < models.Count)
-            {
-                return models[currentModel].GetComponent<Animator>();
-            }
-            return null;
+            Animator animator = null;
+            levelToModel?[currentLevel].TryGetComponent<Animator>(out animator);
+            return animator;
         }
     }
 
-    private int currentModel = 0;
+    public GameObject Model
+    {
+        get { return levelToModel?[currentLevel]; }
+    }
+
+    private Level currentLevel = Level.Base;
     void Start()
     {
-        levelToModelIndex = new Dictionary<Level, int>
-        {
-            { Level.Squirrel, 1 },
-            { Level.Deer, 2 },
-            { Level.Crane, 3 }
+        levelToModel = new Dictionary<Level, GameObject>{
+            {Level.Base, Instantiate(modelPrefabs[0])},
+            {Level.Squirrel, Instantiate(modelPrefabs[1])},
+            {Level.Deer, Instantiate(modelPrefabs[2])},
+            {Level.Crane, Instantiate(modelPrefabs[3])}
         };
-        models = new List<GameObject>();
-        for (int i = 0; i < modelPrefabs.Count; i++)
-        {
-            models.Add(Instantiate(modelPrefabs[i]));
-        }
-        ChangeModel(0);
+        ChangeModel(defaultLevel);
         EventManager.Instance.RegisterLevelEnterEventListener(OnLevelChange);
     }
 
@@ -44,13 +42,13 @@ public class ModelController : MonoBehaviour
 
     }
 
-    void ChangeModel(int index)
+    void ChangeModel(Level level)
     {
-        currentModel = index;
-        for (int i = 0; i < models.Count; i++)
+        currentLevel = level;
+        foreach (KeyValuePair<Level, GameObject> kvp in levelToModel)
         {
-            GameObject model = models[i];
-            if (i == currentModel)
+            GameObject model = kvp.Value;
+            if (kvp.Key == currentLevel)
             {
                 model.SetActive(true);
                 model.transform.SetParent(transform, false);
@@ -65,6 +63,6 @@ public class ModelController : MonoBehaviour
 
     void OnLevelChange(Level level)
     {
-        ChangeModel(levelToModelIndex[level]);
+        ChangeModel(level);
     }
 }

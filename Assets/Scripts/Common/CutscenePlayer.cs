@@ -27,6 +27,7 @@ public class CutscenePlayer : MonoBehaviour
         {
             activeDirector.stopped += OnCutsceneComplete;
             activeDirector.Play();
+            Debug.Log("Timeline played!");
         }
         
         // If there are messages to display, invoke the event
@@ -34,7 +35,7 @@ public class CutscenePlayer : MonoBehaviour
             !NarrationDisplayer.messageDisplayCoroutineActive)
         {
             // We'll add a new event type for cutscene messages
-            EventManager.Instance.InvokeCutsceneMessageEvent(currentCutscene.MessagesToDisplay);
+            //EventManager.Instance.InvokeCutsceneMessageEvent(currentCutscene.MessagesToDisplay); // Text is incompatible with timeline, will require different way of doing
         }
     }
 
@@ -49,6 +50,8 @@ public class CutscenePlayer : MonoBehaviour
         {
             activeDirector.stopped -= OnCutsceneComplete;
             activeDirector.Stop();
+            Debug.Log("Timeline stopped!");
+
         }
             
         if (cutsceneInstance != null){

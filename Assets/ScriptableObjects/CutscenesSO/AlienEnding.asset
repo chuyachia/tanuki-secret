@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: AlienEnding
   m_EditorClassIdentifier: 
   pauseControls: 0
-  pauseGame: 0
-  pauseTimer: 0
-  cutScene: {fileID: 0}
+  scenePrefab: {fileID: 4977687842957899901, guid: 62eb0827a0c21d548a72b1fa63fa4042,
+    type: 3}
   messagesToDisplay: []
   messagesDelay: 2

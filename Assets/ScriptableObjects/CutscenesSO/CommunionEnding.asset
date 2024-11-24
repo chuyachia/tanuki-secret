@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: CommunionEnding
   m_EditorClassIdentifier: 
   pauseControls: 0
-  pauseGame: 0
-  pauseTimer: 0
-  cutScene: {fileID: 0}
+  scenePrefab: {fileID: 4977687842957899901, guid: ef044ec44a0b8734cb276d079d78147c,
+    type: 3}
   messagesToDisplay: []
   messagesDelay: 2

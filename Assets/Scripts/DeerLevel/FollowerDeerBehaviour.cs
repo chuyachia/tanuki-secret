@@ -18,6 +18,11 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
     private GameObject target;
     private float speedDecrement;
 
+    public void CaughtByWolf()
+    {
+        target = null;
+        animator.SetBool(Constants.AnimatorState.IsAttacked, true);
+    }
 
     public void DecreseSpeed(float decrement)
     {

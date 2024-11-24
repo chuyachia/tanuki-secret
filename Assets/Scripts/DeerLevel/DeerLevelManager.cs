@@ -23,6 +23,7 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private float biteLogoDisappearIn = 2f;
     [SerializeField] private float wolfFleeDisappearIn = 5f;
     [SerializeField] private float speedDecrement = 1f;
+    [SerializeField] private Door doorToNextLevel;
 
     private GameObject leaderDeer;
     private Dictionary<int, GameObject> activeDeers;
@@ -82,7 +83,7 @@ public class DeerLevelManager : MonoBehaviour
                     }
                 case EventManager.DeerLevelEvent.DeerArrivedAtDestination:
                     {
-                        // Door to next level open
+                        doorToNextLevel.ToggleDoor(true);
                         arrivedAtDestination = true;
                         foreach (GameObject deer in activeDeers.Values)
                         {
@@ -108,7 +109,7 @@ public class DeerLevelManager : MonoBehaviour
 
     void WolfEatDeer(GameObject wolf, GameObject deer)
     {
-        deer.GetComponent<FollowerDeerBehaviour>().Target = null;
+        deer.GetComponent<FollowerDeerBehaviour>().CaughtByWolf();
         activeDeers.Remove(deer.GetInstanceID());
         activeWolves.Remove(wolf.GetInstanceID());
         inactiveDeers.Add(deer);

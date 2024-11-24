@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
   textToDisplay:
   - The tree is tall
   - Press E to climb it
@@ -1112,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
   textToDisplay:
   - You are approaching a forest
   tracksToPlay: 
@@ -2298,6 +2300,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1351434242}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &801473227
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 266646377}
+    m_Modifications:
+    - target: {fileID: 3562169455171668672, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_Name
+      value: TanukiModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3562169455171668672, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189630317921915002, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 421eab0b4deb455a3ba138a01be9931d, type: 3}
 --- !u!1001 &803521138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7330,6 +7406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a31ec9961c8e4648b48ab7dd115a468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 0
   textToDisplay:
   - Un pied dans l'eau
   - Deux pieds dans l'eau

@@ -34,7 +34,7 @@ public class CutscenePlayer : MonoBehaviour
             !NarrationDisplayer.messageDisplayCoroutineActive)
         {
             // We'll add a new event type for cutscene messages
-            //EventManager.Instance.InvokeCutsceneMessageEvent(currentCutscene.MessagesToDisplay);
+            EventManager.Instance.InvokeCutsceneMessageEvent(currentCutscene.MessagesToDisplay);
         }
     }
 

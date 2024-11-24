@@ -17,28 +17,29 @@ public class NarrationDisplayer : MonoBehaviour
     
     private void Awake()
     {
-    // subscribe to events (adapt later so it takes a list of events)
-    if (subjectsToObserve != null)
-        {
-            foreach (AreaChangeTrigger subject in subjectsToObserve) {
-                subject.AreaEntered += OnThingHappened;
+        // subscribe to events (adapt later so it takes a list of events)
+        if (subjectsToObserve != null)
+            {
+                foreach (AreaChangeTrigger subject in subjectsToObserve) {
+                    subject.AreaEntered += OnMessageTriggered;
+                }
+                EventManager.Instance.RegisterCutsceneMessageEventListener(OnMessageTriggered);
             }
-            
-        }
-    
-    // initialize UI
-    rootEl = uiDoc.rootVisualElement;
-    textContainer = rootEl.Q(className: "narrative-text--container");
+
+        // initialize UI
+        rootEl = uiDoc.rootVisualElement;
+        textContainer = rootEl.Q(className: "narrative-text--container");
     }
 
     private void OnDestroy() // To prevent error in case the observer is deleted for some reason
     {
         foreach (AreaChangeTrigger subject in subjectsToObserve) {
-            subject.AreaEntered -= OnThingHappened;
+            subject.AreaEntered -= OnMessageTriggered;
         }
+        EventManager.Instance.UnregisterCutsceneMessageEventListener(OnMessageTriggered);
     }
 
-    private void OnThingHappened(List<string> messages)
+    private void OnMessageTriggered(List<string> messages)
     {
         if (!messageDisplayCoroutineActive){
             InitiatilizeSentences(messages);

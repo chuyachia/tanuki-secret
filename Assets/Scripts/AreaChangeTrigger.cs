@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-
 public class AreaChangeTrigger : MonoBehaviour
 {
     [SerializeField] Level currentLevel;

@@ -6,10 +6,13 @@ using UnityEngine.Playables;
 public class CutscenesSO : ScriptableObject
 {
     [SerializeField] private bool pauseControls;
-    [SerializeField] private bool pauseGame;
-    [SerializeField] private bool pauseTimer;
-    [SerializeField] GameObject scenePrefab;
-    [SerializeField] List<string> messagesToDisplay;
-    [SerializeField] float messagesDelay = 2f; 
+    [SerializeField] private GameObject scenePrefab;
+    [SerializeField] private List<string> messagesToDisplay;
+    [SerializeField] private float messagesDelay = 2f;
 
+    // Public properties
+    public bool PauseControls => pauseControls;
+    public GameObject ScenePrefab => scenePrefab;
+    public List<string> MessagesToDisplay => messagesToDisplay;
+    public float MessagesDelay => messagesDelay;
 }

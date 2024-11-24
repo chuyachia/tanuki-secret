@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MigrationEnding
   m_EditorClassIdentifier: 
   pauseControls: 0
-  pauseGame: 0
-  pauseTimer: 0
   scenePrefab: {fileID: 4977687842957899901, guid: 608bff8938a5fb64e8587c3e876fad28,
     type: 3}
-  messagesToDisplay: []
+  messagesToDisplay:
+  - Maybe, all along
+  - Traveling was what I longed for
   messagesDelay: 2

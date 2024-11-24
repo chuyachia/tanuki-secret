@@ -74,7 +74,7 @@ public class SquirrelLevelManager : MonoBehaviour
 
     void SquirrelGatherAroundExit()
     {
-        List<Vector3> positions = Utils.getSemiCircleAroundTargetPosition(_squirrels.Count, _exitGatherPoint.transform.position);
+        List<Vector3> positions = Utils.GetCircleAroundTargetPosition(_squirrels.Count, _exitGatherPoint.transform.position, 90f, 180f, 5f);
         for (int i = 0; i < _squirrels.Count; i++)
         {
             _squirrels[i].GetComponent<SquirrelBehaviour>().StayAtPoint = positions[i];

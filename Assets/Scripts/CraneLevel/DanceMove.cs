@@ -1,16 +1,16 @@
-public class DanseMove
+public class DanceMove
 {
-    public static DanseMove NoMove = new DanseMove(WingPosition.ROLLED, BodyPosition.NEUTRAL);
+    public static DanceMove NoMove = new DanceMove(WingPosition.ROLLED, BodyPosition.NEUTRAL);
     public WingPosition WingPosition { get; }
     public BodyPosition BodyPosition { get; }
 
-    public DanseMove(WingPosition wingPosition, BodyPosition bodyPosition)
+    public DanceMove(WingPosition wingPosition, BodyPosition bodyPosition)
     {
         this.WingPosition = wingPosition;
         this.BodyPosition = bodyPosition;
     }
 
-    public static DanseMove FromUserInput(float inputHorizontal, float inputVertical, bool inputSpace)
+    public static DanceMove FromUserInput(float inputHorizontal, float inputVertical, bool inputSpace)
     {
         WingPosition wingPosition = inputSpace ? WingPosition.DEPLOYED : WingPosition.ROLLED;
         BodyPosition bodyPosition = BodyPosition.NEUTRAL;
@@ -30,6 +30,6 @@ public class DanseMove
         {
             bodyPosition = BodyPosition.SIDE_LEFT;
         }
-        return new DanseMove(wingPosition, bodyPosition);
+        return new DanceMove(wingPosition, bodyPosition);
     }
 }

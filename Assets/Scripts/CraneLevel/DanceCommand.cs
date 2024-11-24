@@ -1,12 +1,12 @@
-public class DanseCommand
+public class DanceCommand
 {
-    public DanseCommand(DanseMove danseMove, int beat)
+    public DanceCommand(DanceMove danseMove, int beat)
     {
         Move = danseMove;
         Beat = beat;
     }
 
-    public DanseMove Move
+    public DanceMove Move
     {
         get;
     }

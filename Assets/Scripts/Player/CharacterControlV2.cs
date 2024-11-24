@@ -63,7 +63,7 @@ public class CharacterControlV2 : MonoBehaviour
                 }
             case Level.Crane:
                 {
-                    playerLevelBehaviour = new PlayerCraneBehaviour(modelController);
+                    playerLevelBehaviour = new PlayerCraneBehaviour(transform, modelController);
                     break;
                 }
         }
@@ -113,17 +113,17 @@ public class CharacterControlV2 : MonoBehaviour
             inputInteract = Input.GetKeyDown(KeyCode.E);
             inputSpace = Input.GetKey(KeyCode.Space);
         }
-        if (playerLevelBehaviour is PlayerCraneBehaviour)
+        if (playerLevelBehaviour is PlayerCraneBehaviour && !playerLevelBehaviour.ShouldMove())
         {
             PlayerCraneBehaviour craneBehaviour = (PlayerCraneBehaviour)playerLevelBehaviour;
             craneBehaviour.CraneDanse(inputHorizontal, inputVertical, inputSpace);
             if (inputHorizontal > 0)
             {
-                characterController.SimpleMove(Vector3.forward * 4f);
+                characterController.SimpleMove(Vector3.right * 4f);
             }
             else if (inputHorizontal < 0)
             {
-                characterController.SimpleMove(Vector3.back * 4f);
+                characterController.SimpleMove(Vector3.left * 4f);
             }
         }
     }

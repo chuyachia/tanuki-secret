@@ -787,6 +787,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1739854486}
+  - {fileID: 1853028345}
   m_Father: {fileID: 14734135}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1127,6 +1128,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
+      propertyPath: tilesToLoad.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
       propertyPath: tilesToUnload.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -1135,6 +1141,16 @@ PrefabInstance:
       propertyPath: tilesToLoad.Array.data[0]
       value: 
       objectReference: {fileID: 357757064}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
+      propertyPath: tilesToLoad.Array.data[1]
+      value: 
+      objectReference: {fileID: 693970405}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
+      propertyPath: tilesToLoad.Array.data[2]
+      value: 
+      objectReference: {fileID: 1853028344}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
       propertyPath: tilesToUnload.Array.data[0]
@@ -4876,10 +4892,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
+      propertyPath: defaultLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
+        type: 3}
       propertyPath: cutsceneToPlay
       value: 
       objectReference: {fileID: 11400000, guid: 217998cf217dd5e44bff7a92241d439d,
         type: 2}
+    - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
+        type: 3}
+      propertyPath: defaultLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: modelPrefabs.Array.size
@@ -4942,7 +4968,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62
+      value: 704
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -4952,7 +4978,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 98
+      value: 423
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -6165,6 +6191,55 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1390638848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1853028344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853028345}
+  - component: {fileID: 1853028346}
+  m_Layer: 0
+  m_Name: CraneLevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1853028345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853028344}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 61.350037, y: 47.994873, z: 101.28436}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 357757065}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853028346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853028344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4313b9902094024cb6fdff82598d65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cranePrefab: {fileID: 8893978101152182379, guid: 465deb02f8a547b248063f975d854ca4,
+    type: 3}
+  player: {fileID: 1186104591}
+  numberOfCrane: 5
+  craneCircleRadius: 6
 --- !u!114 &1877243040
 MonoBehaviour:
   m_ObjectHideFlags: 0

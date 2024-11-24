@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public partial class CraneDanseAnimator
+public partial class CraneDanceAnimator
 {
     private const string WingModel = "Crane_wings";
     private const string BodyModel = "Crane_Body";
@@ -11,7 +11,7 @@ public partial class CraneDanseAnimator
     private Animator wingAnimator;
     private Animator bodyAnimator;
 
-    public CraneDanseAnimator(GameObject craneModel)
+    public CraneDanceAnimator(GameObject craneModel)
     {
         foreach (Transform child in craneModel.transform)
         {
@@ -36,7 +36,7 @@ public partial class CraneDanseAnimator
         }
     }
 
-    public void Danse(DanseMove danseMove)
+    public void Danse(DanceMove danseMove)
     {
         switch (danseMove.WingPosition)
         {

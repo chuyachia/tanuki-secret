@@ -15,5 +15,8 @@ MonoBehaviour:
   pauseControls: 0
   scenePrefab: {fileID: 4977687842957899901, guid: ef044ec44a0b8734cb276d079d78147c,
     type: 3}
-  messagesToDisplay: []
+  messagesToDisplay:
+  - 'CUTSCENE: DANCING (SLOW)'
+  - As I was dancing in locksteps
+  - I couldn't help but think something was missing
   messagesDelay: 2

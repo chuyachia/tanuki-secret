@@ -1455,6 +1455,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
+        type: 3}
+      propertyPath: cutsceneToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 217998cf217dd5e44bff7a92241d439d,
+        type: 2}
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: modelPrefabs.Array.size

@@ -15,5 +15,9 @@ MonoBehaviour:
   pauseControls: 0
   scenePrefab: {fileID: 4977687842957899901, guid: 62eb0827a0c21d548a72b1fa63fa4042,
     type: 3}
-  messagesToDisplay: []
+  messagesToDisplay:
+  - 'CUTSCENE: ALIEN (FASTEST)'
+  - They were there looking for me
+  - All along
+  - My real people
   messagesDelay: 2

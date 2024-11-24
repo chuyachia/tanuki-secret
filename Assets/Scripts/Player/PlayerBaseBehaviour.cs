@@ -1,19 +1,15 @@
 using UnityEngine;
 
-public class PlayerLevelBehaviour
+public class PlayerBaseBehaviour
 {
     protected ModelController modelController;
 
-    public PlayerLevelBehaviour(ModelController modelController)
+    public PlayerBaseBehaviour(ModelController modelController)
     {
         this.modelController = modelController;
     }
 
     public virtual void HandleControllerColliderHit(ControllerColliderHit hit)
-    {
-
-    }
-    public virtual void UpdateAnimatorBasedOnInput(float inputHorizontal, float inputVertical, bool inputSpace)
     {
 
     }
@@ -31,7 +27,13 @@ public class PlayerLevelBehaviour
         }
     }
 
-    public virtual void Cleanup() {
-        
+    public virtual void Cleanup()
+    {
+
+    }
+
+    public virtual bool ShouldMove()
+    {
+        return true;
     }
 }

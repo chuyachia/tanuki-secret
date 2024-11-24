@@ -16,5 +16,10 @@ public static class Constants
         public const string IsGrounded = "isGrounded";
         public const string IsAttacking = "isAttacking";
         public const string IsAttacked = "isAttacked";
+        public const string BodyUp = "bodyUp";
+        public const string BodyDown = "bodyDown";
+        public const string BodySide = "bodySide";
+        public const string WingDeployed = "wingDeployed";
+        public const string WingRolled = "wingRolled";
     }
 }

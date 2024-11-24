@@ -1,4 +1,4 @@
 public enum Level
 {
-    Squirrel, Deer, Crane
+    Base, Squirrel, Deer, Crane
 }

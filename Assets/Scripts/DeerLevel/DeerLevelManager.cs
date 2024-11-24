@@ -33,9 +33,6 @@ public class DeerLevelManager : MonoBehaviour
     private Vector3 playerTriggerPositon = Vector3.zero;
     private bool journeyStarted;
     private bool arrivedAtDestination;
-    private ObjectPool wolfPool;
-    private ObjectPool deerPool;
-    private ObjectPool biteLogoPool;
     private float wolfAttackTimer = 0f;
     private int deerTargetId;
     private Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>> eventsToProcess;
@@ -48,9 +45,6 @@ public class DeerLevelManager : MonoBehaviour
         inactiveDeers = new List<GameObject>();
         inactiveWolves = new List<GameObject>();
         journeyStarted = false;
-        wolfPool = new ObjectPool(wolfPrefab);
-        deerPool = new ObjectPool(deerPrefab);
-        biteLogoPool = new ObjectPool(bitingLogoPrefab);
         eventsToProcess = new Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>>();
         PlaceDeersInPosition();
         deerTargetId = numberOfDeers - 1;
@@ -136,17 +130,17 @@ public class DeerLevelManager : MonoBehaviour
 
     IEnumerator ShowBiteLogoCoroutine(Vector3 position)
     {
-        GameObject biteLogo = biteLogoPool.Get();
+        GameObject biteLogo = Instantiate(bitingLogoPrefab);
         biteLogo.transform.parent = transform;
         biteLogo.transform.position = position;
         yield return new WaitForSeconds(biteLogoDisappearIn);
-        biteLogoPool.Reclaim(biteLogo);
+        Destroy(biteLogo);
     }
 
     IEnumerator WolfFleeCoroutine(GameObject wolf)
     {
         yield return new WaitForSeconds(wolfFleeDisappearIn);
-        wolfPool.Reclaim(wolf);
+        Destroy(wolf);
     }
 
     void Update()
@@ -199,7 +193,6 @@ public class DeerLevelManager : MonoBehaviour
         {
             Destroy(wolf);
         }
-
         leaderDeer = null;
         activeDeers.Clear();
         inactiveDeers.Clear();
@@ -251,7 +244,7 @@ public class DeerLevelManager : MonoBehaviour
 
         if (wolfAttackTimer <= 0 && UnityEngine.Random.value < wolfAttackProbability)
         {
-            GameObject wolf = wolfPool.Get();
+            GameObject wolf = Instantiate(wolfPrefab);
             activeWolves.TryAdd(wolf.GetInstanceID(), wolf);
             // int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
 
@@ -263,7 +256,7 @@ public class DeerLevelManager : MonoBehaviour
 
     GameObject SpawnDeer(Vector3 position)
     {
-        GameObject newDeer = deerPool.Get();
+        GameObject newDeer = Instantiate(deerPrefab);
         newDeer.transform.parent = transform;
         newDeer.transform.position = position;
         return newDeer;
@@ -288,7 +281,6 @@ public class DeerLevelManager : MonoBehaviour
                     leaderDeer = deer;
                     LeaderDeerBehaviour leaderDeerBehaviour = deer.GetComponent<LeaderDeerBehaviour>();
                     leaderDeerBehaviour.enabled = true;
-                    leaderDeerBehaviour.ResetMoveState();
                     deer.GetComponent<FollowerDeerBehaviour>().enabled = false;
                 }
                 else
@@ -298,7 +290,7 @@ public class DeerLevelManager : MonoBehaviour
                     followerDeerBehaviour.enabled = true;
                     followerDeerBehaviour.Target = null;
                     followerDeerBehaviour.deerPositionParamters = new DeerPositionParamters(row, i, objectsInRow, spacingHorizontal, spacingVertical);
-                    followerDeerBehaviour.ResetMoveState();
+                    // followerDeerBehaviour.ResetMoveState();
                     deer.GetComponent<LeaderDeerBehaviour>().enabled = false;
                 }
             }

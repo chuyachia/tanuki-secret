@@ -32,12 +32,6 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
         animator.SetBool(Constants.AnimatorState.IsWalking, false);
     }
 
-    public void ResetMoveState()
-    {
-        speedDecrement = 0f;
-        animator.SetBool(Constants.AnimatorState.IsWalking, false);
-    }
-
     protected override float GetSpeed()
     {
         return speed - speedDecrement;

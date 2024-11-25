@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/AchievementScreen/AchievementStyles.uss?fileID=7433441132597879392&amp;guid=0b77f1eac0864de42a13376c11a86d12&amp;type=3#AchievementStyles" />
+    <ui:VisualElement class="container container--hiden">
+        <ui:VisualElement class="top-text">
+            <ui:Label text="The end?" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+        <ui:VisualElement class="column--container">
+            <ui:VisualElement class="achievements-container">
+                <ui:VisualElement>
+                    <ui:VisualElement class="achievement--slow--icon" />
+                </ui:VisualElement>
+                <ui:VisualElement class="achievement--medium--container">
+                    <ui:VisualElement class="achievement--medium--icon" />
+                    <ui:VisualElement class="achievement--medium--text-container">
+                        <ui:Label />
+                        <ui:Label style="-unity-font-style: italic;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-direction: row; margin-top: 10px;">
+                    <ui:VisualElement class="achievement--fast--icon achivement--fast--achieved" />
+                    <ui:VisualElement class="achievement--fast--text-container">
+                        <ui:Label text="Close Encounter of the furry kind" />
+                        <ui:Label text="Finnish in less than 3 mintues" style="-unity-font-style: italic;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement class="credits credits--hidden">
+                <ui:VisualElement style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Manils%20SDF.asset?fileID=11400000&amp;guid=4eb4907bde1730943ba440c946522adc&amp;type=2#Manils SDF&quot;); font-size: 24px;">
+                    <ui:Label text="A Game by:" class="credits--title" />
+                </ui:VisualElement>
+                <ui:VisualElement style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&amp;guid=04fc2e30fec72bd4fbb147079e961540&amp;type=2#Gargle Rg SDF&quot;); font-size: 24px; margin-top: 2px; margin-bottom: 2px;">
+                    <ui:Label text="Nicolas Deluncinge" class="creits--labels" />
+                    <ui:Label text="Grant McLaughlin" class="creits--labels" />
+                    <ui:Label text="Chu-Ya Chia" class="creits--labels" />
+                    <ui:Label text="Corentin Bialais" class="creits--labels" />
+                    <ui:Label text="Jean-Baptiste Vicquelin" class="creits--labels" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement class="bottom-text">
+            <ui:Label text="Press &apos;E&apos; to play again" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

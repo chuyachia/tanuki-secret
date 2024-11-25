@@ -72,8 +72,8 @@ MonoBehaviour:
       type: 2}
     volume: 1
     fadeTime: 2
-    playOnStart: 1
-  - layer: 3
+    playOnStart: 0
+  - layer: 4
     clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}

@@ -23,6 +23,7 @@ public class achievementScreenManager : MonoBehaviour
     VisualElement creditsContainer;
     // Press E to restart
     VisualElement bottomContainer;
+    VisualElement transitionOverlay;
 
     private string currentSceneName;
     private bool isEndGame = false;
@@ -49,6 +50,8 @@ public class achievementScreenManager : MonoBehaviour
         creditsContainer = rootEl.Q(className: "credits");
         // Press E to restart
         bottomContainer = rootEl.Q(className: "bottom-text");
+        // Fade to black transition
+        transitionOverlay = rootEl.Q(className: "transition--overlay");
     }
 
     public void DisplayAchievementScreen(){
@@ -79,9 +82,7 @@ public class achievementScreenManager : MonoBehaviour
 
     void Update(){
             if (isEndGame && InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.E)){
-                string currentSceneName = SceneManager.GetActiveScene().name;
-                EventManager.Instance.InvokeStopAllMusicLayersEvent();
-                SceneManager.LoadScene(currentSceneName);
+                StartCoroutine("RestartGame");
             }
     }
 
@@ -90,5 +91,14 @@ public class achievementScreenManager : MonoBehaviour
         yield return  new WaitForSeconds(2.0f);
         bottomContainer.RemoveFromClassList("bottom-text--hidden");
         InputControl.menuControlEnabled = true;
+    }
+
+    private IEnumerator RestartGame(){
+                string currentSceneName = SceneManager.GetActiveScene().name;
+                EventManager.Instance.InvokeStopAllMusicLayersEvent();
+                transitionOverlay.RemoveFromClassList("transition--overlay--hidden");
+                yield return new WaitForSeconds(1.0f);
+                SceneManager.LoadScene(currentSceneName);
+
     }
 }

@@ -37,11 +37,13 @@ public class LayeredAudioManager : MonoBehaviour
     private Dictionary<MusicLayer, AudioSource> musicSources = new Dictionary<MusicLayer, AudioSource>();
     private Dictionary<AudioSource, Coroutine> fadeCoroutines = new Dictionary<AudioSource, Coroutine>();
 
-    public static LayeredAudioManager Instance { get; private set; }
+    //public static LayeredAudioManager Instance { get; private set; } // Singleton not necessary
 
     private void Awake()
     
     {
+        
+        /*
         if (Instance != null && Instance != this){ 
             Destroy(this); 
         } 
@@ -49,6 +51,7 @@ public class LayeredAudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject); 
         } 
+        */ // uncomment if singleton is necessary
 
         InitializeAudioSources();
         SubscribeToEvents();

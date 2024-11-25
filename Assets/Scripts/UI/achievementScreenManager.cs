@@ -8,10 +8,8 @@ using System;
 public class achievementScreenManager : MonoBehaviour
 {
     [SerializeField] UIDocument uiDoc;
-
     VisualElement rootEl;
     VisualElement pageContainer;
-
     // Slow ending
     VisualElement achivementSlowIcon;
     VisualElement achivementSlowText;
@@ -21,14 +19,10 @@ public class achievementScreenManager : MonoBehaviour
     // Fast ending
     VisualElement achivementFastIcon;
     VisualElement achivementFastText;
-
     // Credits
     VisualElement creditsContainer;
-
     // Press E to restart
     VisualElement bottomContainer;
-
-
 
     private string currentSceneName;
     private bool isEndGame = false;
@@ -36,14 +30,12 @@ public class achievementScreenManager : MonoBehaviour
     private void Awake()
     {
         GetUIElements();
-        
     }
 
     private void GetUIElements()
     {
         rootEl = uiDoc.rootVisualElement;
         pageContainer = rootEl.Q(className: "container");
-
         // Slow ending
         achivementSlowIcon = rootEl.Q(className: "achievement--slow--icon");
         achivementSlowText = rootEl.Q(className: "achievement--slow--text-container");
@@ -53,13 +45,10 @@ public class achievementScreenManager : MonoBehaviour
         // Fast ending
         achivementFastIcon = rootEl.Q(className: "achievement--fast--icon");
         achivementFastText = rootEl.Q(className: "achievement--fast--text-container");
-
         // Credits
         creditsContainer = rootEl.Q(className: "credits");
-
         // Press E to restart
         bottomContainer = rootEl.Q(className: "bottom-text");
-
     }
 
     public void DisplayAchievementScreen(){
@@ -86,12 +75,12 @@ public class achievementScreenManager : MonoBehaviour
         if (AchievementManager.endingSlow && AchievementManager.endingMedium && AchievementManager.endingFast){
             creditsContainer.RemoveFromClassList("credits--hidden");
         }
-
     }
 
     void Update(){
             if (isEndGame && InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.E)){
                 string currentSceneName = SceneManager.GetActiveScene().name;
+                EventManager.Instance.InvokeStopAllMusicLayersEvent();
                 SceneManager.LoadScene(currentSceneName);
             }
     }

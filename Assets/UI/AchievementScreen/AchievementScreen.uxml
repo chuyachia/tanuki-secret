@@ -6,21 +6,25 @@
         </ui:VisualElement>
         <ui:VisualElement class="column--container">
             <ui:VisualElement class="achievements-container">
-                <ui:VisualElement>
+                <ui:VisualElement class="achievement--slow--container">
                     <ui:VisualElement class="achievement--slow--icon" />
+                    <ui:VisualElement class="achievement--slow--text-container achievement--slow--text-container--hidden">
+                        <ui:Label text="Stranger among beasts" display-tooltip-when-elided="true" />
+                        <ui:Label text="Finish in more than 10&apos;" display-tooltip-when-elided="true" style="-unity-font-style: italic;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement class="achievement--medium--container">
                     <ui:VisualElement class="achievement--medium--icon" />
-                    <ui:VisualElement class="achievement--medium--text-container">
-                        <ui:Label />
-                        <ui:Label style="-unity-font-style: italic;" />
+                    <ui:VisualElement class="achievement--medium--text-container achievement--medium--text-container-hidden">
+                        <ui:Label text="Perpetual traveler" />
+                        <ui:Label text="Finish in less than 2&apos;" style="-unity-font-style: italic;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; margin-top: 10px;">
-                    <ui:VisualElement class="achievement--fast--icon achivement--fast--achieved" />
-                    <ui:VisualElement class="achievement--fast--text-container">
+                    <ui:VisualElement class="achievement--fast--icon" />
+                    <ui:VisualElement class="achievement--fast--text-container achievement--fast--text-container--hiden">
                         <ui:Label text="Close Encounter of the furry kind" />
-                        <ui:Label text="Finnish in less than 3 mintues" style="-unity-font-style: italic;" />
+                        <ui:Label text="Finish in less than 3&apos;" style="-unity-font-style: italic;" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -37,8 +41,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement class="bottom-text">
+        <ui:VisualElement class="bottom-text bottom-text--hidden">
             <ui:Label text="Press &apos;E&apos; to play again" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:VisualElement class="transition--overlay transition--overlay--hidden" />
 </ui:UXML>

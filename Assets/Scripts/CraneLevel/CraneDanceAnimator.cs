@@ -71,8 +71,8 @@ public partial class CraneDanceAnimator
                     desiredWingPosition = initialWingPosition + craneWingOffSet;
                     break;
                 }
-            case BodyPosition.SIDE_LEFT:
-            case BodyPosition.SIDE_RIGHT:
+            case BodyPosition.LEFT:
+            case BodyPosition.RIGHT:
                 {
                     bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, true);
                     bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, false);

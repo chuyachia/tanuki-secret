@@ -13,10 +13,11 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] UIDocument uiDoc;
     [SerializeField] private PlayableDirector timelineDirector;
     [SerializeField] private GameObject starryNightParticleSystem; // to make sure we disable the particle system once we're done with the title screen
-
+    [SerializeField] private GameTimer gameTimer;
     private VisualElement rootEl;
     private VisualElement titleTextContainer;
     private VisualElement pressStartTextContainer; // the element where we indicate that the player has to press a button to start
+    
 
     private void Awake()
     {
@@ -58,14 +59,13 @@ public class TitleScreenManager : MonoBehaviour
 
     IEnumerator StartGameSequence(){
         InputControl.menuControlEnabled = false;
-        yield return new WaitForSeconds(0.5f);
         titleTextContainer.RemoveFromClassList("element--active");
         pressStartTextContainer.RemoveFromClassList("element--active");
-        yield return new WaitForSeconds(1.0f);
         timelineDirector.Play();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         starryNightParticleSystem.SetActive(false);
         InputControl.charControlEnabled = true;
+        gameTimer.StartTimer();
         gameObject.SetActive(false);
     }
 

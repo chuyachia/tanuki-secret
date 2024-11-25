@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System;
 
 /// <summary>
 /// Event manager singleton responsible for registering event listener and invoking event
@@ -192,4 +193,8 @@ public class EventManager
         cutsceneMessageEvent.Invoke(messages);
     }
 
+    internal void InvokeCutsceneEvent(CutscenesSO[] cutsceneToPlay)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,0 +1,116 @@
+.top-text {
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    -unity-font-definition: url("project://database/Assets/Fonts/Manils%20SDF.asset?fileID=11400000&guid=4eb4907bde1730943ba440c946522adc&type=2#Manils SDF");
+    font-size: 48px;
+    color: rgb(255, 255, 255);
+}
+
+.achievements-container {
+    width: 60%;
+    margin-right: 1%;
+    margin-left: 2%;
+}
+
+.credits {
+    width: 50%;
+    margin-left: 1%;
+    margin-right: 2%;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-text {
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+}
+
+.credits--title {
+}
+
+.creits--labels {
+    margin-top: 10px;
+}
+
+.achievement--slow--text-container {
+    align-items: center;
+    justify-content: center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 24px;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.achievement--slow--icon {
+    background-image: url("project://database/Assets/UI/AchievementScreen/Qmark.png?fileID=2800000&guid=0e287d9e12b32e947b73a92b0351e9ed&type=3#Qmark");
+    width: 100px;
+    height: 100px;
+}
+
+.achievement--medium--container {
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.achievement--medium--icon {
+    background-image: url("project://database/Assets/UI/AchievementScreen/Qmark.png?fileID=2800000&guid=0e287d9e12b32e947b73a92b0351e9ed&type=3#Qmark");
+    width: 100px;
+    height: 100px;
+}
+
+.achievement--medium--text-container {
+    align-items: flex-start;
+    justify-content: center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 24px;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.achievement--fast--text-container {
+    align-items: flex-start;
+    justify-content: center;
+    -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
+    font-size: 24px;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.achievement--fast--icon {
+    background-image: url("project://database/Assets/UI/AchievementScreen/Qmark.png?fileID=2800000&guid=0e287d9e12b32e947b73a92b0351e9ed&type=3#Qmark");
+    width: 100px;
+    height: 100px;
+}
+
+.column--container {
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: row;
+    color: rgb(255, 255, 255);
+}
+
+.container {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
+    transition-duration: 1.5s;
+}
+
+.container--hiden {
+    opacity: 0;
+}
+
+.credits--hidden {
+    display: none;
+}
+
+.achivement--fast--achieved {
+    background-image: url("project://database/Assets/UI/AchievementScreen/UFO.png?fileID=2800000&guid=89570dfe6115d3a43b50a49a2dbd4f21&type=3#UFO");
+}

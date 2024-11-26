@@ -1,4 +1,4 @@
 public enum BodyPosition
 {
-    NEUTRAL, UP, DOWN, LEFT, RIGHT
+    NEUTRAL, UP, DOWN, LEFT, RIGHT, INVALID
 }

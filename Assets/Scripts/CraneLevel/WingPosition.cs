@@ -1,4 +1,4 @@
 public enum WingPosition
 {
-    DEPLOYED, ROLLED
+    DEPLOYED, NEUTRAL, INVALID
 }

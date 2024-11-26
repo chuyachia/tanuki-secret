@@ -12,7 +12,8 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private float bufferTimeBeforeNextMove = 0.2f;
     [SerializeField] private float sideDistance = 2f;
     [SerializeField] private float playerAllowedDistacneFromDancePosition = 64f;
-    [SerializeField] private float correctMoveTolerance = 0.2f;
+    [SerializeField] private float correctMoveTolerance = 0.5f;
+    [SerializeField] private float inputThrottleDuration = 0.5f;
     [SerializeField] private EndingManager endingManager;
 
     private List<GameObject> cranes;
@@ -27,8 +28,10 @@ public class CraneLevelManager : MonoBehaviour
     private float danceMoveDuration;
     private DanceMove currentTargetMove;
     private DanceMove nextTargetMove;
+    private DanceMove throttledPlayerInput = DanceMove.NoMove;
     private bool shouldTrackPlayerMove;
     private bool levelCompleted;
+    private float inputThrottleTimer;
 
     void Start()
     {
@@ -50,35 +53,35 @@ public class CraneLevelManager : MonoBehaviour
     {
         dances = new List<List<DanceCommand>>();
         List<DanceCommand> tutorialBodyUpDown = new List<DanceCommand>(){
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.UP), 2),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.DOWN), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 2),
         };
         dances.Add(tutorialBodyUpDown);
         List<DanceCommand> tutorialBodyLeftRight = new List<DanceCommand>(){
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.LEFT), 2),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.RIGHT), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.LEFT), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 2),
         };
         dances.Add(tutorialBodyLeftRight);
         List<DanceCommand> tutorialWingDeployedRoll = new List<DanceCommand>(){
             new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.UP), 2),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.NEUTRAL), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.NEUTRAL), 2),
         };
         dances.Add(tutorialWingDeployedRoll);
         List<DanceCommand> complextDance = new List<DanceCommand>(){
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.LEFT), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.LEFT), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.UP), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.LEFT), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.LEFT), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.RIGHT), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.RIGHT), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.UP), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.DOWN), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.UP), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.DOWN), 1),
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.UP), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 1),
 
-            new DanceCommand(new DanceMove(WingPosition.ROLLED, BodyPosition.DOWN), 2),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 2),
             new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.UP), 2)
         };
         dances.Add(complextDance);
@@ -160,37 +163,48 @@ public class CraneLevelManager : MonoBehaviour
                     craneBehaviour.Dance(DanceMove.NoMove);
                 }
             }
-            DanceMove playerMove = DanceMove.FromUserInput(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetKey(KeyCode.Space));
-            if (playerMove.Equals(DanceMove.NoMove))
+            DanceMove playerInput = DanceMove.FromUserInput(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), Input.GetKey(KeyCode.Space));
+            if (playerInput.Equals(DanceMove.NoMove))
             {
                 shouldTrackPlayerMove = true;
+                inputThrottleTimer = 0f;
             }
             else if (shouldTrackPlayerMove)
             {
-                if (playerMove.Equals(currentTargetMove) || playerMove.Equals(nextTargetMove) && timerToNextMove < correctMoveTolerance)
+                if (inputThrottleTimer < inputThrottleDuration)
                 {
-                    playerCorrectMoves++;
-                    Debug.Log("correct move");
-                    if (playerCorrectMoves == danceCommands.Count)
-                    {
-                        Debug.Log("Next dance");
-                        playerCorrectMoves = 0;
-                        danseCommandIndex = 0;
-                        currentDance++;
-                        if (currentDance == dances.Count)
-                        {
-                            levelCompleted = true;
-                            EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.LevelCompleted);
-                            StartCoroutine(CleanUpAndLaunchEnding());
-                        }
-                    }
+                    inputThrottleTimer += Time.deltaTime;
+                    throttledPlayerInput = throttledPlayerInput.merge(playerInput);
                 }
                 else
                 {
-                    playerCorrectMoves = 0;
-                    Debug.Log("wrong move");
+                    if (throttledPlayerInput.Equals(currentTargetMove) || throttledPlayerInput.Equals(nextTargetMove) && timerToNextMove < correctMoveTolerance)
+                    {
+                        playerCorrectMoves++;
+                        Debug.Log("correct move");
+                        if (playerCorrectMoves == danceCommands.Count)
+                        {
+                            Debug.Log("Next dance");
+                            playerCorrectMoves = 0;
+                            danseCommandIndex = 0;
+                            throttledPlayerInput = DanceMove.NoMove;
+                            currentDance++;
+                            if (currentDance == dances.Count)
+                            {
+                                levelCompleted = true;
+                                EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.LevelCompleted);
+                                StartCoroutine(CleanUpAndLaunchEnding());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        playerCorrectMoves = 0;
+                        Debug.Log("wrong move");
+                    }
+                    throttledPlayerInput = DanceMove.NoMove;
+                    shouldTrackPlayerMove = false;
                 }
-                shouldTrackPlayerMove = false;
 
             }
         }

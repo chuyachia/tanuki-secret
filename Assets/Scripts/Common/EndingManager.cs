@@ -19,19 +19,22 @@ public class EndingManager : MonoBehaviour
 
     public void ChooseEndingCutscene()
     {
+        InputControl.charControlEnabled = false;
         gameTimer.StopTimer();
-        
         timeRecorded = gameTimer.GetCurrentTime();
 
         if (timeRecorded <= durationFast){
+            AchievementManager.endingFast  = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneFast);
             Debug.Log(timeRecorded);
         }
         else if (timeRecorded <= durationMedium){
+            AchievementManager.endingMedium  = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneMedium);
             Debug.Log(timeRecorded);
         }
         else if (timeRecorded <= durationSlow){
+            AchievementManager.endingSlow  = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneSlow);
             Debug.Log(timeRecorded);
         }

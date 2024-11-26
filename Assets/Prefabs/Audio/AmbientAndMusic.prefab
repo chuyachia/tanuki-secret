@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414009556461695780}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 88.72673, y: 23.448313, z: 207.53412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,30 +46,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicLayers:
   - layer: 1
-    clip: {fileID: 8300000, guid: e9d3938743c40f54ab9824f6bdf34220, type: 3}
+    clip: {fileID: 8300000, guid: f8d2c874d0a0b9e4abac3212a94513bc, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 2
     playOnStart: 0
   - layer: 0
-    clip: {fileID: 8300000, guid: e6b1670fd9d9176479dc9c95c3ced2ce, type: 3}
+    clip: {fileID: 8300000, guid: 2fd17669f5a03e24faa470195260b1f1, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    fadeTime: 5
+    fadeTime: 6
     playOnStart: 0
   - layer: 2
-    clip: {fileID: 8300000, guid: acda2fe2bffc8794f881f444f3ba2eb2, type: 3}
+    clip: {fileID: 8300000, guid: 17dad90536d605d4cae3014fdf72d0f3, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
-    fadeTime: 10
+    fadeTime: 2
     playOnStart: 0
   - layer: 3
-    clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
+    clip: {fileID: 8300000, guid: 18392fe4d0ea37e47801dc854331c1b6, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 2
-    playOnStart: 1
+    playOnStart: 0
+  - layer: 4
+    clip: {fileID: 8300000, guid: cfde1d898d458184d9aec2c2dfb7657e, type: 3}
+    audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    volume: 1
+    fadeTime: 2
+    playOnStart: 0

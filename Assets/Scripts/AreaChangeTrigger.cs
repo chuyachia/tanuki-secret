@@ -18,7 +18,6 @@ public class AreaChangeTrigger : MonoBehaviour
         OnAreaEnter(); // only displayed the first time the player enters the area. Other logic related to area change could be implemented
         StopTracks(tracksToStop);
         PlayTracks(tracksToPlay);
-
     }
 
 

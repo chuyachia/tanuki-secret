@@ -51,6 +51,7 @@ public class EventManager
     private UnityEvent<Level> levelEnterEvent;
     private UnityEvent<CutscenesSO> cutsceneEvent;
     private UnityEvent<List<string>> cutsceneMessageEvent;
+    private UnityEvent stopAllMusicLayersEvent;
 
     private EventManager()
     {
@@ -67,6 +68,7 @@ public class EventManager
         levelEnterEvent = new UnityEvent<Level>();
         cutsceneEvent = new UnityEvent<CutscenesSO>();
         cutsceneMessageEvent = new UnityEvent<List<string>>();
+        stopAllMusicLayersEvent = new UnityEvent();
     }
 
     public void RegisterSquirrelLevelEventListener(UnityAction<GameObject[], SquirelLevelEvent> action)
@@ -151,6 +153,17 @@ public class EventManager
         cutsceneMessageEvent.RemoveListener(listener);
     }
 
+    public void RegisterStopAllMusicLayersEventListener(UnityAction listener)
+    {
+        stopAllMusicLayersEvent.AddListener(listener);
+    }
+
+    public void UnregisterStopAllMusicLayersEventListener(UnityAction listener)
+    {
+        stopAllMusicLayersEvent.RemoveListener(listener);
+    }
+
+
     public void InvokeSquirrelLevelEvent(GameObject[] target, SquirelLevelEvent eventType)
     {
         squirrelLevelEvent.Invoke(target, eventType);
@@ -197,4 +210,10 @@ public class EventManager
     {
         throw new NotImplementedException();
     }
+
+    public void InvokeStopAllMusicLayersEvent()
+    {
+        stopAllMusicLayersEvent.Invoke();
+    }
+
 }

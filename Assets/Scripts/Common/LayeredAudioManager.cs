@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using UnityEngine.Audio;
 // Define our audio layers
@@ -9,7 +10,9 @@ public enum MusicLayer
 {
     Drums,
     Strings,
-    Guitar,
+    Piano,
+    Synths,
+    Flute,
     
     // Ambient sounds
     Crickets
@@ -35,9 +38,22 @@ public class LayeredAudioManager : MonoBehaviour
     private Dictionary<MusicLayer, AudioSource> musicSources = new Dictionary<MusicLayer, AudioSource>();
     private Dictionary<AudioSource, Coroutine> fadeCoroutines = new Dictionary<AudioSource, Coroutine>();
 
+    //public static LayeredAudioManager Instance { get; private set; } // Singleton not necessary
+
     private void Awake()
+    
     {
-        DontDestroyOnLoad(gameObject);
+        
+        /*
+        if (Instance != null && Instance != this){ 
+            Destroy(this); 
+        } 
+        else{ 
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        } 
+        */ // uncomment if singleton is necessary
+
         InitializeAudioSources();
         SubscribeToEvents();
     }
@@ -66,6 +82,7 @@ public class LayeredAudioManager : MonoBehaviour
     {
         EventManager.Instance.RegisterStartMusicLayerEventListener(StartMusicLayer);
         EventManager.Instance.RegisterStopMusicLayerEventListener(StopMusicLayer);
+        EventManager.Instance.RegisterStopAllMusicLayersEventListener(StopAllMusicLayers);
     }
 
     private void OnDestroy()
@@ -73,6 +90,7 @@ public class LayeredAudioManager : MonoBehaviour
         // Make sure to unregister when the object is destroyed
         EventManager.Instance.UnregisterStartMusicLayerEventListener(StartMusicLayer);
         EventManager.Instance.UnregisterStopMusicLayerEventListener(StopMusicLayer);
+        EventManager.Instance.UnregisterStopAllMusicLayersEventListener(StopAllMusicLayers);
     }
 
 
@@ -87,13 +105,14 @@ public class LayeredAudioManager : MonoBehaviour
         if (!musicSources.TryGetValue(layer, out AudioSource source)) return;
 
         MusicLayerData layerData = musicLayers.FirstOrDefault(l => l.layer == layer);
+        
         if (layerData == null) return;
-
+        
         if (!source.isPlaying)
         {
             source.Play();
         }
-
+        
         StartFade(source, layerData.volume, layerData.fadeTime);
     }
 
@@ -105,6 +124,14 @@ public class LayeredAudioManager : MonoBehaviour
         if (layerData == null) return;
 
         StartFade(source, 0f, layerData.fadeTime, true);
+    }
+
+    public void StopAllMusicLayers(){
+        
+        foreach(var musicLayer in musicLayers){
+            StopMusicLayer(musicLayer.layer);
+        }
+
     }
 
     private void StartFade(AudioSource source, float targetVolume, float fadeTime, bool stopAfterFade = false)

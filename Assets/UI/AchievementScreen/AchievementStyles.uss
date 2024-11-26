@@ -28,6 +28,12 @@
     -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
     font-size: 24px;
     color: rgb(255, 255, 255);
+    transition-property: all;
+    transition-duration: 1.5s;
+}
+
+.bottom-text--hidden {
+    visibility: hidden;
 }
 
 .credits--title {
@@ -38,7 +44,7 @@
 }
 
 .achievement--slow--text-container {
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     -unity-font-definition: url("project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&guid=04fc2e30fec72bd4fbb147079e961540&type=2#Gargle Rg SDF");
     font-size: 24px;
@@ -113,4 +119,44 @@
 
 .achivement--fast--achieved {
     background-image: url("project://database/Assets/UI/AchievementScreen/UFO.png?fileID=2800000&guid=89570dfe6115d3a43b50a49a2dbd4f21&type=3#UFO");
+}
+
+.transition--overlay {
+    position: absolute;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 255);
+    transition-duration: 1s;
+}
+
+.transition--overlay--hidden {
+    opacity: 0;
+    display: none;
+}
+
+.achivement--slow--icon--achieved {
+    background-image: url("project://database/Assets/UI/AchievementScreen/endingSlowIcon.png?fileID=2800000&guid=2a0d39862de8fdc4bab2c19a67507bee&type=3#endingSlowIcon");
+}
+
+.achievement--medium--icon--achieved {
+    background-image: url("project://database/Assets/UI/AchievementScreen/endingMediumIcon.png?fileID=2800000&guid=c8fd7ecbcae10d64c9e437d7de9fb7ad&type=3#endingMediumIcon");
+}
+
+.achievement--fast--text-container--hiden {
+    visibility: hidden;
+}
+
+.achievement--medium--text-container-hidden {
+    visibility: hidden;
+}
+
+.achievement--slow--container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.achievement--slow--text-container--hidden {
+    visibility: hidden;
 }

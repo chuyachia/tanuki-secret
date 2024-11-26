@@ -61,7 +61,7 @@ public partial class CraneDanceAnimator
                     wingAnimator?.SetBool(Constants.AnimatorState.WingDeployed, true);
                     break;
                 }
-            case WingPosition.ROLLED:
+            case WingPosition.NEUTRAL:
                 {
                     wingAnimator?.SetBool(Constants.AnimatorState.WingDeployed, false);
                     break;

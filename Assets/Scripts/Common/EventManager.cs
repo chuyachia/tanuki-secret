@@ -41,7 +41,8 @@ public class EventManager
     public enum CraneLevelEvent
     {
         StartDance,
-        PlayerTooFarFromCranes
+        PlayerTooFarFromCranes,
+        LevelCompleted
     }
 
     private UnityEvent<GameObject[], SquirelLevelEvent> squirrelLevelEvent;

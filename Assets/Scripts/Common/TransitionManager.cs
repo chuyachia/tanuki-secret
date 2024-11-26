@@ -39,6 +39,7 @@ public class TransitionManager : MonoBehaviour
         switch (eventType)
         {
             case EventManager.CraneLevelEvent.PlayerTooFarFromCranes:
+            case EventManager.CraneLevelEvent.LevelCompleted:
                 {
                     FadeTransition();
                     return;

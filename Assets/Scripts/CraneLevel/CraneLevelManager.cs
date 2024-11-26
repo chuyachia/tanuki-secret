@@ -13,6 +13,7 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private float sideDistance = 2f;
     [SerializeField] private float playerAllowedDistacneFromDancePosition = 64f;
     [SerializeField] private float correctMoveTolerance = 0.2f;
+    [SerializeField] private EndingManager endingManager;
 
     private List<GameObject> cranes;
     private List<List<DanceCommand>> dances;
@@ -85,6 +86,11 @@ public class CraneLevelManager : MonoBehaviour
 
     void Update()
     {
+        if (levelCompleted)
+        {
+            return;
+        }
+
         if (!isDancing)
         {
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerPositionInDanceCircle, 4f))
@@ -99,7 +105,7 @@ public class CraneLevelManager : MonoBehaviour
             EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.PlayerTooFarFromCranes);
             StartCoroutine(ResetPlayerPosition());
         }
-        else if (!levelCompleted)
+        else
         {
             List<DanceCommand> danceCommands = dances[currentDance];
             if (danseCommandIndex >= danceCommands.Count)
@@ -173,7 +179,9 @@ public class CraneLevelManager : MonoBehaviour
                         currentDance++;
                         if (currentDance == dances.Count)
                         {
-                            LevelCompleted();
+                            levelCompleted = true;
+                            EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.LevelCompleted);
+                            StartCoroutine(CleanUpAndLaunchEnding());
                         }
                     }
                 }
@@ -194,14 +202,14 @@ public class CraneLevelManager : MonoBehaviour
         player.transform.position = playerPositionInDanceCircle;
     }
 
-    void LevelCompleted()
+    IEnumerator CleanUpAndLaunchEnding()
     {
-        Debug.Log("Level completed");
-        levelCompleted = true;
+        yield return new WaitForSeconds(1f);
         foreach (GameObject crane in cranes)
         {
-            CraneBehaviour craneBehaviour = crane.GetComponent<CraneBehaviour>();
-            craneBehaviour.Dance(DanceMove.NoMove);
+            Destroy(crane);
         }
+        Destroy(player);
+        endingManager.ChooseEndingCutscene();
     }
 }

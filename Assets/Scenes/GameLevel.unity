@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1877243043, guid: a6124504d2d146d4290d48286650cecc, type: 3}
       propertyPath: textToDisplay.Array.data[0]
-      value: (B1) The clearing ahead,
+      value: The clearing ahead,
       objectReference: {fileID: 0}
     - target: {fileID: 1877243043, guid: a6124504d2d146d4290d48286650cecc, type: 3}
       propertyPath: textToDisplay.Array.data[1]
@@ -3024,6 +3024,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1390638848}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1219145321 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3591965985507342371}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b171840d871794a833d7f52dafcbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!225 &1220510612 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5696875439224934312, guid: e4c952ea208684e408d788e14dde08b4,
@@ -6220,6 +6232,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
         type: 3}
+      propertyPath: titleScreenManager
+      value: 
+      objectReference: {fileID: 1219145321}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
       propertyPath: subjectsToObserve.Array.data[0]
       value: 
       objectReference: {fileID: 2140275080}
@@ -6574,9 +6591,29 @@ PrefabInstance:
       objectReference: {fileID: 1664278366}
     - target: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
         type: 3}
+      propertyPath: textToDisplay.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
+        type: 3}
       propertyPath: starryNightParticleSystem
       value: 
       objectReference: {fileID: 881370249}
+    - target: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
+        type: 3}
+      propertyPath: textToDisplay.Array.data[0]
+      value: Once upon a time,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
+        type: 3}
+      propertyPath: textToDisplay.Array.data[1]
+      value: I was a lonely figure,
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591965985968941536, guid: 30e3fe740e440b947a46bccc3b7f46a5,
+        type: 3}
+      propertyPath: textToDisplay.Array.data[2]
+      value: Yearning for a change.
+      objectReference: {fileID: 0}
     - target: {fileID: 3591965985968941537, guid: 30e3fe740e440b947a46bccc3b7f46a5,
         type: 3}
       propertyPath: m_RootOrder

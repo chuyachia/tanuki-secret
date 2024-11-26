@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +7,9 @@ using UnityEngine.UIElements;
 // observer pattern detecting whether the player changed scene and displaying text accordingly
 public class NarrationDisplayer : MonoBehaviour 
 {
-    [SerializeField] private UIDocument uiDoc; 
+    [SerializeField] private UIDocument uiDoc;
     [SerializeField] private List<AreaChangeTrigger> subjectsToObserve;
+    [SerializeField] private TitleScreenManager titleScreenManager;
 
     private VisualElement rootEl;
     private VisualElement textContainer;
@@ -23,6 +23,7 @@ public class NarrationDisplayer : MonoBehaviour
                 foreach (AreaChangeTrigger subject in subjectsToObserve) {
                     subject.AreaEntered += OnMessageTriggered;
                 }
+                titleScreenManager.AreaEntered += OnMessageTriggered;
                 EventManager.Instance.RegisterCutsceneMessageEventListener(OnMessageTriggered);
             }
 

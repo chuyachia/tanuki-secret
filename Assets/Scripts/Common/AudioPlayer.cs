@@ -9,9 +9,7 @@ public enum AudioEventType
     // SFX
     GetNut,
     putNutInBucket,
-    // Ambient
 
-    // Music
 }
 
 // Audio player that responds to game events
@@ -74,16 +72,14 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
+    // Event handlers
     private void OnPutNutInBucket(GameObject bucket)
     {
-        PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 2f);
+        PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 1.0f);
     }
-
-
-    // Event handlers
     private void OnGetNut(GameObject nut)
     {
-        PlaySound(AudioEventType.GetNut, nut.transform.position, 2f);
+        PlaySound(AudioEventType.GetNut, nut.transform.position, 1.0f);
     }
 
     private void PlaySound(AudioEventType eventType, Vector3 position, float volumeMultiplier = 1.0f)

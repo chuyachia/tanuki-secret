@@ -206,11 +206,6 @@ public class EventManager
         cutsceneMessageEvent.Invoke(messages);
     }
 
-    internal void InvokeCutsceneEvent(CutscenesSO[] cutsceneToPlay)
-    {
-        throw new NotImplementedException();
-    }
-
     public void InvokeStopAllMusicLayersEvent()
     {
         stopAllMusicLayersEvent.Invoke();

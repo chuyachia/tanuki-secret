@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EndingManager : MonoBehaviour
@@ -9,11 +7,11 @@ public class EndingManager : MonoBehaviour
     [SerializeField] private CutscenesSO cutsceneFast;
     [SerializeField] float durationFast = 5.0f;
     [SerializeField] float durationMedium = 10.0f;
-    [SerializeField] float durationSlow = 20.0f;
     private float timeRecorded = 0;
     GameTimer gameTimer;
 
-    private void Awake() {
+    private void Awake()
+    {
         gameTimer = GetComponent<GameTimer>();
     }
 
@@ -23,23 +21,23 @@ public class EndingManager : MonoBehaviour
         gameTimer.StopTimer();
         timeRecorded = gameTimer.GetCurrentTime();
 
-        if (timeRecorded <= durationFast){
-            AchievementManager.endingFast  = true;
+        if (timeRecorded <= durationFast)
+        {
+            AchievementManager.endingFast = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneFast);
             Debug.Log(timeRecorded);
         }
-        else if (timeRecorded <= durationMedium){
-            AchievementManager.endingMedium  = true;
+        else if (timeRecorded <= durationMedium)
+        {
+            AchievementManager.endingMedium = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneMedium);
             Debug.Log(timeRecorded);
         }
-        else if (timeRecorded <= durationSlow){
-            AchievementManager.endingSlow  = true;
+        else
+        {
+            AchievementManager.endingSlow = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneSlow);
             Debug.Log(timeRecorded);
-        }
-        else{
-            Debug.Log("Error with timer.");
         }
     }
 }

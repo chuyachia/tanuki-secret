@@ -54,7 +54,7 @@ public class DeerLevelManager : MonoBehaviour
 
     void OnDestroy()
     {
-        EventManager.Instance.UnregisterDeerLevelEvenListener(QueueEvent);
+        EventManager.Instance.UnregisterDeerLevelEventListener(QueueEvent);
     }
 
     void QueueEvent(GameObject[] targets, EventManager.DeerLevelEvent eventType)

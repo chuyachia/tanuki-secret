@@ -1,4 +1,4 @@
-public class DanceCommand
+public struct DanceCommand
 {
     public DanceCommand(DanceMove danseMove, int beat)
     {

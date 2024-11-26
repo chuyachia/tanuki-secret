@@ -1,4 +1,4 @@
-public class DanceMove
+public struct DanceMove
 {
     public static DanceMove NoMove = new DanceMove(WingPosition.ROLLED, BodyPosition.NEUTRAL);
     public WingPosition WingPosition { get; }
@@ -24,11 +24,11 @@ public class DanceMove
         }
         else if (inputHorizontal > 0)
         {
-            bodyPosition = BodyPosition.SIDE_RIGHT;
+            bodyPosition = BodyPosition.RIGHT;
         }
         else if (inputHorizontal < 0)
         {
-            bodyPosition = BodyPosition.SIDE_LEFT;
+            bodyPosition = BodyPosition.LEFT;
         }
         return new DanceMove(wingPosition, bodyPosition);
     }

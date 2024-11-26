@@ -128,23 +128,6 @@ public class CharacterControlV2 : MonoBehaviour
         }
     }
 
-
-    IEnumerator MoveToTarget(Transform objectToMove, Vector3 targetPosition, float duration)
-    {
-        Vector3 startPosition = objectToMove.position;
-        float timeElapsed = 0f;
-
-        while (timeElapsed < duration)
-        {
-            timeElapsed += Time.deltaTime;
-            float t = timeElapsed / duration;
-            objectToMove.position = Vector3.Lerp(startPosition, targetPosition, t);
-            yield return null;
-        }
-
-        objectToMove.position = targetPosition;
-    }
-
     void FixedUpdate()
     {
         ResetCollistionState();

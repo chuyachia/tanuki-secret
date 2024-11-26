@@ -5427,6 +5427,12 @@ MonoBehaviour:
   player: {fileID: 1186104591}
   numberOfCrane: 5
   craneCircleRadius: 6
+  beatTime: 1.2
+  bufferTimeBeforeNextMove: 0.2
+  sideDistance: 2
+  playerAllowedDistacneFromDancePosition: 64
+  correctMoveTolerance: 0.2
+  endingManager: {fileID: 1491437155}
 --- !u!114 &1877243040 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1877243040, guid: a6124504d2d146d4290d48286650cecc,

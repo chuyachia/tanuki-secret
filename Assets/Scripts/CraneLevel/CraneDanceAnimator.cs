@@ -11,6 +11,22 @@ public partial class CraneDanceAnimator
     private Animator wingAnimator;
     private Animator bodyAnimator;
 
+    public Animator BodyAnimator
+    {
+        get
+        {
+            return bodyAnimator;
+        }
+    }
+
+    public Animator WingAnimator
+    {
+        get
+        {
+            return wingAnimator;
+        }
+    }
+
     public CraneDanceAnimator(GameObject craneModel)
     {
         foreach (Transform child in craneModel.transform)
@@ -71,8 +87,8 @@ public partial class CraneDanceAnimator
                     desiredWingPosition = initialWingPosition + craneWingOffSet;
                     break;
                 }
-            case BodyPosition.SIDE_LEFT:
-            case BodyPosition.SIDE_RIGHT:
+            case BodyPosition.LEFT:
+            case BodyPosition.RIGHT:
                 {
                     bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, true);
                     bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, false);

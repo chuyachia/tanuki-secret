@@ -11,11 +11,13 @@ public class TransitionManager : MonoBehaviour
     void Start()
     {
         EventManager.Instance.RegisterDeerLevelEventListener(HandleDeerLevelEvent);
+        EventManager.Instance.RegisterCraneLevelEventListener(HandleCraneLevelEvent);
     }
 
     void OnDestroy()
     {
-        EventManager.Instance.UnregisterDeerLevelEvenListener(HandleDeerLevelEvent);
+        EventManager.Instance.UnregisterDeerLevelEventListener(HandleDeerLevelEvent);
+        EventManager.Instance.UnregisterCraneLevelEventListener(HandleCraneLevelEvent);
     }
 
     void HandleDeerLevelEvent(GameObject[] target, EventManager.DeerLevelEvent eventType)
@@ -24,6 +26,20 @@ public class TransitionManager : MonoBehaviour
         {
             case EventManager.DeerLevelEvent.PlayerTooFarFromDeers:
             case EventManager.DeerLevelEvent.NotEnoughDeersLeft:
+                {
+                    FadeTransition();
+                    return;
+                }
+        }
+    }
+
+
+    void HandleCraneLevelEvent(GameObject[] target, EventManager.CraneLevelEvent eventType)
+    {
+        switch (eventType)
+        {
+            case EventManager.CraneLevelEvent.PlayerTooFarFromCranes:
+            case EventManager.CraneLevelEvent.LevelCompleted:
                 {
                     FadeTransition();
                     return;

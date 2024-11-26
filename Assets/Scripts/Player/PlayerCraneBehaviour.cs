@@ -18,6 +18,8 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
         if (eventType == EventManager.CraneLevelEvent.StartDance)
         {
             Debug.Log("Start dance");
+            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
             isDanceMode = true;
             if (transform.localScale.x < 0)
             {
@@ -30,6 +32,21 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     {
         DanceMove danseMove = DanceMove.FromUserInput(inputHorizontal, inputVertical, inputSpace);
         craneDanseAnimator.Danse(danseMove);
+    }
+
+
+    public override void UpdateAnimatorBasedOnMovement(Vector3 move, bool isGrounded)
+    {
+        if (move != Vector3.zero)
+        {
+            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
+            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
+        }
+        else
+        {
+            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+        }
     }
 
     public override bool ShouldMove()

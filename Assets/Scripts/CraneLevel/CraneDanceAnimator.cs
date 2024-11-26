@@ -11,6 +11,22 @@ public partial class CraneDanceAnimator
     private Animator wingAnimator;
     private Animator bodyAnimator;
 
+    public Animator BodyAnimator
+    {
+        get
+        {
+            return bodyAnimator;
+        }
+    }
+
+    public Animator WingAnimator
+    {
+        get
+        {
+            return wingAnimator;
+        }
+    }
+
     public CraneDanceAnimator(GameObject craneModel)
     {
         foreach (Transform child in craneModel.transform)

@@ -12,6 +12,7 @@ public enum MusicLayer
     Strings,
     Piano,
     Synths,
+    Flute,
     
     // Ambient sounds
     Crickets

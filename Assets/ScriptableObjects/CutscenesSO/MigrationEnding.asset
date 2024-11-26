@@ -16,8 +16,7 @@ MonoBehaviour:
   scenePrefab: {fileID: 4977687842957899901, guid: 608bff8938a5fb64e8587c3e876fad28,
     type: 3}
   messagesToDisplay:
-  - 'CUTSCENE: MIGRATION (MEDIUM)'
-  - Maybe, all along
-  - Traveling was what I longed for
-  - But was it all there were?
+  - Maybe traveling
+  - Was exactly what I was
+  - Looking for. Maybe.
   messagesDelay: 2

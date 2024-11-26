@@ -13,6 +13,7 @@ public static class Constants
     public static class AnimatorState
     {
         public const string IsWalking = "isWalking";
+        public const string IsRunning = "isRunning";
         public const string IsGrounded = "isGrounded";
         public const string IsAttacking = "isAttacking";
         public const string IsAttacked = "isAttacked";

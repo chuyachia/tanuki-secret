@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Audio;
 
 
 // observer pattern detecting whether the player changed scene and displaying text accordingly
@@ -10,11 +11,14 @@ public class NarrationDisplayer : MonoBehaviour
     [SerializeField] private UIDocument uiDoc;
     [SerializeField] private List<AreaChangeTrigger> subjectsToObserve;
     [SerializeField] private TitleScreenManager titleScreenManager;
-
+    [SerializeField] private List<AudioClip> notes;
+    [SerializeField] private AudioSource audioSource;
     private VisualElement rootEl;
     private VisualElement textContainer;
+    
     public static bool messageDisplayCoroutineActive = false; // this ensures that we're not adding text elements if the animation coroutine is being played, the AreaChangeTrigger access it.
     
+
     private void Awake()
     {
         // subscribe to events (adapt later so it takes a list of events)
@@ -26,7 +30,7 @@ public class NarrationDisplayer : MonoBehaviour
                 titleScreenManager.AreaEntered += OnMessageTriggered;
                 EventManager.Instance.RegisterCutsceneMessageEventListener(OnMessageTriggered);
             }
-
+        
         // initialize UI
         rootEl = uiDoc.rootVisualElement;
         textContainer = rootEl.Q(className: "narrative-text--container");
@@ -62,25 +66,31 @@ public class NarrationDisplayer : MonoBehaviour
         messageDisplayCoroutineActive = true;
         
         // Fade in each sentence one by one
-        foreach (var child in textContainer.hierarchy.Children()){
+        foreach (var child in textContainer.hierarchy.Children())
+        {
             yield return new WaitForSeconds(0.1f);
             child.AddToClassList("narrative-text--text--active");
-            yield return new WaitForSeconds(1.5f);
+            PlayNote();
+            yield return new WaitForSeconds(2.0f);
         }
-        
+
         // Wait that the player have read them
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.0f);
 
         // Remove them all
         foreach (var child in textContainer.hierarchy.Children()){
             child.RemoveFromClassList("narrative-text--text--active");
         }
         
-        yield return new WaitForSeconds(1f);
-
         DestroySentenceElements(); // Clean the text container so other trigger sentences can be displayed
 
         messageDisplayCoroutineActive = false;
+    }
+
+    private void PlayNote()
+    {
+        audioSource.clip = notes[Random.Range(0, notes.Count)];
+        audioSource.Play();
     }
 
     private void DestroySentenceElements()

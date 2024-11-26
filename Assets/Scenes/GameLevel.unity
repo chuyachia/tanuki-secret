@@ -2655,6 +2655,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 916553035}
+--- !u!82 &967203268 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 967203268, guid: 7977d4a194a11e547a39a67651932bbe,
+    type: 3}
+  m_PrefabInstance: {fileID: 1134410154159067325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1051163636 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5390089501292837833, guid: 22a3e03950b2b047d92eb5a27741a306,
@@ -6230,11 +6236,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 967203268, guid: 7977d4a194a11e547a39a67651932bbe, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 967203268}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: notes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
         type: 3}
       propertyPath: titleScreenManager
       value: 
       objectReference: {fileID: 1219145321}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: notes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: efc74851e84fc824ea87400a7da4ef8c, type: 3}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: notes.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: fde2b303902369847aae7957772a6d7f, type: 3}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: notes.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4615fdad69e87df46af685a4f79f1ad7, type: 3}
+    - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
+        type: 3}
+      propertyPath: notes.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a9f2db617ae67b49bb99a7867a3eca5, type: 3}
     - target: {fileID: 8354554516342415574, guid: 7977d4a194a11e547a39a67651932bbe,
         type: 3}
       propertyPath: subjectsToObserve.Array.data[0]
@@ -6535,7 +6575,7 @@ PrefabInstance:
     - target: {fileID: 3414009556461695771, guid: bc4fc1ebc68a84d41bb0843f0e8e6064,
         type: 3}
       propertyPath: musicLayers.Array.data[5].volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3414009556461695771, guid: bc4fc1ebc68a84d41bb0843f0e8e6064,
         type: 3}

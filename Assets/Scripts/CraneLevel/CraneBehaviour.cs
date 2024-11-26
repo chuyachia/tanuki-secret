@@ -16,7 +16,7 @@ public class CraneBehaviour : MonoBehaviour
 
     void OnDestroy()
     {
-        EventManager.Instance.UnregisterCraneLevelEvenListener(HandleEvent);
+        EventManager.Instance.UnregisterCraneLevelEventListener(HandleEvent);
     }
 
     public void HandleEvent(GameObject[] gameObjects, EventManager.CraneLevelEvent eventType)

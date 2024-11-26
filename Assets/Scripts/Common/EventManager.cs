@@ -40,7 +40,8 @@ public class EventManager
 
     public enum CraneLevelEvent
     {
-        StartDance
+        StartDance,
+        PlayerTooFarFromCranes
     }
 
     private UnityEvent<GameObject[], SquirelLevelEvent> squirrelLevelEvent;
@@ -86,7 +87,7 @@ public class EventManager
         deerLevelEvent.AddListener(action);
     }
 
-    public void UnregisterDeerLevelEvenListener(UnityAction<GameObject[], DeerLevelEvent> action)
+    public void UnregisterDeerLevelEventListener(UnityAction<GameObject[], DeerLevelEvent> action)
     {
         deerLevelEvent.RemoveListener(action);
     }
@@ -96,7 +97,7 @@ public class EventManager
         craneLevelEvent.AddListener(action);
     }
 
-    public void UnregisterCraneLevelEvenListener(UnityAction<GameObject[], CraneLevelEvent> action)
+    public void UnregisterCraneLevelEventListener(UnityAction<GameObject[], CraneLevelEvent> action)
     {
         craneLevelEvent.RemoveListener(action);
     }

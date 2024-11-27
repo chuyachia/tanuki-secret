@@ -150,8 +150,8 @@ public class DeerLevelManager : MonoBehaviour
         {
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerTriggerPositon, targetReachedSquaredDistance))
             {
-                EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.StartJourney);
                 StartDeersJoruney();
+                EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.StartJourney);
             }
         }
         else

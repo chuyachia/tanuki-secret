@@ -61,3 +61,43 @@ MonoBehaviour:
     loop: 0
     spatialBlend: 0.5
     pitch: 1
+  - eventType: 2
+    clip: {fileID: 8300000, guid: e183ce424286e7a46907289a6a1a5dbb, type: 3}
+    audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    baseVolume: 1
+    loop: 0
+    spatialBlend: 0
+    pitch: 1
+  - eventType: 3
+    clip: {fileID: 8300000, guid: 73183eb152aaee243baec42134a159a3, type: 3}
+    audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    baseVolume: 0.7
+    loop: 0
+    spatialBlend: 0.8
+    pitch: 1
+  - eventType: 4
+    clip: {fileID: 8300000, guid: 78ea60a10c43adf46a854934cebe82b0, type: 3}
+    audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    baseVolume: 0.7
+    loop: 0
+    spatialBlend: 0.8
+    pitch: 1
+  - eventType: 5
+    clip: {fileID: 8300000, guid: 3db416ecc68cbda4690385d178c22e70, type: 3}
+    audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    baseVolume: 1
+    loop: 0
+    spatialBlend: 0.8
+    pitch: 1
+  - eventType: 6
+    clip: {fileID: 8300000, guid: 71c43e98745dff242b7be694022d38a2, type: 3}
+    audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    baseVolume: 0.7
+    loop: 0
+    spatialBlend: 0
+    pitch: 1

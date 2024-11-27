@@ -142,6 +142,7 @@ public class CraneLevelManager : MonoBehaviour
                 {
                     CraneBehaviour craneBehaviour = crane.GetComponent<CraneBehaviour>();
                     craneBehaviour.Dance(danceCommand.Move);
+                    EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.OtherCranesMove);
 
                     if (targetDirection != Vector3.zero)
                     {
@@ -171,6 +172,7 @@ public class CraneLevelManager : MonoBehaviour
                 {
                     playerCorrectMoves++;
                     Debug.Log("correct move"); // EventManager.Instance.InvokeCraneLevelEvent
+                    EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.CorrectMove);
                     if (playerCorrectMoves == danceCommands.Count)
                     {
                         Debug.Log("Next dance");

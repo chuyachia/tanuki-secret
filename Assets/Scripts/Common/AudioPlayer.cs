@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UIElements;
 
 // Define audio events that correspond to game events
 public enum AudioEventType
@@ -10,8 +11,11 @@ public enum AudioEventType
     // SFX
     GetNut,
     putNutInBucket,
-    CraneWrongMove
-
+    CraneWrongMove,
+    CranesSound1,
+    CranesSound2,
+    CranesSound3,
+    CranesSoundCorrect
 }
 
 // Audio player that responds to game events
@@ -25,7 +29,7 @@ public class AudioPlayer : MonoBehaviour
         public AudioMixerGroup audioMixerGroup;
         public float baseVolume = 1.0f;
         public bool loop = false;
-        public float spatialBlend = 0f; // 0 = 2D, 1 = 3D
+        public float spatialBlend = 0.0f; // 0 = 2D, 1 = 3D
         public float pitch = 1f;
     }
 
@@ -85,12 +89,38 @@ public class AudioPlayer : MonoBehaviour
                     OnWrongMove();
                     break;
                 }
+            case EventManager.CraneLevelEvent.OtherCranesMove:
+                {
+                    OnOtherCranesMove();
+                    break;
+                }
+            case EventManager.CraneLevelEvent.CorrectMove:
+                {
+                    OnCorrectCraneMove();
+                    break;
+                }
+
         }
+    }
+
+    private void OnCorrectCraneMove()
+    {
+        PlaySound(AudioEventType.CranesSoundCorrect, transform.position, 3.0f);
+    }
+
+    private void OnOtherCranesMove()
+    {
+        PlaySound(AudioEventType.CranesSound1, transform.position, 1.0f, delay: UnityEngine.Random.Range(0.0f, 0.2f));
+        PlaySound(AudioEventType.CranesSound2, transform.position, 0.5f, delay: UnityEngine.Random.Range(0.2f, 0.8f));
+        PlaySound(AudioEventType.CranesSound3, transform.position, 0.2f, delay: UnityEngine.Random.Range(0.4f, 0.6f));
+
+        Debug.Log("Playing Crane sound");
     }
 
     private void OnWrongMove()
     {
         PlaySound(AudioEventType.CraneWrongMove, transform.position, 1.0f);
+        Debug.Log("Playing wrong move sound");
     }
 
     // Event handlers
@@ -103,7 +133,7 @@ public class AudioPlayer : MonoBehaviour
         PlaySound(AudioEventType.GetNut, nut.transform.position, 1.0f);
     }
 
-    private void PlaySound(AudioEventType eventType, Vector3 position, float volumeMultiplier = 1.0f)
+    private void PlaySound(AudioEventType eventType, Vector3 position, float volumeMultiplier = 1.0f, float delay = 0.0f)
     {
         if (audioMap.TryGetValue(eventType, out AudioData data))
         {
@@ -126,7 +156,7 @@ public class AudioPlayer : MonoBehaviour
                 source.transform.position = position;
             }
 
-            source.Play();
+            source.PlayDelayed(delay);
         }
     }
 }

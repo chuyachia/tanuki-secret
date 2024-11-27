@@ -6441,40 +6441,24 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
         type: 3}
-      propertyPath: audioData.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
-        type: 3}
-      propertyPath: audioData.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: e183ce424286e7a46907289a6a1a5dbb, type: 3}
-    - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
-        type: 3}
-      propertyPath: audioData.Array.data[2].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
-        type: 3}
-      propertyPath: audioData.Array.data[2].eventType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
-        type: 3}
       propertyPath: audioData.Array.data[2].baseVolume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
+        type: 3}
+      propertyPath: audioData.Array.data[4].baseVolume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
         type: 3}
-      propertyPath: audioData.Array.data[2].spatialBlend
-      value: 0.5
+      propertyPath: audioData.Array.data[6].baseVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1914829371055572688, guid: 18db306aab59d3c44befa3b37e4f5f48,
         type: 3}
-      propertyPath: audioData.Array.data[2].audioMixerGroup
-      value: 
-      objectReference: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
-        type: 2}
+      propertyPath: audioData.Array.data[3].spatialBlend
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1914829371055572689, guid: 18db306aab59d3c44befa3b37e4f5f48,
         type: 3}
       propertyPath: m_Name

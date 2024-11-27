@@ -43,7 +43,10 @@ public class EventManager
     {
         StartDance,
         PlayerTooFarFromCranes,
-        LevelCompleted
+        LevelCompleted,
+        WrongMove,
+        CorrectMove,
+        OtherCranesMove
     }
 
     private UnityEvent<GameObject[], SquirelLevelEvent> squirrelLevelEvent;

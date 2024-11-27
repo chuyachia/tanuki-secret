@@ -32,7 +32,7 @@ public static class Utils
         return originalPosition + new Vector3(jitterX, 0f, jitterZ);
     }
 
-    public static void ActivateChildAndCopyMaterialFromTarget(Transform currentObject, GameObject target, int childIndex, string childTag)
+    public static void ActivateChild(Transform currentObject, int childIndex, string childTag)
     {
         if (currentObject.childCount < childIndex + 1)
         {
@@ -42,13 +42,7 @@ public static class Utils
         Transform childToActivate = currentObject.GetChild(childIndex);
         if (childToActivate.CompareTag(childTag))
         {
-            Renderer childRenderer = childToActivate.gameObject.GetComponent<Renderer>();
-            Renderer targetRenderer = target.GetComponent<Renderer>();
-            if (childRenderer != null && targetRenderer != null)
-            {
-                childRenderer.material = targetRenderer.material;
-            }
-            childRenderer.gameObject.SetActive(true);
+            childToActivate.gameObject.SetActive(true);
         }
     }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerSquirrelBehaviour : PlayerBaseBehaviour
 {
+    private Vector3 nutInMouthPosition = new Vector3(-0.1f, 0.7f, 0.1f);
     private bool hasNut;
     private Transform transform;
     private GameObject nutInMouth;
@@ -16,6 +17,7 @@ public class PlayerSquirrelBehaviour : PlayerBaseBehaviour
         {
             nutInMouth = Object.Instantiate(hit.gameObject, transform.position, Quaternion.identity);
             nutInMouth.transform.parent = transform;
+            nutInMouth.transform.localPosition = nutInMouthPosition;
             EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { hit.gameObject }, EventManager.SquirelLevelEvent.PickUpNut);
             hasNut = true;
             return;

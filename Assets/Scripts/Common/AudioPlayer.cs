@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public enum AudioEventType
     // SFX
     GetNut,
     putNutInBucket,
+    CraneWrongMove
 
 }
 
@@ -46,13 +48,15 @@ public class AudioPlayer : MonoBehaviour
     {
         // Subscribe to events
         EventManager.Instance.RegisterSquirrelLevelEventListener(HandleSquirrelEvent);
+        EventManager.Instance.RegisterCraneLevelEventListener(HandleCraneEvent);
+
     }
 
     private void OnDisable()
     {
         // Unsubscribe from events
         EventManager.Instance.UnregisterSquirrelLevelEventListener(HandleSquirrelEvent);
-
+        EventManager.Instance.UnregisterCraneLevelEventListener(HandleCraneEvent);
     }
 
     private void HandleSquirrelEvent(GameObject[] target, EventManager.SquirelLevelEvent eventType)
@@ -70,6 +74,23 @@ public class AudioPlayer : MonoBehaviour
                     break;
                 }
         }
+    }
+
+        private void HandleCraneEvent(GameObject[] target, EventManager.CraneLevelEvent eventType)
+    {
+        switch (eventType)
+        {
+            case EventManager.CraneLevelEvent.WrongMove:
+                {
+                    OnWrongMove();
+                    break;
+                }
+        }
+    }
+
+    private void OnWrongMove()
+    {
+        PlaySound(AudioEventType.CraneWrongMove, transform.position, 1.0f);
     }
 
     // Event handlers

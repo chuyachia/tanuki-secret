@@ -170,7 +170,7 @@ public class CraneLevelManager : MonoBehaviour
                 if (playerMove.Equals(currentTargetMove) || playerMove.Equals(nextTargetMove) && timerToNextMove < correctMoveTolerance)
                 {
                     playerCorrectMoves++;
-                    Debug.Log("correct move");
+                    Debug.Log("correct move"); // EventManager.Instance.InvokeCraneLevelEvent
                     if (playerCorrectMoves == danceCommands.Count)
                     {
                         Debug.Log("Next dance");
@@ -188,6 +188,7 @@ public class CraneLevelManager : MonoBehaviour
                 else
                 {
                     playerCorrectMoves = 0;
+                    EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.WrongMove);
                     Debug.Log("wrong move");
                 }
                 shouldTrackPlayerMove = false;

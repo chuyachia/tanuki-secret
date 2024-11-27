@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
 {
-    [SerializeField] private float jitterAmount = 0.1f;
     [SerializeField] private float targetReachedSquaredDistance = 4f;
 
     public GameObject Target
@@ -34,7 +33,7 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
         target = null;
         animator = GetComponentInChildren<Animator>();
         speedDecrement = 0f;
-        animator.SetBool(Constants.AnimatorState.IsWalking, false);
+        animator.SetBool(Constants.AnimatorState.IsRunning, false);
     }
 
     protected override float GetSpeed()
@@ -68,11 +67,11 @@ public class FollowerDeerBehaviour : TargetBasedSteerBehaviour
         base.FixedUpdate();
         if (steerDirection != Vector3.zero)
         {
-            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+            animator.SetBool(Constants.AnimatorState.IsRunning, true);
         }
         else
         {
-            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+            animator.SetBool(Constants.AnimatorState.IsRunning, false);
         }
     }
 

@@ -30,10 +30,11 @@ public class EventManager
 
     public enum DeerLevelEvent
     {
+        StartJourney,
         WolfCatchDeer,
         WolfFlee,
 
-        DeerArrivedAtDestination,
+        ArriveAtDestination,
         PlayerTooFarFromDeers,
         NotEnoughDeersLeft
     }

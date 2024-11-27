@@ -37,7 +37,6 @@ public class DeerLevelManager : MonoBehaviour
     private float wolfAttackTimer = 0f;
     private int deerTargetId;
     private Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>> eventsToProcess;
-    // private List<Coroutine> coroutines;
 
     void Start()
     {
@@ -81,7 +80,7 @@ public class DeerLevelManager : MonoBehaviour
                         WolfFlee(targets[0]);
                         break;
                     }
-                case EventManager.DeerLevelEvent.DeerArrivedAtDestination:
+                case EventManager.DeerLevelEvent.ArriveAtDestination:
                     {
                         doorToNextLevel.ToggleDoor(true);
                         arrivedAtDestination = true;
@@ -151,6 +150,7 @@ public class DeerLevelManager : MonoBehaviour
         {
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerTriggerPositon, targetReachedSquaredDistance))
             {
+                EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.StartJourney);
                 StartDeersJoruney();
             }
         }

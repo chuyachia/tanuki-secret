@@ -55,18 +55,18 @@ public class LeaderDeerBehaviour : TargetBasedSteerBehaviour
                 currentTarget++;
                 if (currentTarget == targets.Count)
                 {
-                    EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { }, EventManager.DeerLevelEvent.DeerArrivedAtDestination);
+                    EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { }, EventManager.DeerLevelEvent.ArriveAtDestination);
                 }
             }
         }
         base.FixedUpdate();
         if (steerDirection != Vector3.zero)
         {
-            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+            animator.SetBool(Constants.AnimatorState.IsRunning, true);
         }
         else
         {
-            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+            animator.SetBool(Constants.AnimatorState.IsRunning, false);
         }
     }
 }

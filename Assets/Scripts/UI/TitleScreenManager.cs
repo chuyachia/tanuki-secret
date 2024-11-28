@@ -15,6 +15,7 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] private GameObject starryNightParticleSystem; // to make sure we disable the particle system once we're done with the title screen
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] List<string> textToDisplay;
+    [SerializeField] GameObject ufoPrefab;
 
     private VisualElement rootEl;
     private VisualElement titleTextContainer;
@@ -69,6 +70,7 @@ public class TitleScreenManager : MonoBehaviour
         starryNightParticleSystem.SetActive(false);
         InputControl.charControlEnabled = true;
         gameTimer.StartTimer();
+        Instantiate(ufoPrefab);
         gameObject.SetActive(false);
     }
 

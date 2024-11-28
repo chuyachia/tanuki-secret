@@ -62,10 +62,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.0107503
-  m_Height: 3.1101074
+  m_Radius: 1.2917708
+  m_Height: 4.8531647
   m_Direction: 0
-  m_Center: {x: -0.13640594, y: 0.7816577, z: 0.88}
+  m_Center: {x: 0.22986984, y: 1.0237647, z: 0.8410865}
 --- !u!1001 &3152593258799135701
 PrefabInstance:
   m_ObjectHideFlags: 0

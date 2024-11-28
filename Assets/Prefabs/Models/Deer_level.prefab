@@ -50,7 +50,10 @@ MonoBehaviour:
   jumpHeight: 5
   speed: 6
   airSpeed: 2
-  targetReachedSquaredDistance: 4
+  targetReachedSquaredDistance: 2
+  wanderRadius: 5
+  wanderStopDuration: 2
+  wanderSpeed: 2
 --- !u!114 &3001310491750601522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,8 +70,10 @@ MonoBehaviour:
   jumpHeight: 5
   speed: 6
   airSpeed: 2
-  jitterAmount: 1
-  targetReachedSquaredDistance: 4
+  targetReachedSquaredDistance: 2
+  wanderRadius: 5
+  wanderStopDuration: 2
+  wanderSpeed: 2
 --- !u!1001 &3468560929529836054
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -141,7 +141,7 @@ public class CharacterControlV2 : MonoBehaviour
             UpdateGroundedState();
             ApplyGravity();
             FlipModelOnHorizontalInput();
-            Jump();
+            // Jump();
             Move();
             playerLevelBehaviour.UpdateAnimatorBasedOnMovement(move, isGrounded);
         }

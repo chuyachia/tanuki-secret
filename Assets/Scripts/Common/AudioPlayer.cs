@@ -105,7 +105,7 @@ public class AudioPlayer : MonoBehaviour
 
     private void OnCorrectCraneMove()
     {
-        PlaySound(AudioEventType.CranesSoundCorrect, transform.position, 3.0f);
+        PlaySound(AudioEventType.CranesSoundCorrect, transform.position, 1.0f);
     }
 
     private void OnOtherCranesMove()

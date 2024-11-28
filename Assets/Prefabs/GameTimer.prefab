@@ -60,6 +60,5 @@ MonoBehaviour:
   cutsceneSlow: {fileID: 11400000, guid: f0ff92a830e52f049820dc8a436773ca, type: 2}
   cutsceneMedium: {fileID: 11400000, guid: befc8b29b1369ad458d38863ac1b5a2e, type: 2}
   cutsceneFast: {fileID: 11400000, guid: 217998cf217dd5e44bff7a92241d439d, type: 2}
-  durationFast: 5
-  durationMedium: 10
-  durationSlow: 20
+  durationFast: 250
+  durationMedium: 400

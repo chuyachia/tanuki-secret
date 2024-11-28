@@ -8,12 +8,11 @@ using UnityEngine.Audio;
 
 public enum MusicLayer
 {
-    Drums,
-    Strings,
-    Piano,
-    Synths,
-    Flute,
-    
+    SquirrelsMusic,
+    DeersMusic,
+    CranesMusic,
+    AliensMusic,
+      
     // Ambient sounds
     Crickets
 

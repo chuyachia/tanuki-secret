@@ -65,3 +65,10 @@ MonoBehaviour:
   uiDoc: {fileID: 3591965985968941538}
   timelineDirector: {fileID: 0}
   starryNightParticleSystem: {fileID: 0}
+  gameTimer: {fileID: 0}
+  textToDisplay:
+  - Once upon a time,
+  - I was a lonely figure,
+  - Yearning for a change.
+  ufoPrefab: {fileID: 3017939847310227894, guid: f2c6ae85a0178574c8e834f1fd4dbd31,
+    type: 3}

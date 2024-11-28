@@ -9,6 +9,7 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
     private bool targetIsDeer;
     private bool caughtDeer;
     private GameObject target;
+    private bool isFleeing;
 
     public GameObject DeerTarget
     {
@@ -60,6 +61,19 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
                 caughtDeer = true;
             }
 
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag(Constants.Tags.Player) && !isFleeing)
+        {
+            EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject }, EventManager.DeerLevelEvent.PlayerAttackWolf);
+            Vector3 directionAwayFromCollider = transform.position - collider.gameObject.transform.position;
+            directionAwayFromCollider.Normalize();
+            targetPosition = directionAwayFromCollider * fleeDistance;
+            targetIsDeer = false;
+            isFleeing = true;
         }
     }
 

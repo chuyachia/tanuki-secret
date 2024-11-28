@@ -75,6 +75,7 @@ public class CharacterControlV2 : MonoBehaviour
         {
             return;
         }
+        collisionHit = true;
         playerLevelBehaviour.HandleControllerColliderHit(hit);
     }
 

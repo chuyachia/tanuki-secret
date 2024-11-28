@@ -184,6 +184,7 @@ public class CraneLevelManager : MonoBehaviour
                         playerCorrectMoves++;
                         Debug.Log("correct move");
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.CorrectMove);
+                        throttledPlayerInput = DanceMove.NoMove;
                         if (playerCorrectMoves == danceCommands.Count)
                         {
                             Debug.Log("Next dance");
@@ -203,6 +204,7 @@ public class CraneLevelManager : MonoBehaviour
                     {
                         playerCorrectMoves = 0;
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.WrongMove);
+                        throttledPlayerInput = DanceMove.NoMove;
                         Debug.Log("wrong move");
                     }
                     throttledPlayerInput = DanceMove.NoMove;

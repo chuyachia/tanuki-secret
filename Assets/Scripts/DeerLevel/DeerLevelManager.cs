@@ -75,7 +75,7 @@ public class DeerLevelManager : MonoBehaviour
                         WolfEatDeer(targets[0], targets[1]);
                         break;
                     }
-                case EventManager.DeerLevelEvent.WolfFlee:
+                case EventManager.DeerLevelEvent.PlayerAttackWolf:
                     {
                         WolfFlee(targets[0]);
                         break;

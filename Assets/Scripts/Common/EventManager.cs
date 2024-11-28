@@ -32,7 +32,7 @@ public class EventManager
     {
         StartJourney,
         WolfCatchDeer,
-        WolfFlee,
+        PlayerAttackWolf,
 
         ArriveAtDestination,
         PlayerTooFarFromDeers,

@@ -7,6 +7,23 @@ public class ModelController : MonoBehaviour
     [SerializeField] private Level defaultLevel;
 
     private Dictionary<Level, GameObject> levelToModel;
+    private CraneDanceAnimator craneDanseAnimator;
+
+    public Animator BodyAnimator
+    {
+        get
+        {
+            return craneDanseAnimator?.BodyAnimator;
+        }
+    }
+
+    public Animator WingAnimator
+    {
+        get
+        {
+            return craneDanseAnimator?.WingAnimator;
+        }
+    }
 
     public Animator Animator
     {
@@ -16,11 +33,6 @@ public class ModelController : MonoBehaviour
             levelToModel?[currentLevel].TryGetComponent<Animator>(out animator);
             return animator;
         }
-    }
-
-    public GameObject Model
-    {
-        get { return levelToModel?[currentLevel]; }
     }
 
     private Level currentLevel = Level.Base;
@@ -58,6 +70,19 @@ public class ModelController : MonoBehaviour
                 model.SetActive(false);
                 model.transform.SetParent(null);
             }
+        }
+
+        if (level.Equals(Level.Crane))
+        {
+            craneDanseAnimator = new CraneDanceAnimator(levelToModel[currentLevel]);
+        }
+    }
+
+    public void Dance(DanceMove danseMove)
+    {
+        if (currentLevel.Equals(Level.Crane) && craneDanseAnimator != null)
+        {
+            craneDanseAnimator.Dance(danseMove);
         }
     }
 

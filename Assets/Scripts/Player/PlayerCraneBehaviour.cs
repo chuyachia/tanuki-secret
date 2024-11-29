@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class PlayerCraneBehaviour : PlayerBaseBehaviour
 {
-    private CraneDanceAnimator craneDanseAnimator;
     private bool isDanceMode;
     private Transform transform;
 
     public PlayerCraneBehaviour(Transform transform, ModelController modelController) : base(modelController)
     {
-        craneDanseAnimator = new CraneDanceAnimator(modelController.Model);
         this.transform = transform;
         EventManager.Instance.RegisterCraneLevelEventListener(HandleEvent);
     }
@@ -17,9 +15,8 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     {
         if (eventType == EventManager.CraneLevelEvent.StartDance)
         {
-            Debug.Log("Start dance");
-            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
-            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            modelController.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            modelController.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
             isDanceMode = true;
             if (transform.localScale.x < 0)
             {
@@ -31,7 +28,7 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     public void CraneDanse(float inputHorizontal, float inputVertical, bool inputSpace)
     {
         DanceMove danseMove = DanceMove.FromUserInput(inputHorizontal, inputVertical, inputSpace);
-        craneDanseAnimator.Danse(danseMove);
+        modelController.Dance(danseMove);
     }
 
 
@@ -39,13 +36,13 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     {
         if (move != Vector3.zero)
         {
-            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
-            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
+            modelController.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
+            modelController.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, true);
         }
         else
         {
-            craneDanseAnimator.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
-            craneDanseAnimator.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            modelController.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            modelController.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
         }
     }
 

@@ -29,6 +29,10 @@ public partial class CraneDanceAnimator
 
     public CraneDanceAnimator(GameObject craneModel)
     {
+        if (craneModel == null)
+        {
+            Debug.LogError("crane model is null");
+        }
         foreach (Transform child in craneModel.transform)
         {
             if (child.gameObject.name == WingModel)
@@ -37,7 +41,14 @@ public partial class CraneDanceAnimator
                 break;
             }
         }
-        initialWingPosition = wing.localPosition;
+        if (wing != null)
+        {
+            initialWingPosition = wing.localPosition;
+        }
+        else
+        {
+            Debug.LogError("N wing found");
+        }
         Animator[] animators = craneModel.GetComponentsInChildren<Animator>();
         foreach (Animator anim in animators)
         {
@@ -52,7 +63,7 @@ public partial class CraneDanceAnimator
         }
     }
 
-    public void Danse(DanceMove danseMove)
+    public void Dance(DanceMove danseMove)
     {
         switch (danseMove.WingPosition)
         {

@@ -4,27 +4,12 @@ public class CraneBehaviour : MonoBehaviour
 {
     private CraneDanceAnimator craneDanceAnimator;
     private Vector3 targetPosition;
-    private bool isDanceMode;
     private float moveTimer;
     private float moveDuration;
 
     void Start()
     {
         craneDanceAnimator = new CraneDanceAnimator(transform.GetChild(0).gameObject);
-        EventManager.Instance.RegisterCraneLevelEventListener(HandleEvent);
-    }
-
-    void OnDestroy()
-    {
-        EventManager.Instance.UnregisterCraneLevelEventListener(HandleEvent);
-    }
-
-    public void HandleEvent(GameObject[] gameObjects, EventManager.CraneLevelEvent eventType)
-    {
-        if (eventType == EventManager.CraneLevelEvent.StartDance)
-        {
-            isDanceMode = true;
-        }
     }
 
     public void Dance(DanceMove danceMove)
@@ -41,10 +26,6 @@ public class CraneBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!isDanceMode)
-        {
-            return;
-        }
         if (moveTimer < moveDuration)
         {
             float t = Mathf.Clamp01(moveTimer / moveDuration);

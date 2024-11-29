@@ -81,7 +81,7 @@ public class achievementScreenManager : MonoBehaviour
     }
 
     void Update(){
-            if (isEndGame && InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.E)){
+            if (isEndGame && InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.Space)){
                 StartCoroutine("RestartGame");
             }
     }

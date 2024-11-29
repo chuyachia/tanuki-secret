@@ -29,7 +29,7 @@ public class CraneBehaviour : MonoBehaviour
 
     public void Dance(DanceMove danceMove)
     {
-        craneDanceAnimator.Danse(danceMove);
+        craneDanceAnimator.Dance(danceMove);
     }
 
     public void MoveTo(Vector3 position, float duration)

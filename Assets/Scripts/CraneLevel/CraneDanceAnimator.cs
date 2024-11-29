@@ -29,6 +29,10 @@ public partial class CraneDanceAnimator
 
     public CraneDanceAnimator(GameObject craneModel)
     {
+        if (craneModel == null)
+        {
+            Debug.LogError("crane model is null");
+        }
         foreach (Transform child in craneModel.transform)
         {
             if (child.gameObject.name == WingModel)
@@ -37,7 +41,14 @@ public partial class CraneDanceAnimator
                 break;
             }
         }
-        initialWingPosition = wing.localPosition;
+        if (wing != null)
+        {
+            initialWingPosition = wing.localPosition;
+        }
+        else
+        {
+            Debug.LogError("N wing found");
+        }
         Animator[] animators = craneModel.GetComponentsInChildren<Animator>();
         foreach (Animator anim in animators)
         {
@@ -52,7 +63,7 @@ public partial class CraneDanceAnimator
         }
     }
 
-    public void Danse(DanceMove danseMove)
+    public void Dance(DanceMove danseMove)
     {
         switch (danseMove.WingPosition)
         {
@@ -104,63 +115,6 @@ public partial class CraneDanceAnimator
                     desiredWingPosition = initialWingPosition;
                     break;
                 }
-        }
-        if (wing.localPosition != desiredWingPosition)
-        {
-            wing.localPosition = desiredWingPosition;
-        }
-    }
-
-    public void AnimateWing(bool inputSpace)
-    {
-        if (inputSpace)
-        {
-            wingAnimator?.SetBool(Constants.AnimatorState.WingDeployed, true);
-        }
-        else
-        {
-            wingAnimator?.SetBool(Constants.AnimatorState.WingDeployed, false);
-        }
-    }
-
-    public void AnimateBodyAndMoveWing(float inputHorizontal, float inputVertical)
-    {
-        Vector3 desiredWingPosition;
-        if (inputVertical > 0)
-        {
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyUp, true);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, false);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, false);
-            desiredWingPosition = initialWingPosition;
-        }
-        else if (inputVertical < 0)
-        {
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, true);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyUp, false);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, false);
-            desiredWingPosition = initialWingPosition + craneWingOffSet;
-
-        }
-        else if (inputHorizontal != 0)
-        {
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, true);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, false);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyUp, false);
-            if (inputHorizontal > 0)
-            {
-                desiredWingPosition = initialWingPosition;
-            }
-            else
-            {
-                desiredWingPosition = initialWingPosition;
-            }
-        }
-        else
-        {
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodySide, false);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyDown, false);
-            bodyAnimator?.SetBool(Constants.AnimatorState.BodyUp, false);
-            desiredWingPosition = initialWingPosition;
         }
         if (wing.localPosition != desiredWingPosition)
         {

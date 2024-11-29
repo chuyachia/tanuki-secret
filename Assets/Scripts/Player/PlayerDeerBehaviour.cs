@@ -9,7 +9,6 @@ public class PlayerDeerBehaviour : PlayerBaseBehaviour
     }
 
     private float runThreshold;
-    private bool inDeerGroup;
 
     public void HandleEvent(GameObject[] gameObjects, EventManager.DeerLevelEvent eventType)
     {
@@ -17,7 +16,6 @@ public class PlayerDeerBehaviour : PlayerBaseBehaviour
         {
             case EventManager.DeerLevelEvent.StartJourney:
                 {
-                    inDeerGroup = true;
                     modelController.Animator?.SetBool(Constants.AnimatorState.IsWalking, false);
                     break;
                 }
@@ -25,7 +23,6 @@ public class PlayerDeerBehaviour : PlayerBaseBehaviour
             case EventManager.DeerLevelEvent.PlayerTooFarFromDeers:
             case EventManager.DeerLevelEvent.NotEnoughDeersLeft:
                 {
-                    inDeerGroup = false;
                     modelController.Animator?.SetBool(Constants.AnimatorState.IsRunning, false);
                     break;
                 }

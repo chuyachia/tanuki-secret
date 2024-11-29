@@ -7,6 +7,7 @@ using Cinemachine;
 public class DeerLevelManager : MonoBehaviour
 {
 
+    [SerializeField] bool wolfAppearInBothDirection;
     [SerializeField] private GameObject deerPrefab;
     [SerializeField] private GameObject wolfPrefab;
     [SerializeField] private GameObject bitingLogoPrefab;
@@ -167,7 +168,7 @@ public class DeerLevelManager : MonoBehaviour
                 if (Utils.DistanceToTargetAboveThreshold(player.transform.position, leaderDeer.transform.position, maxSquaredDistanceFromDeerGroup))
                 {
                     EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.PlayerTooFarFromDeers);
-                    StartCoroutine(ResetGame());                    
+                    StartCoroutine(ResetGame());
                 }
                 else if (activeDeers.Count == 0)
                 {
@@ -260,9 +261,13 @@ public class DeerLevelManager : MonoBehaviour
         {
             GameObject wolf = Instantiate(wolfPrefab);
             activeWolves.TryAdd(wolf.GetInstanceID(), wolf);
-            // int randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+            int randomSign = 1;
+            if (wolfAppearInBothDirection)
+            {
+                randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
+            }
 
-            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * wolfAppearDistance, 10f);
+            wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + randomSign * Vector3.left * wolfAppearDistance, 10f);
             wolf.transform.parent = transform;
             wolfAttackTimer = wolfAttackInterval;
         }
@@ -304,7 +309,6 @@ public class DeerLevelManager : MonoBehaviour
                     followerDeerBehaviour.enabled = true;
                     followerDeerBehaviour.Target = null;
                     followerDeerBehaviour.deerPositionParamters = new DeerPositionParamters(row, i, objectsInRow, spacingHorizontal, spacingVertical);
-                    // followerDeerBehaviour.ResetMoveState();
                     deer.GetComponent<LeaderDeerBehaviour>().enabled = false;
                 }
             }

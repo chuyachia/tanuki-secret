@@ -5423,6 +5423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c4a5cfa379b3400b5da71c18063a57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wolfAppearInBothDirection: 1
   deerPrefab: {fileID: 3780175872382976492, guid: ed97d479de8ec5547a9b00298d6a0ef7,
     type: 3}
   wolfPrefab: {fileID: 3152593260158545153, guid: 2047449d44ff7e84b8bdcf65cd254135,

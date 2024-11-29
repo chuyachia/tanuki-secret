@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class CharacterControlV2 : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float airSpeed = 1f;
+    [SerializeField] private float baseSpeed = 6f;
+    [SerializeField] private float tanukiRunSpeedIncrement = 2f;
+
+    [SerializeField] private float squirrelRunSpeedIncrement = 4f;
+    [SerializeField] private float deerRunSpeedIncrement = 6f;
+    [SerializeField] private float craneRunSpeedIncrement = 0f;
     [SerializeField] private float climSpeed = 3f;
-    [SerializeField] private float jumpHeight = 3f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private LayerMask climbableSurface;
     [SerializeField] private float climableSurfaceCheckDistance = 2f;
@@ -28,6 +31,7 @@ public class CharacterControlV2 : MonoBehaviour
     private float initialSlopeLimit;
     private bool collisionHit;
     private float initialXScale;
+    private Level currentLevel;
 
     void Start()
     {
@@ -58,7 +62,7 @@ public class CharacterControlV2 : MonoBehaviour
                 }
             case Level.Deer:
                 {
-                    playerLevelBehaviour = new PlayerDeerBehaviour(transform, modelController);
+                    playerLevelBehaviour = new PlayerDeerBehaviour(baseSpeed, transform, modelController);
                     break;
                 }
             case Level.Crane:
@@ -67,6 +71,7 @@ public class CharacterControlV2 : MonoBehaviour
                     break;
                 }
         }
+        currentLevel = level;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -142,9 +147,9 @@ public class CharacterControlV2 : MonoBehaviour
             UpdateGroundedState();
             ApplyGravity();
             FlipModelOnHorizontalInput();
-            // Jump();
-            Move();
-            playerLevelBehaviour.UpdateAnimatorBasedOnMovement(move, isGrounded);
+            float speed = GetSpeed();
+            Move(speed);
+            playerLevelBehaviour.UpdateAnimatorBasedOnMovement(speed, move, isGrounded);
         }
     }
 
@@ -177,21 +182,30 @@ public class CharacterControlV2 : MonoBehaviour
 
     float GetSpeed()
     {
-        return isGrounded ? moveSpeed : airSpeed;
+        return inputSpace && playerLevelBehaviour.CanRun() ? baseSpeed + GetRunSpeedIncrement() : baseSpeed;
     }
 
-    void Jump()
+    float GetRunSpeedIncrement()
     {
-        if (isGrounded && inputSpace)
+        switch (currentLevel)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            case Level.Base:
+                return tanukiRunSpeedIncrement;
+            case Level.Squirrel:
+                return squirrelRunSpeedIncrement;
+            case Level.Deer:
+                return deerRunSpeedIncrement;
+            case Level.Crane:
+                return craneRunSpeedIncrement;
+            default:
+                return 0f;
         }
     }
 
-    void Move()
+    void Move(float speed)
     {
         Vector3 moveDirection = transform.right * inputHorizontal + transform.forward * inputVertical;
-        move = moveDirection.normalized * GetSpeed();
+        move = moveDirection.normalized * speed;
         characterController.Move((move + velocity) * Time.fixedDeltaTime);
     }
 

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 3
-  speed: 5
+  speed: 6
   airSpeed: 2
   jumpProbability: 0.1
   jumpCooldown: 5

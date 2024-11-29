@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 6
+  speed: 8
   airSpeed: 2
   targetReachedSquaredDistance: 2
   wanderRadius: 5
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   jumpHeight: 5
-  speed: 6
+  speed: 8
   airSpeed: 2
   targetReachedSquaredDistance: 2
   wanderRadius: 5

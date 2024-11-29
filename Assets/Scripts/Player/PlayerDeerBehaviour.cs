@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PlayerDeerBehaviour : PlayerBaseBehaviour
 {
-    public PlayerDeerBehaviour(Transform transform, ModelController modelController) : base(modelController)
+    public PlayerDeerBehaviour(float runThreshold, Transform transform, ModelController modelController) : base(modelController)
     {
-        this.transform = transform;
+        this.runThreshold = runThreshold;
         EventManager.Instance.RegisterDeerLevelEventListener(HandleEvent);
     }
 
-    private Transform transform;
+    private float runThreshold;
     private bool inDeerGroup;
 
     public void HandleEvent(GameObject[] gameObjects, EventManager.DeerLevelEvent eventType)
@@ -37,17 +37,25 @@ public class PlayerDeerBehaviour : PlayerBaseBehaviour
         }
     }
 
-    public override void UpdateAnimatorBasedOnMovement(Vector3 move, bool isGrounded)
+    public override void UpdateAnimatorBasedOnMovement(float velocity, Vector3 move, bool isGrounded)
     {
-        string movementAnimateState = inDeerGroup ? Constants.AnimatorState.IsRunning : Constants.AnimatorState.IsWalking;
         modelController.Animator?.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
         if (move != Vector3.zero)
         {
-            modelController.Animator?.SetBool(movementAnimateState, true);
+            modelController.Animator?.SetBool(Constants.AnimatorState.IsWalking, true);
+            if (velocity > runThreshold)
+            {
+                modelController.Animator?.SetBool(Constants.AnimatorState.IsRunning, true);
+            }
+            else
+            {
+                modelController.Animator?.SetBool(Constants.AnimatorState.IsRunning, false);
+            }
         }
         else
         {
-            modelController.Animator?.SetBool(movementAnimateState, false);
+            modelController.Animator?.SetBool(Constants.AnimatorState.IsWalking, false);
+            modelController.Animator?.SetBool(Constants.AnimatorState.IsRunning, false);
         }
     }
 }

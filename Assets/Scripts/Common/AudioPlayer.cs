@@ -113,14 +113,11 @@ public class AudioPlayer : MonoBehaviour
         PlaySound(AudioEventType.CranesSound1, transform.position, 1.0f, delay: UnityEngine.Random.Range(0.0f, 0.2f));
         PlaySound(AudioEventType.CranesSound2, transform.position, 0.5f, delay: UnityEngine.Random.Range(0.2f, 0.8f));
         PlaySound(AudioEventType.CranesSound3, transform.position, 0.2f, delay: UnityEngine.Random.Range(0.4f, 0.6f));
-
-        Debug.Log("Playing Crane sound");
     }
 
     private void OnWrongMove()
     {
         PlaySound(AudioEventType.CraneWrongMove, transform.position, 1.0f);
-        Debug.Log("Playing wrong move sound");
     }
 
     // Event handlers

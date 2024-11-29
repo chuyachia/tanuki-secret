@@ -89,6 +89,7 @@ public class SquirrelBehaviour : TargetBasedSteerBehaviour
         if (steerDirection != Vector3.zero)
         {
             animator.SetBool(Constants.AnimatorState.IsWalking, true);
+            animator.SetFloat(Constants.AnimatorState.speed, GetSpeed());
         }
         else
         {

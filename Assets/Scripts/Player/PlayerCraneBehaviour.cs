@@ -35,7 +35,7 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     }
 
 
-    public override void UpdateAnimatorBasedOnMovement(Vector3 move, bool isGrounded)
+    public override void UpdateAnimatorBasedOnMovement(float velocity, Vector3 move, bool isGrounded)
     {
         if (move != Vector3.zero)
         {
@@ -52,5 +52,10 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     public override bool ShouldMove()
     {
         return !isDanceMode;
+    }
+
+    public override bool CanRun()
+    {
+        return false;
     }
 }

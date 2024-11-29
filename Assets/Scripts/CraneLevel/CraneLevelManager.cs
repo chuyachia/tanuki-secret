@@ -14,7 +14,7 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private float sideDistance = 2f;
     [SerializeField] private float playerAllowedDistacneFromDancePosition = 64f;
     [SerializeField] private float correctMoveTolerance = 0.5f;
-    [SerializeField] private float inputThrottleDuration = 0.5f;
+    [SerializeField] private float inputThrottleDuration = 0.2f;
     [SerializeField] private EndingManager endingManager;
     [SerializeField] private CinemachineVirtualCamera craneTrackingCamera;
 
@@ -27,9 +27,10 @@ public class CraneLevelManager : MonoBehaviour
     private int danseCommandIndex = 0;
     private float timerToExitCurrentMove = 0f;
     private float timerToNextMove = 0f;
-    private float danceMoveDuration;
-    private DanceMove currentTargetMove;
-    private DanceMove nextTargetMove;
+    private float timerIntoCurrentMove = 0f;
+    private DanceMove prevTargetMove = DanceMove.NoMove;
+    private DanceMove currentTargetMove = DanceMove.NoMove;
+    private DanceMove nextTargetMove = DanceMove.NoMove;
     private DanceMove throttledPlayerInput = DanceMove.NoMove;
     private bool shouldTrackPlayerMove;
     private bool levelCompleted;
@@ -126,13 +127,13 @@ public class CraneLevelManager : MonoBehaviour
             {
                 timerToNextMove -= Time.deltaTime;
             }
-
+            timerIntoCurrentMove += Time.deltaTime;
             if (timerToNextMove <= 0 && timerToExitCurrentMove <= 0)
             {
                 DanceCommand danceCommand = danceCommands[danseCommandIndex];
                 timerToNextMove = beatTime * danceCommand.Beat;
-                danceMoveDuration = timerToNextMove - bufferTimeBeforeNextMove;
-                timerToExitCurrentMove = danceMoveDuration;
+                timerToExitCurrentMove = timerToNextMove - bufferTimeBeforeNextMove;
+                prevTargetMove = currentTargetMove;
                 currentTargetMove = danceCommand.Move;
                 nextTargetMove = danceCommands[(danseCommandIndex + 1) % danceCommands.Count].Move;
                 Vector3 targetDirection = Vector3.zero;
@@ -156,8 +157,11 @@ public class CraneLevelManager : MonoBehaviour
                         craneBehaviour.MoveTo(targetPosition, timerToNextMove - bufferTimeBeforeNextMove);
                     }
                 }
+                inputThrottleTimer = 0f;
+                timerIntoCurrentMove = 0f;
                 playerPositionInDanceCircle += targetDirection * sideDistance;
                 danseCommandIndex++;
+                throttledPlayerInput = DanceMove.NoMove;
             }
             else if (timerToExitCurrentMove <= 0)
             {
@@ -171,7 +175,6 @@ public class CraneLevelManager : MonoBehaviour
             if (playerInput.Equals(DanceMove.NoMove))
             {
                 shouldTrackPlayerMove = true;
-                inputThrottleTimer = 0f;
             }
             else if (shouldTrackPlayerMove)
             {
@@ -182,19 +185,22 @@ public class CraneLevelManager : MonoBehaviour
                 }
                 else
                 {
-                    if (throttledPlayerInput.Equals(currentTargetMove) || throttledPlayerInput.Equals(nextTargetMove) && timerToNextMove < correctMoveTolerance)
+                    if (throttledPlayerInput.Equals(prevTargetMove) && timerIntoCurrentMove < correctMoveTolerance || throttledPlayerInput.Equals(nextTargetMove) && timerToNextMove < correctMoveTolerance)
+                    {
+                        // tolerated but does not count as success
+                    }
+                    else
+                    if (throttledPlayerInput.Equals(currentTargetMove))
                     {
                         playerCorrectMoves++;
-                        Debug.Log("correct move");
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.CorrectMove);
-                        throttledPlayerInput = DanceMove.NoMove;
                         if (playerCorrectMoves == danceCommands.Count)
                         {
-                            Debug.Log("Next dance");
                             playerCorrectMoves = 0;
                             danseCommandIndex = 0;
                             throttledPlayerInput = DanceMove.NoMove;
                             currentDance++;
+                            prevTargetMove = DanceMove.NoMove;
                             if (currentDance == dances.Count)
                             {
                                 levelCompleted = true;
@@ -207,8 +213,6 @@ public class CraneLevelManager : MonoBehaviour
                     {
                         playerCorrectMoves = 0;
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.WrongMove);
-                        throttledPlayerInput = DanceMove.NoMove;
-                        Debug.Log("wrong move");
                     }
                     throttledPlayerInput = DanceMove.NoMove;
                     shouldTrackPlayerMove = false;

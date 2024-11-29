@@ -22,5 +22,6 @@ public static class Constants
         public const string BodySide = "bodySide";
         public const string WingDeployed = "wingDeployed";
         public const string WingRolled = "wingRolled";
+        public const string speed = "speed";
     }
 }

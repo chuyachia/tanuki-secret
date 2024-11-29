@@ -162,15 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0035897dd9aba5b09b223a5f7902b59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  airSpeed: 2
+  baseSpeed: 6
+  tanukiRunSpeedIncrement: 2
+  squirrelRunSpeedIncrement: 4
+  deerRunSpeedIncrement: 6
+  craneRunSpeedIncrement: 0
   climSpeed: 3
-  jumpHeight: 1
   gravity: -9.81
   climbableSurface:
     serializedVersion: 2
     m_Bits: 64
   climableSurfaceCheckDistance: 2
+  defaultLevel: 0
 --- !u!143 &5532589272841159625
 CharacterController:
   m_ObjectHideFlags: 0
@@ -202,3 +205,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelPrefabs: []
+  defaultLevel: 0

@@ -104,14 +104,22 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
         }
         targetReached = Utils.DistanceToTargetWithinThreshold(transform.position, targetPosition, targetReachedSquaredDistance);
         base.FixedUpdate();
-        string animState = state == State.Migrating ? Constants.AnimatorState.IsRunning : Constants.AnimatorState.IsWalking;
         if (steerDirection != Vector3.zero)
         {
-            animator.SetBool(animState, true);
+            animator.SetBool(Constants.AnimatorState.IsWalking, true);
+            if (state == State.Migrating)
+            {
+                animator.SetBool(Constants.AnimatorState.IsRunning, true);
+            }
+            else
+            {
+                animator.SetBool(Constants.AnimatorState.IsRunning, false);
+            }
         }
         else
         {
-            animator.SetBool(animState, false);
+            animator.SetBool(Constants.AnimatorState.IsWalking, false);
+            animator.SetBool(Constants.AnimatorState.IsRunning, false);
         }
     }
 

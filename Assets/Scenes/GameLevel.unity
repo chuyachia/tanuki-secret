@@ -3191,8 +3191,8 @@ MonoBehaviour:
   - {fileID: 8099125688166027800, guid: e8854e0532d6d85d8b0652e70d77ce3a, type: 3}
   - {fileID: 6390380704838812986, guid: 33789e3396f9ec0baa6f0607e28c5149, type: 3}
   nutBuckets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 195263942}
+  - {fileID: 1686973913}
   - {fileID: 1898834650}
   _squirrelPrefab: {fileID: 7073325386158084104, guid: 8d27bfac4c20fbe4386b7a3bf462fb95,
     type: 3}
@@ -3982,7 +3982,7 @@ PrefabInstance:
     - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: defaultLevel
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -3993,7 +3993,7 @@ PrefabInstance:
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: defaultLevel
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -4057,7 +4057,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 720
+      value: 67
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -4067,7 +4067,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 430
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}

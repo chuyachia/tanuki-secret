@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CraneLevelManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private float correctMoveTolerance = 0.5f;
     [SerializeField] private float inputThrottleDuration = 0.5f;
     [SerializeField] private EndingManager endingManager;
+    [SerializeField] private CinemachineVirtualCamera craneTrackingCamera;
 
     private List<GameObject> cranes;
     private List<List<DanceCommand>> dances;
@@ -101,6 +103,7 @@ public class CraneLevelManager : MonoBehaviour
                 EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.StartDance);
                 player.transform.position = playerPositionInDanceCircle;
                 isDancing = true;
+                craneTrackingCamera.enabled = true;
             }
         }
         else if (Utils.DistanceToTargetAboveThreshold(player.transform.position, playerPositionInDanceCircle, playerAllowedDistacneFromDancePosition))
@@ -223,6 +226,7 @@ public class CraneLevelManager : MonoBehaviour
 
     IEnumerator CleanUpAndLaunchEnding()
     {
+        craneTrackingCamera.enabled = false; // check if necessary
         yield return new WaitForSeconds(1f);
         foreach (GameObject crane in cranes)
         {

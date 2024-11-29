@@ -54,7 +54,7 @@ public class TitleScreenManager : MonoBehaviour
     }
 
     void Update(){
-        if (InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.E)){
+        if (InputControl.menuControlEnabled && Input.GetKeyDown(KeyCode.Space)){
             StartCoroutine("StartGameSequence");
         }
     }

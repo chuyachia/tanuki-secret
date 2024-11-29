@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class DeerLevelManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private float wolfFleeDisappearIn = 5f;
     [SerializeField] private float speedDecrement = 1f;
     [SerializeField] private Door doorToNextLevel;
+    [SerializeField] private CinemachineVirtualCamera deerTrackingCamera;
+
 
     private GameObject leaderDeer;
     private Dictionary<int, GameObject> activeDeers;
@@ -84,6 +87,7 @@ public class DeerLevelManager : MonoBehaviour
                     {
                         doorToNextLevel.ToggleDoor(true);
                         arrivedAtDestination = true;
+                        deerTrackingCamera.enabled = false;
                         foreach (GameObject deer in activeDeers.Values)
                         {
                             deer.GetComponent<FollowerDeerBehaviour>().Target = null;
@@ -163,7 +167,7 @@ public class DeerLevelManager : MonoBehaviour
                 if (Utils.DistanceToTargetAboveThreshold(player.transform.position, leaderDeer.transform.position, maxSquaredDistanceFromDeerGroup))
                 {
                     EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.PlayerTooFarFromDeers);
-                    StartCoroutine(ResetGame());
+                    StartCoroutine(ResetGame());                    
                 }
                 else if (activeDeers.Count == 0)
                 {
@@ -202,11 +206,13 @@ public class DeerLevelManager : MonoBehaviour
         PlaceDeersInPosition();
         player.transform.position = new Vector3(playerTriggerPositon.x, player.transform.position.y, playerTriggerPositon.z - 5f);
         journeyStarted = false;
+        deerTrackingCamera.enabled = false;
     }
 
     void StartDeersJoruney()
     {
         journeyStarted = true;
+        SetupCamera();
         LeaderDeerBehaviour leaderDeerBehaviour = leaderDeer.GetComponent<LeaderDeerBehaviour>();
         leaderDeerBehaviour.StartMove(waypoints);
         foreach (GameObject follower in activeDeers.Values)
@@ -214,6 +220,13 @@ public class DeerLevelManager : MonoBehaviour
             FollowerDeerBehaviour followerDeerBehaviour = follower.GetComponent<FollowerDeerBehaviour>();
             followerDeerBehaviour.Target = leaderDeer;
         }
+    }
+
+    private void SetupCamera()
+    {
+        deerTrackingCamera.Follow = leaderDeer.transform;
+        deerTrackingCamera.LookAt = leaderDeer.transform;
+        deerTrackingCamera.enabled = true;
     }
 
     void SetWolfTargetDeer()

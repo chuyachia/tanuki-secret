@@ -14,12 +14,13 @@ public class PlayerBaseBehaviour
 
     }
 
-    public virtual void UpdateAnimatorBasedOnMovement(Vector3 move, bool isGrounded)
+    public virtual void UpdateAnimatorBasedOnMovement(float velocity, Vector3 move, bool isGrounded)
     {
         modelController.Animator?.SetBool(Constants.AnimatorState.IsGrounded, isGrounded);
         if (move != Vector3.zero)
         {
             modelController.Animator?.SetBool(Constants.AnimatorState.IsWalking, true);
+            modelController.Animator?.SetFloat(Constants.AnimatorState.speed, velocity);
         }
         else
         {
@@ -33,6 +34,11 @@ public class PlayerBaseBehaviour
     }
 
     public virtual bool ShouldMove()
+    {
+        return true;
+    }
+
+    public virtual bool CanRun()
     {
         return true;
     }

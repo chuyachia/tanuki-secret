@@ -5348,7 +5348,7 @@ MonoBehaviour:
   sideDistance: 2
   playerAllowedDistacneFromDancePosition: 64
   correctMoveTolerance: 0.5
-  inputThrottleDuration: 0.5
+  inputThrottleDuration: 0.2
   endingManager: {fileID: 1491437155}
 --- !u!114 &1877243040 stripped
 MonoBehaviour:

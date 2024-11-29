@@ -40,7 +40,7 @@ public class CraneLevelManager : MonoBehaviour
     {
         cranes = new List<GameObject>();
         float anglePerObject = 360f / (numberOfCrane + 1);
-        List<Vector3> positions = Utils.GetCircleAroundTargetPosition(numberOfCrane + 1, transform.position, 0f, 360f - anglePerObject, craneCircleRadius);
+        List<Vector3> positions = Utils.GetCircleAroundTargetPosition(numberOfCrane + 1, transform.position, 360f - anglePerObject, 360f - anglePerObject, craneCircleRadius);
         for (int i = 0; i < numberOfCrane; i++)
         {
             GameObject crane = Instantiate(cranePrefab);

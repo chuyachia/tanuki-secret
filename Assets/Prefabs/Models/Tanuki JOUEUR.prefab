@@ -162,9 +162,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0035897dd9aba5b09b223a5f7902b59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
+  baseSpeed: 6
   tanukiRunSpeedIncrement: 2
-  squirrelRunSpeedIncrement: 2
+  squirrelRunSpeedIncrement: 4
   deerRunSpeedIncrement: 6
   craneRunSpeedIncrement: 0
   climSpeed: 3

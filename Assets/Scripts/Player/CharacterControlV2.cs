@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CharacterControlV2 : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 5f;
+    [SerializeField] private float baseSpeed = 6f;
     [SerializeField] private float tanukiRunSpeedIncrement = 2f;
 
-    [SerializeField] private float squirrelRunSpeedIncrement = 2f;
-    [SerializeField] private float deerRunSpeedIncrement = 5f;
+    [SerializeField] private float squirrelRunSpeedIncrement = 4f;
+    [SerializeField] private float deerRunSpeedIncrement = 6f;
     [SerializeField] private float craneRunSpeedIncrement = 0f;
     [SerializeField] private float climSpeed = 3f;
     [SerializeField] private float gravity = -9.81f;

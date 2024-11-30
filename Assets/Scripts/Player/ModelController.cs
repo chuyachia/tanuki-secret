@@ -30,7 +30,10 @@ public class ModelController : MonoBehaviour
         get
         {
             Animator animator = null;
-            levelToModel?[currentLevel].TryGetComponent<Animator>(out animator);
+            if (levelToModel[currentLevel] != null)
+            {
+                levelToModel[currentLevel].TryGetComponent<Animator>(out animator);
+            }
             return animator;
         }
     }
@@ -38,11 +41,18 @@ public class ModelController : MonoBehaviour
     private Level currentLevel = Level.Base;
     void Start()
     {
+        List<GameObject> models = new List<GameObject>();
+        foreach (GameObject prefab in modelPrefabs)
+        {
+            GameObject model = Instantiate(prefab);
+            model.transform.SetParent(transform, false);
+            models.Add(model);
+        }
         levelToModel = new Dictionary<Level, GameObject>{
-            {Level.Base, Instantiate(modelPrefabs[0])},
-            {Level.Squirrel, Instantiate(modelPrefabs[1])},
-            {Level.Deer, Instantiate(modelPrefabs[2])},
-            {Level.Crane, Instantiate(modelPrefabs[3])}
+            {Level.Base, models[0]},
+            {Level.Squirrel, models[1]},
+            {Level.Deer, models[2]},
+            {Level.Crane, models[3]}
         };
         ChangeModel(defaultLevel);
         EventManager.Instance.RegisterLevelEnterEventListener(OnLevelChange);
@@ -63,12 +73,10 @@ public class ModelController : MonoBehaviour
             if (kvp.Key == currentLevel)
             {
                 model.SetActive(true);
-                model.transform.SetParent(transform, false);
             }
             else
             {
                 model.SetActive(false);
-                model.transform.SetParent(null);
             }
         }
 

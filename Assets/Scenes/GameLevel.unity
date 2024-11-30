@@ -5610,7 +5610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853028344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.350037, y: 47.994873, z: 101.28436}
+  m_LocalPosition: {x: 61.350037, y: 47.994873, z: 94.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7483,6 +7483,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrackingCameraGeese
       objectReference: {fileID: 0}
+    - target: {fileID: 5297169199545624133, guid: 022fce314510e0a40bfdcd1d5a73be52,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
       propertyPath: m_RootOrder
@@ -7496,22 +7501,22 @@ PrefabInstance:
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 82.99487
+      value: 76.894875
       objectReference: {fileID: 0}
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 461.28436
+      value: 454.91998
       objectReference: {fileID: 0}
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.88473964
+      value: 0.90522766
       objectReference: {fileID: 0}
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.46608564
+      value: 0.4249269
       objectReference: {fileID: 0}
     - target: {fileID: 5297169199545624155, guid: 022fce314510e0a40bfdcd1d5a73be52,
         type: 3}
@@ -8707,7 +8712,7 @@ PrefabInstance:
     - target: {fileID: 1537589711260724994, guid: 9f70c40f3b0bc4e4d90723b72b726203,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 69.6
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 1537589711260724994, guid: 9f70c40f3b0bc4e4d90723b72b726203,
         type: 3}
@@ -8717,7 +8722,7 @@ PrefabInstance:
     - target: {fileID: 1537589711260724994, guid: 9f70c40f3b0bc4e4d90723b72b726203,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 267.4
+      value: 71
       objectReference: {fileID: 0}
     - target: {fileID: 1537589711260724994, guid: 9f70c40f3b0bc4e4d90723b72b726203,
         type: 3}
@@ -8758,6 +8763,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TrackingCameraDeers
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537589711260725020, guid: 9f70c40f3b0bc4e4d90723b72b726203,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1537589711260725021, guid: 9f70c40f3b0bc4e4d90723b72b726203,
         type: 3}

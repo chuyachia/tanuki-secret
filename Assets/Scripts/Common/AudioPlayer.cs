@@ -11,6 +11,7 @@ public enum AudioEventType
     // SFX
     GetNut,
     putNutInBucket,
+    wrongNut,
     CraneWrongMove,
     CranesSound1,
     CranesSound2,
@@ -148,7 +149,7 @@ public class AudioPlayer : MonoBehaviour
         }
         else
         {
-            // TODO play wrong bucket sound
+            PlaySound(AudioEventType.wrongNut, bucket.transform.position, 1.0f);
         }
     }
 

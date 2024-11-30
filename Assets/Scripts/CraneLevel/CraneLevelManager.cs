@@ -101,7 +101,7 @@ public class CraneLevelManager : MonoBehaviour
         {
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerPositionInDanceCircle, 4f))
             {
-                EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.StartDance);
+                player.GetComponent<CharacterControlV2>().PrepareDance();
                 player.transform.position = playerPositionInDanceCircle;
                 isDancing = true;
                 craneTrackingCamera.enabled = true;

@@ -69,6 +69,7 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
         if (collider.gameObject.CompareTag(Constants.Tags.Player) && !isFleeing)
         {
             EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { gameObject }, EventManager.DeerLevelEvent.PlayerAttackWolf);
+            collider.gameObject.GetComponent<CharacterControlV2>().Attack();
             Vector3 directionAwayFromCollider = transform.position - collider.gameObject.transform.position;
             directionAwayFromCollider.Normalize();
             targetPosition = directionAwayFromCollider * fleeDistance;

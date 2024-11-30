@@ -74,6 +74,24 @@ public class CharacterControlV2 : MonoBehaviour
         currentLevel = level;
     }
 
+    public void PrepareDance()
+    {
+        if (playerLevelBehaviour is PlayerCraneBehaviour)
+        {
+            PlayerCraneBehaviour craneBehaviour = (PlayerCraneBehaviour)playerLevelBehaviour;
+            craneBehaviour.PrepareDance();
+        }
+    }
+
+    public void Attack()
+    {
+        if (playerLevelBehaviour is PlayerDeerBehaviour)
+        {
+            PlayerDeerBehaviour deerBehaviour = (PlayerDeerBehaviour)playerLevelBehaviour;
+            deerBehaviour.Attack();
+        }
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (collisionHit)

@@ -5,33 +5,13 @@ public class PlayerDeerBehaviour : PlayerBaseBehaviour
     public PlayerDeerBehaviour(float runThreshold, Transform transform, ModelController modelController) : base(modelController)
     {
         this.runThreshold = runThreshold;
-        EventManager.Instance.RegisterDeerLevelEventListener(HandleEvent);
     }
 
     private float runThreshold;
 
-    public void HandleEvent(GameObject[] gameObjects, EventManager.DeerLevelEvent eventType)
+    public void Attack()
     {
-        switch (eventType)
-        {
-            case EventManager.DeerLevelEvent.StartJourney:
-                {
-                    modelController.Animator?.SetBool(Constants.AnimatorState.IsWalking, false);
-                    break;
-                }
-            case EventManager.DeerLevelEvent.ArriveAtDestination:
-            case EventManager.DeerLevelEvent.PlayerTooFarFromDeers:
-            case EventManager.DeerLevelEvent.NotEnoughDeersLeft:
-                {
-                    modelController.Animator?.SetBool(Constants.AnimatorState.IsRunning, false);
-                    break;
-                }
-            case EventManager.DeerLevelEvent.PlayerAttackWolf:
-                {
-                    modelController.Animator?.SetTrigger(Constants.AnimatorState.IsAttacking);
-                    break;
-                }
-        }
+        modelController.Animator?.SetTrigger(Constants.AnimatorState.IsAttacking);
     }
 
     public override void UpdateAnimatorBasedOnMovement(float velocity, Vector3 move, bool isGrounded)

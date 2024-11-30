@@ -8,20 +8,16 @@ public class PlayerCraneBehaviour : PlayerBaseBehaviour
     public PlayerCraneBehaviour(Transform transform, ModelController modelController) : base(modelController)
     {
         this.transform = transform;
-        EventManager.Instance.RegisterCraneLevelEventListener(HandleEvent);
     }
 
-    public void HandleEvent(GameObject[] gameObjects, EventManager.CraneLevelEvent eventType)
+    public void PrepareDance()
     {
-        if (eventType == EventManager.CraneLevelEvent.StartDance)
+        modelController.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+        modelController.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
+        isDanceMode = true;
+        if (transform.localScale.x < 0)
         {
-            modelController.BodyAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
-            modelController.WingAnimator?.SetBool(Constants.AnimatorState.IsWalking, false);
-            isDanceMode = true;
-            if (transform.localScale.x < 0)
-            {
-                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-            }
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
     }
 

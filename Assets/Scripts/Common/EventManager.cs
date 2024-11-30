@@ -41,7 +41,6 @@ public class EventManager
 
     public enum CraneLevelEvent
     {
-        StartDance,
         PlayerTooFarFromCranes,
         LevelCompleted,
         WrongMove,

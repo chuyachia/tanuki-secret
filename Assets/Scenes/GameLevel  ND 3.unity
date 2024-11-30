@@ -822,7 +822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &275414299
 Transform:
   m_ObjectHideFlags: 0
@@ -946,7 +946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &357757065
 Transform:
   m_ObjectHideFlags: 0
@@ -1711,7 +1711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &609142300
 Transform:
   m_ObjectHideFlags: 0
@@ -1993,7 +1993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &647673003
 Transform:
   m_ObjectHideFlags: 0
@@ -2413,7 +2413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693970406
 Transform:
   m_ObjectHideFlags: 0
@@ -2961,7 +2961,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 60c5543dede33fb44ae0427030d5775b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.7
+      value: 49.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60c5543dede33fb44ae0427030d5775b,
         type: 3}
@@ -2971,7 +2971,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 60c5543dede33fb44ae0427030d5775b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 68.8
+      value: 58.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 60c5543dede33fb44ae0427030d5775b,
         type: 3}
@@ -4153,7 +4153,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 100
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -5635,7 +5635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1678574029
 Transform:
   m_ObjectHideFlags: 0
@@ -6017,7 +6017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1694283117
 Transform:
   m_ObjectHideFlags: 0
@@ -6140,7 +6140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1708888015
 Transform:
   m_ObjectHideFlags: 0
@@ -7526,7 +7526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!218 &2109159650
 Terrain:
   m_ObjectHideFlags: 0
@@ -7602,7 +7602,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4d0fef0d6dab17742b313923c9d858f0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 79.97
+      value: 82.93
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d0fef0d6dab17742b313923c9d858f0,
         type: 3}
@@ -7612,7 +7612,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4d0fef0d6dab17742b313923c9d858f0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55.73
+      value: 44.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d0fef0d6dab17742b313923c9d858f0,
         type: 3}
@@ -8860,7 +8860,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b9bc9c8463cd99f4a906c919c40134aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77
+      value: 74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9bc9c8463cd99f4a906c919c40134aa,
         type: 3}
@@ -8870,7 +8870,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b9bc9c8463cd99f4a906c919c40134aa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 89.7
+      value: 89.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b9bc9c8463cd99f4a906c919c40134aa,
         type: 3}

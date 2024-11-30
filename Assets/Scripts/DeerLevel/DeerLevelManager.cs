@@ -266,7 +266,7 @@ public class DeerLevelManager : MonoBehaviour
             {
                 randomSign = UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1;
             }
-
+            EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { wolf }, EventManager.DeerLevelEvent.WolfAppear);
             wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + randomSign * Vector3.left * wolfAppearDistance, 10f);
             wolf.transform.parent = transform;
             wolfAttackTimer = wolfAttackInterval;

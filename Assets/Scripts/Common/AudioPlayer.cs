@@ -53,6 +53,7 @@ public class AudioPlayer : MonoBehaviour
         // Subscribe to events
         EventManager.Instance.RegisterSquirrelLevelEventListener(HandleSquirrelEvent);
         EventManager.Instance.RegisterCraneLevelEventListener(HandleCraneEvent);
+        EventManager.Instance.RegisterDeerLevelEventListener(HandleDeerEvent);
 
     }
 
@@ -61,6 +62,7 @@ public class AudioPlayer : MonoBehaviour
         // Unsubscribe from events
         EventManager.Instance.UnregisterSquirrelLevelEventListener(HandleSquirrelEvent);
         EventManager.Instance.UnregisterCraneLevelEventListener(HandleCraneEvent);
+        EventManager.Instance.UnregisterDeerLevelEventListener(HandleDeerEvent);
     }
 
     private void HandleSquirrelEvent(GameObject[] target, EventManager.SquirelLevelEvent eventType)
@@ -72,15 +74,20 @@ public class AudioPlayer : MonoBehaviour
                     OnGetNut(target[0]);
                     break;
                 }
-            case EventManager.SquirelLevelEvent.PutNutInBucket:
+            case EventManager.SquirelLevelEvent.CorrectBucket:
                 {
-                    OnPutNutInBucket(target[0]);
+                    OnPutNutInBucket(target[0], true);
+                    break;
+                }
+            case EventManager.SquirelLevelEvent.WrongBucket:
+                {
+                    OnPutNutInBucket(target[0], false);
                     break;
                 }
         }
     }
 
-        private void HandleCraneEvent(GameObject[] target, EventManager.CraneLevelEvent eventType)
+    private void HandleCraneEvent(GameObject[] target, EventManager.CraneLevelEvent eventType)
     {
         switch (eventType)
         {
@@ -103,6 +110,18 @@ public class AudioPlayer : MonoBehaviour
         }
     }
 
+    public void HandleDeerEvent(GameObject[] target, EventManager.DeerLevelEvent eventType)
+    {
+        switch (eventType)
+        {
+            case EventManager.DeerLevelEvent.WolfAppear:
+                {
+                    OnWolfAppear(target[0]);
+                    break;
+                }
+        }
+    }
+
     private void OnCorrectCraneMove()
     {
         PlaySound(AudioEventType.CranesSoundCorrect, transform.position, 1.0f);
@@ -121,10 +140,23 @@ public class AudioPlayer : MonoBehaviour
     }
 
     // Event handlers
-    private void OnPutNutInBucket(GameObject bucket)
+    private void OnPutNutInBucket(GameObject bucket, bool isCorrectBucket)
     {
-        PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 1.0f);
+        if (isCorrectBucket)
+        {
+            PlaySound(AudioEventType.putNutInBucket, bucket.transform.position, 1.0f);
+        }
+        else
+        {
+            // TODO play wrong bucket sound
+        }
     }
+
+    private void OnWolfAppear(GameObject wolf)
+    {
+        // TODO play wolf sound
+    }
+
     private void OnGetNut(GameObject nut)
     {
         PlaySound(AudioEventType.GetNut, nut.transform.position, 1.0f);

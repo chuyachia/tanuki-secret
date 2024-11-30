@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements;
@@ -16,7 +17,11 @@ public enum AudioEventType
     CranesSound1,
     CranesSound2,
     CranesSound3,
-    CranesSoundCorrect
+    CranesSoundCorrect,
+    WolfAppear1,
+    WolfAppear2,
+    WolfAppear3,
+    WolfAppear4
 }
 
 // Audio player that responds to game events
@@ -37,6 +42,7 @@ public class AudioPlayer : MonoBehaviour
     [SerializeField] private AudioData[] audioData;
     private Dictionary<AudioEventType, AudioData> audioMap;
     private Dictionary<AudioEventType, AudioSource> activeSources;
+    private List<AudioClip> notes;
 
     private void Awake()
     {
@@ -155,7 +161,27 @@ public class AudioPlayer : MonoBehaviour
 
     private void OnWolfAppear(GameObject wolf)
     {
-        // TODO play wolf sound
+
+
+        var noteToPlay = UnityEngine.Random.Range(0, 3);
+        if (noteToPlay == 0){
+            PlaySound(AudioEventType.WolfAppear1, wolf.transform.position, 1.0f);
+            Debug.Log("Played wolf sound 1!");
+        }
+        if (noteToPlay == 1){
+            PlaySound(AudioEventType.WolfAppear2, wolf.transform.position, 1.0f);
+            Debug.Log("Played wolf sound 2!");
+
+        }
+        if (noteToPlay == 2){
+            PlaySound(AudioEventType.WolfAppear3, wolf.transform.position, 1.0f);
+            Debug.Log("Played wolf sound 3!");
+
+        }
+        if (noteToPlay == 3){
+            PlaySound(AudioEventType.WolfAppear4, wolf.transform.position, 1.0f);
+            Debug.Log("Played wolf sound 4!");
+        }
     }
 
     private void OnGetNut(GameObject nut)

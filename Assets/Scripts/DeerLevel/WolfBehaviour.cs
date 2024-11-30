@@ -77,9 +77,4 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
             isFleeing = true;
         }
     }
-
-    protected override bool ShouldJump()
-    {
-        return false;
-    }
 }

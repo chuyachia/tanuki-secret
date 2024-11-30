@@ -9,12 +9,11 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
 
     protected State state;
     protected Animator animator;
-    private Vector3 wanderCenter;
-    private Vector3 wanderTarget;
     private float wanderStopTimer;
     private bool isWanderStopping;
     protected bool targetReached;
     private float speedDecrement;
+    private WanderTargetGenerator targetGenerator;
 
     protected enum State
     {
@@ -45,8 +44,8 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
         if (eventType == EventManager.DeerLevelEvent.ArriveAtDestination)
         {
             state = State.Wandering;
-            wanderCenter = transform.position;
-            targetPosition = GetRandomTarget();
+            targetGenerator = new WanderTargetGenerator(wanderRadius, transform.position);
+            targetPosition = targetGenerator.GetNewTarget();
             animator.SetBool(Constants.AnimatorState.IsRunning, false);
         }
     }
@@ -60,11 +59,6 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
     protected override float GetSpeed()
     {
         return state == State.Migrating ? speed - speedDecrement : wanderSpeed;
-    }
-
-    protected override bool ShouldJump()
-    {
-        return false;
     }
 
     protected override void FixedUpdate()
@@ -90,7 +84,7 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
                         if (wanderStopTimer <= 0)
                         {
                             isWanderStopping = false;
-                            targetPosition = GetRandomTarget();
+                            targetPosition = targetGenerator.GetNewTarget();
                         }
                     }
                     else if (targetReached)
@@ -129,10 +123,4 @@ public abstract class DeerBehaviour : TargetBasedSteerBehaviour
     }
 
     protected abstract Vector3 GetMigrationTarget();
-
-    protected Vector3 GetRandomTarget()
-    {
-        Vector2 randomDirection = Random.insideUnitCircle * wanderRadius;
-        return new Vector3(randomDirection.x + wanderCenter.x, 0, randomDirection.y + wanderCenter.z);
-    }
 }

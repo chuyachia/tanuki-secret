@@ -59,7 +59,10 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
         }
     }
 
-    protected abstract bool ShouldJump();
+    protected virtual bool ShouldJump()
+    {
+        return false;
+    }
 
     protected virtual bool Jump()
     {

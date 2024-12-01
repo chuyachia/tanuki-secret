@@ -50,7 +50,6 @@ MonoBehaviour:
   speed: 5
   airSpeed: 2
   stopDuration: 2
-  waypoints: []
   state: 0
   wanderRadius: 4
   targetReachedSquaredDistance: 4
@@ -126,6 +125,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8807616751518010087, guid: 421eab0b4deb455a3ba138a01be9931d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7176627852e872444b3a8f8f206e5a76, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421eab0b4deb455a3ba138a01be9931d, type: 3}
 --- !u!4 &3027711790314629497 stripped

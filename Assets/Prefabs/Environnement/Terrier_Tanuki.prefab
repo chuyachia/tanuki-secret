@@ -259,6 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567619362593337039}
+  - component: {fileID: 5116038702704252890}
   m_Layer: 0
   m_Name: Terrier_Tanuki
   m_TagString: Untagged
@@ -286,6 +287,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5116038702704252890
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758431119559767157}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 6.852785
+  m_Height: 21.208996
+  m_Direction: 1
+  m_Center: {x: -0.6686268, y: 2.8592625, z: 0}
 --- !u!1 &6241369676987360771
 GameObject:
   m_ObjectHideFlags: 0

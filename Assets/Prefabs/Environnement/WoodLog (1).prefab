@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 124233195360541747}
   - component: {fileID: 3897450942559802262}
   - component: {fileID: 1293221054387922780}
+  - component: {fileID: 3555774897458536029}
   m_Layer: 0
   m_Name: WoodLog (1)
   m_TagString: Untagged
@@ -85,3 +86,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3555774897458536029
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788848750389266057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.005401685, y: 0.026702948, z: 0.007483499}
+  m_Center: {x: 0.00032447695, y: 0.0016305017, z: 0.0037279304}

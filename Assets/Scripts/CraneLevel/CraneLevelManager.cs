@@ -79,7 +79,7 @@ public class CraneLevelManager : MonoBehaviour
             new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.RIGHT), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
-            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.DOWN), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
             new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.UP), 1),

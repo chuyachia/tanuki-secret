@@ -21,7 +21,8 @@ public enum AudioEventType
     WolfAppear1,
     WolfAppear2,
     WolfAppear3,
-    WolfAppear4
+    WolfAppear4,
+    WolfHit
 }
 
 // Audio player that responds to game events
@@ -126,6 +127,11 @@ public class AudioPlayer : MonoBehaviour
                     OnWolfAppear(target[0]);
                     break;
                 }
+            case EventManager.DeerLevelEvent.PlayerAttackWolf:
+            {      
+                OnPlayerAttackWolf();
+                break;
+            }
         }
     }
 
@@ -157,6 +163,11 @@ public class AudioPlayer : MonoBehaviour
         {
             PlaySound(AudioEventType.wrongNut, bucket.transform.position, 1.0f);
         }
+    }
+
+    private void OnPlayerAttackWolf()
+    {
+        PlaySound(AudioEventType.WolfHit, transform.position);
     }
 
     private void OnWolfAppear(GameObject wolf)

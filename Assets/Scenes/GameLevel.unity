@@ -8338,6 +8338,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1491437155, guid: df4bb4eb09c57cf468dcab996e67129a, type: 3}
+      propertyPath: durationFast
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491437155, guid: df4bb4eb09c57cf468dcab996e67129a, type: 3}
+      propertyPath: durationMedium
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 6223460360486330290, guid: df4bb4eb09c57cf468dcab996e67129a,
         type: 3}
       propertyPath: m_Name
@@ -9281,7 +9289,6 @@ GameObject:
   - component: {fileID: 8681248414443130689}
   - component: {fileID: 8681248414443130691}
   - component: {fileID: 8681248414443130690}
-  - component: {fileID: 8681248414443130692}
   - component: {fileID: 8681248414443130693}
   m_Layer: 0
   m_Name: B1
@@ -9338,7 +9345,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
+  m_DetailObjectDistance: 150
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -9358,19 +9365,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414443130692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414443130688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414443130691}
 --- !u!114 &8681248414443130693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9378,7 +9372,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414443130688}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -9782,7 +9776,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
+  m_DetailObjectDistance: 150
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -9802,19 +9796,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414516778977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414516778989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414516778976}
 --- !u!1 &8681248414516778989
 GameObject:
   m_ObjectHideFlags: 0
@@ -9826,7 +9807,6 @@ GameObject:
   - component: {fileID: 8681248414516778990}
   - component: {fileID: 8681248414516778976}
   - component: {fileID: 8681248414516778991}
-  - component: {fileID: 8681248414516778977}
   - component: {fileID: 8681248414516778992}
   m_Layer: 0
   m_Name: D2
@@ -9868,7 +9848,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414516778989}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -10559,7 +10539,6 @@ GameObject:
   - component: {fileID: 8681248414714136227}
   - component: {fileID: 8681248414714136229}
   - component: {fileID: 8681248414714136228}
-  - component: {fileID: 8681248414714136230}
   - component: {fileID: 8681248414714136231}
   m_Layer: 0
   m_Name: C3
@@ -10608,8 +10587,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10628,19 +10607,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414714136230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414714136226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414714136229}
 --- !u!114 &8681248414714136231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10648,7 +10614,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414714136226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -10709,7 +10675,6 @@ GameObject:
   - component: {fileID: 8681248414733825044}
   - component: {fileID: 8681248414733825046}
   - component: {fileID: 8681248414733825045}
-  - component: {fileID: 8681248414733825047}
   - component: {fileID: 8681248414733825048}
   m_Layer: 0
   m_Name: C4
@@ -10758,8 +10723,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10778,19 +10743,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414733825047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414733825043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414733825046}
 --- !u!114 &8681248414733825048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10798,7 +10750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414733825043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -10959,7 +10911,6 @@ GameObject:
   - component: {fileID: 8681248414933274387}
   - component: {fileID: 8681248414933274389}
   - component: {fileID: 8681248414933274388}
-  - component: {fileID: 8681248414933274390}
   - component: {fileID: 8681248414933274391}
   m_Layer: 0
   m_Name: C6
@@ -11009,8 +10960,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -11029,19 +10980,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414933274390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414933274386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414933274389}
 --- !u!114 &8681248414933274391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11049,7 +10987,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414933274386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -11395,7 +11333,6 @@ GameObject:
   - component: {fileID: 8681248414987305601}
   - component: {fileID: 8681248414987305603}
   - component: {fileID: 8681248414987305602}
-  - component: {fileID: 8681248414987305604}
   - component: {fileID: 8681248414987305605}
   m_Layer: 0
   m_Name: D1
@@ -11448,8 +11385,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.6
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -11468,19 +11405,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248414987305604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248414987305600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248414987305603}
 --- !u!114 &8681248414987305605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11488,7 +11412,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248414987305600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -11723,18 +11647,8 @@ MonoBehaviour:
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: c9b909be2e4bd6440a5e2b5946f5e230, type: 2}
     modifierStack: []
-  autoRepaint: 1
-  terrainListeners:
-  - {fileID: 8681248416125073687}
-  - {fileID: 8681248414443130692}
-  - {fileID: 8681248415811777496}
-  - {fileID: 8681248415800409562}
-  - {fileID: 8681248414714136230}
-  - {fileID: 8681248414733825047}
-  - {fileID: 8681248415815010168}
-  - {fileID: 8681248414933274390}
-  - {fileID: 8681248414987305604}
-  - {fileID: 8681248414516778977}
+  autoRepaint: 0
+  terrainListeners: []
   bounds:
     m_Center: {x: 384, y: 300, z: 384}
     m_Extent: {x: 384, y: 300, z: 384}
@@ -13051,7 +12965,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
+  m_DetailObjectDistance: 150
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -13104,7 +13018,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248415400069865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -14196,7 +14110,6 @@ GameObject:
   - component: {fileID: 8681248415800409543}
   - component: {fileID: 8681248415800409561}
   - component: {fileID: 8681248415800409560}
-  - component: {fileID: 8681248415800409562}
   - component: {fileID: 8681248415800409563}
   m_Layer: 0
   m_Name: C2
@@ -14270,8 +14183,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14290,19 +14203,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248415800409562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248415800409542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248415800409561}
 --- !u!114 &8681248415800409563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14310,7 +14210,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248415800409542}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -14326,7 +14226,6 @@ GameObject:
   - component: {fileID: 8681248415811777477}
   - component: {fileID: 8681248415811777479}
   - component: {fileID: 8681248415811777478}
-  - component: {fileID: 8681248415811777496}
   - component: {fileID: 8681248415811777497}
   m_Layer: 0
   m_Name: C1
@@ -14378,8 +14277,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14398,19 +14297,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248415811777496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248415811777476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248415811777479}
 --- !u!114 &8681248415811777497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14418,7 +14304,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248415811777476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -14434,7 +14320,6 @@ GameObject:
   - component: {fileID: 8681248415815010149}
   - component: {fileID: 8681248415815010151}
   - component: {fileID: 8681248415815010150}
-  - component: {fileID: 8681248415815010168}
   - component: {fileID: 8681248415815010169}
   m_Layer: 0
   m_Name: C5
@@ -14483,8 +14368,8 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.2
+  m_DetailObjectDistance: 150
+  m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14503,19 +14388,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248415815010168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248415815010148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248415815010151}
 --- !u!114 &8681248415815010169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14523,7 +14395,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248415815010148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
@@ -16137,7 +16009,6 @@ GameObject:
   - component: {fileID: 8681248416125073684}
   - component: {fileID: 8681248416125073686}
   - component: {fileID: 8681248416125073685}
-  - component: {fileID: 8681248416125073687}
   - component: {fileID: 8681248416125073688}
   m_Layer: 0
   m_Name: A1
@@ -16214,7 +16085,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 0
+  m_DetailObjectDistance: 150
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -16234,19 +16105,6 @@ Terrain:
   m_GroupingID: 0
   m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
---- !u!114 &8681248416125073687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8681248416125073683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db11228c23499742957c29c86d7afba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  terrain: {fileID: 8681248416125073686}
 --- !u!114 &8681248416125073688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16254,7 +16112,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681248416125073683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 

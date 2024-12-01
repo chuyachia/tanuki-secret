@@ -81,16 +81,16 @@ MonoBehaviour:
     fadeTime: 2
     playOnStart: 1
   - layer: 5
-    clip: {fileID: 8300000, guid: 5ae6c061f83b11b4183386002e0f27d6, type: 3}
+    clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    volume: 0.25
+    volume: 0.2
     fadeTime: 2
     playOnStart: 0
   - layer: 6
-    clip: {fileID: 8300000, guid: 09165e9f2e605d242999f5c1aa7782eb, type: 3}
+    clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    volume: 0.75
+    volume: 0.4
     fadeTime: 2
     playOnStart: 0

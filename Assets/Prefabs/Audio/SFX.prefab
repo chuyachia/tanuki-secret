@@ -65,15 +65,15 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ff55b3e9ec44ed64491ff3bdc4b5f824, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.25
+    baseVolume: 0.3
     loop: 0
-    spatialBlend: 0.8
+    spatialBlend: 0.5
     pitch: 1
   - eventType: 3
     clip: {fileID: 8300000, guid: 4dc6e9072b8f59a4987105a2ea60e2a5, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.2
+    baseVolume: 0.25
     loop: 0
     spatialBlend: 0.5
     pitch: 1
@@ -105,7 +105,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 73183eb152aaee243baec42134a159a3, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.6
+    baseVolume: 0.8
     loop: 0
     spatialBlend: 0.5
     pitch: 1
@@ -113,33 +113,33 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: c6d681062aac4e34d9a09e751e88d103, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.6
+    baseVolume: 1
     loop: 0
-    spatialBlend: 0.8
+    spatialBlend: 0.5
     pitch: 1
   - eventType: 9
     clip: {fileID: 8300000, guid: 156b449797e65684faf6a8d3bf57e1dc, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.6
+    baseVolume: 1
     loop: 0
-    spatialBlend: 0.8
+    spatialBlend: 0.5
     pitch: 1
   - eventType: 10
     clip: {fileID: 8300000, guid: 2ef0ed8606cfb624ab59146d84c8d673, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.6
+    baseVolume: 1
     loop: 0
-    spatialBlend: 0.8
+    spatialBlend: 0.5
     pitch: 1
   - eventType: 11
     clip: {fileID: 8300000, guid: 6d67da5e99019c54ab6cfc663a6a87a3, type: 3}
     audioMixerGroup: {fileID: -6570036234679355539, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    baseVolume: 0.6
+    baseVolume: 1
     loop: 0
-    spatialBlend: 0.8
+    spatialBlend: 0.5
     pitch: 1
   - eventType: 12
     clip: {fileID: 8300000, guid: 3d65ade379cd26841aaf581b8e08d6a7, type: 3}

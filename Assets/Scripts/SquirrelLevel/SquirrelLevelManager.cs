@@ -205,15 +205,7 @@ public class SquirrelLevelManager : MonoBehaviour
 
     void Update()
     {
-        if (_playerPutCorrectBucket.Count == nutBuckets.Count && Utils.DistanceToTargetWithinThreshold(_player.transform.position, _exitGatherPoint.transform.position, _distToGatherPoint))
-        {
-            _levelFinished = true;
-        }
-        if (_levelFinished)
-        {
-            SquirrelGatherAroundExit();
-        }
-        else
+        if (!_levelFinished)
         {
             UpdateSquirrelTarget();
             SpawnNewNuts();
@@ -295,6 +287,8 @@ public class SquirrelLevelManager : MonoBehaviour
             if (_playerPutCorrectBucket.Count == nutBuckets.Count)
             {
                 _doorToNextLevel.ToggleDoor(true);
+                SquirrelGatherAroundExit();
+                _levelFinished = true;
             }
         }
         else

@@ -27,6 +27,7 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private float speedDecrement = 1f;
     [SerializeField] private Door doorToNextLevel;
     [SerializeField] private CinemachineVirtualCamera deerTrackingCamera;
+    [SerializeField] private float allowedDistanceBeforeStartJourney = 100f;
 
 
     private GameObject leaderDeer;
@@ -150,9 +151,18 @@ public class DeerLevelManager : MonoBehaviour
 
     void Update()
     {
+        if (!Level.Deer.Equals(player.GetComponent<CharacterControlV2>().GetCurrentLevel()))
+        {
+            return;
+        }
         ProcessEvent();
         if (!journeyStarted)
         {
+            if (player.transform.position.x - playerTriggerPositon.x > allowedDistanceBeforeStartJourney)
+            {
+                EventManager.Instance.InvokeDeerLevelEvent(null, EventManager.DeerLevelEvent.PlayerTooFarFromDeers);
+                StartCoroutine(ResetGame());
+            }
             if (Utils.DistanceToTargetWithinThreshold(player.transform.position, playerTriggerPositon, targetReachedSquaredDistance))
             {
                 StartDeersJoruney();

@@ -92,6 +92,11 @@ public class CharacterControlV2 : MonoBehaviour
         }
     }
 
+    public Level GetCurrentLevel()
+    {
+        return currentLevel;
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (collisionHit)

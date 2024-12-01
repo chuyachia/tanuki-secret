@@ -9834,7 +9834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414516778990
 Transform:
   m_ObjectHideFlags: 0
@@ -10567,7 +10567,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414714136227
 Transform:
   m_ObjectHideFlags: 0
@@ -10609,7 +10609,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10717,7 +10717,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414733825044
 Transform:
   m_ObjectHideFlags: 0
@@ -10759,7 +10759,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10967,7 +10967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414933274387
 Transform:
   m_ObjectHideFlags: 0
@@ -11010,7 +11010,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -11403,7 +11403,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414987305601
 Transform:
   m_ObjectHideFlags: 0
@@ -11449,7 +11449,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.6
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -13036,7 +13036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!218 &8681248415400069866
 Terrain:
   m_ObjectHideFlags: 0
@@ -14036,7 +14036,7 @@ PrefabInstance:
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
       propertyPath: tilesToLoad.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
@@ -14053,6 +14053,11 @@ PrefabInstance:
       propertyPath: tilesToLoad.Array.data[1]
       value: 
       objectReference: {fileID: 8681248415639520752}
+    - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
+        type: 3}
+      propertyPath: tilesToLoad.Array.data[2]
+      value: 
+      objectReference: {fileID: 8681248415400069865}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
       propertyPath: tilesToUnload.Array.data[0]
@@ -14199,7 +14204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248415800409543
 Transform:
   m_ObjectHideFlags: 0
@@ -14266,7 +14271,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14329,7 +14334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248415811777477
 Transform:
   m_ObjectHideFlags: 0
@@ -14374,7 +14379,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14437,7 +14442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248415815010149
 Transform:
   m_ObjectHideFlags: 0
@@ -14479,7 +14484,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.2
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0

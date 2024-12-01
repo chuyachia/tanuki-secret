@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tracksToPlay: 03000000
-  tracksToStop: 0200000004000000
+  tracksToStop: 0200000006000000
 --- !u!1001 &147858773
 PrefabInstance:
   m_ObjectHideFlags: 0

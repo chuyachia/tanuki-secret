@@ -14,7 +14,9 @@ public enum MusicLayer
     AliensMusic,
       
     // Ambient sounds
-    Crickets
+    Crickets,
+    Owls,
+    Frogs
 
 }
 

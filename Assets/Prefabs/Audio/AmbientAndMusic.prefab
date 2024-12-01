@@ -45,38 +45,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicLayers:
-  - layer: 1
-    clip: {fileID: 8300000, guid: f8d2c874d0a0b9e4abac3212a94513bc, type: 3}
+  - layer: 0
+    clip: {fileID: 8300000, guid: f24b21ca1415c894d9bc1f68c688e252, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 2
     playOnStart: 0
-  - layer: 0
-    clip: {fileID: 8300000, guid: 2fd17669f5a03e24faa470195260b1f1, type: 3}
+  - layer: 1
+    clip: {fileID: 8300000, guid: 542317e4f48d46a4b8db3c653cee0bbc, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 6
     playOnStart: 0
   - layer: 2
-    clip: {fileID: 8300000, guid: 17dad90536d605d4cae3014fdf72d0f3, type: 3}
+    clip: {fileID: 8300000, guid: 2759070ffca958a478d92abf54fac285, type: 3}
     audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 2
     playOnStart: 0
   - layer: 3
-    clip: {fileID: 8300000, guid: 18392fe4d0ea37e47801dc854331c1b6, type: 3}
-    audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
+    clip: {fileID: 8300000, guid: 56dad192f04eee946b918c89c4ae81f7, type: 3}
+    audioMixerGroup: {fileID: -215267421221705407, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
     volume: 1
     fadeTime: 2
     playOnStart: 0
   - layer: 4
-    clip: {fileID: 8300000, guid: cfde1d898d458184d9aec2c2dfb7657e, type: 3}
+    clip: {fileID: 8300000, guid: c1c126fbbd250064aaafb1c87948bf4e, type: 3}
     audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
       type: 2}
-    volume: 1
+    volume: 0.5
+    fadeTime: 2
+    playOnStart: 1
+  - layer: 5
+    clip: {fileID: 8300000, guid: 5ae6c061f83b11b4183386002e0f27d6, type: 3}
+    audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    volume: 0.25
+    fadeTime: 2
+    playOnStart: 0
+  - layer: 6
+    clip: {fileID: 8300000, guid: 09165e9f2e605d242999f5c1aa7782eb, type: 3}
+    audioMixerGroup: {fileID: -817589957901036947, guid: f1547a18691ae234ab25452c1a5a72fb,
+      type: 2}
+    volume: 0.75
     fadeTime: 2
     playOnStart: 0

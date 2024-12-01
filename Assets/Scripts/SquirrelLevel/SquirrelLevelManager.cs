@@ -290,11 +290,16 @@ public class SquirrelLevelManager : MonoBehaviour
     {
         if (bucket.GetInstanceID() == _playerTargetBucketId)
         {
+            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { bucket }, EventManager.SquirelLevelEvent.CorrectBucket);
             _playerPutCorrectBucket.Add(bucket.GetInstanceID());
             if (_playerPutCorrectBucket.Count == nutBuckets.Count)
             {
                 _doorToNextLevel.ToggleDoor(true);
             }
+        }
+        else
+        {
+            EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { bucket }, EventManager.SquirelLevelEvent.WrongBucket);
         }
     }
 }

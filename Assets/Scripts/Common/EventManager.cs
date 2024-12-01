@@ -25,7 +25,9 @@ public class EventManager
     public enum SquirelLevelEvent
     {
         PickUpNut,
-        PutNutInBucket
+        PutNutInBucket,
+        CorrectBucket,
+        WrongBucket
     }
 
     public enum DeerLevelEvent
@@ -33,6 +35,7 @@ public class EventManager
         StartJourney,
         WolfCatchDeer,
         PlayerAttackWolf,
+        WolfAppear,
 
         ArriveAtDestination,
         PlayerTooFarFromDeers,

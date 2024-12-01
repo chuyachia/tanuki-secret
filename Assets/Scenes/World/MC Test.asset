@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Main Camera Profile
+  m_Name: MC Test
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 1238075863931488751}
-  - {fileID: 4060064452135750731}
---- !u!114 &1238075863931488751
+  - {fileID: 1906222399119468033}
+  - {fileID: 2357689926808574503}
+--- !u!114 &1906222399119468033
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,38 +30,38 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 2
-  gaussianStart:
-    m_OverrideState: 0
-    m_Value: 10
-  gaussianEnd:
-    m_OverrideState: 0
-    m_Value: 30
-  gaussianMaxRadius:
-    m_OverrideState: 0
     m_Value: 1
+  gaussianStart:
+    m_OverrideState: 1
+    m_Value: 100.8
+  gaussianEnd:
+    m_OverrideState: 1
+    m_Value: 116.3
+  gaussianMaxRadius:
+    m_OverrideState: 1
+    m_Value: 1.5
   highQualitySampling:
     m_OverrideState: 0
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 35.01
+    m_Value: 39
   aperture:
     m_OverrideState: 1
-    m_Value: 3.3
+    m_Value: 1
   focalLength:
     m_OverrideState: 1
     m_Value: 300
   bladeCount:
     m_OverrideState: 0
-    m_Value: 5
+    m_Value: 3
   bladeCurvature:
     m_OverrideState: 0
     m_Value: 1
   bladeRotation:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &4060064452135750731
+--- !u!114 &2357689926808574503
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}

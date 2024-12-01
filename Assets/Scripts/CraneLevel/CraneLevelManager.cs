@@ -72,17 +72,17 @@ public class CraneLevelManager : MonoBehaviour
         dances.Add(tutorialWingDeployedRoll);
         List<DanceCommand> complextDance = new List<DanceCommand>(){
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.LEFT), 1),
-            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.LEFT), 1),
+            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.LEFT), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
-            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
+            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.RIGHT), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
-            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
+            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.DOWN), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
-            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 1),
+            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.UP), 1),
 
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 2),
             new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.UP), 2)

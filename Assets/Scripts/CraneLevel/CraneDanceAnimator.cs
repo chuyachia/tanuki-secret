@@ -29,36 +29,31 @@ public partial class CraneDanceAnimator
 
     public CraneDanceAnimator(GameObject craneModel)
     {
-        if (craneModel == null)
+        if (craneModel != null)
         {
-            Debug.LogError("crane model is null");
-        }
-        foreach (Transform child in craneModel.transform)
-        {
-            if (child.gameObject.name == WingModel)
+            foreach (Transform child in craneModel.transform)
             {
-                wing = child;
-                break;
+                if (child.gameObject.name == WingModel)
+                {
+                    wing = child;
+                    break;
+                }
             }
-        }
-        if (wing != null)
-        {
-            initialWingPosition = wing.localPosition;
-        }
-        else
-        {
-            Debug.LogError("N wing found");
-        }
-        Animator[] animators = craneModel.GetComponentsInChildren<Animator>();
-        foreach (Animator anim in animators)
-        {
-            if (anim.gameObject.name == WingModel)
+            if (wing != null)
             {
-                wingAnimator = anim;
+                initialWingPosition = wing.localPosition;
             }
-            if (anim.gameObject.name == BodyModel)
+            Animator[] animators = craneModel.GetComponentsInChildren<Animator>();
+            foreach (Animator anim in animators)
             {
-                bodyAnimator = anim;
+                if (anim.gameObject.name == WingModel)
+                {
+                    wingAnimator = anim;
+                }
+                if (anim.gameObject.name == BodyModel)
+                {
+                    bodyAnimator = anim;
+                }
             }
         }
     }

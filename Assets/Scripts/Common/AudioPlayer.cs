@@ -177,21 +177,17 @@ public class AudioPlayer : MonoBehaviour
         var noteToPlay = UnityEngine.Random.Range(0, 3);
         if (noteToPlay == 0){
             PlaySound(AudioEventType.WolfAppear1, wolf.transform.position, 1.0f);
-            Debug.Log("Played wolf sound 1!");
         }
         if (noteToPlay == 1){
             PlaySound(AudioEventType.WolfAppear2, wolf.transform.position, 1.0f);
-            Debug.Log("Played wolf sound 2!");
 
         }
         if (noteToPlay == 2){
             PlaySound(AudioEventType.WolfAppear3, wolf.transform.position, 1.0f);
-            Debug.Log("Played wolf sound 3!");
 
         }
         if (noteToPlay == 3){
             PlaySound(AudioEventType.WolfAppear4, wolf.transform.position, 1.0f);
-            Debug.Log("Played wolf sound 4!");
         }
     }
 

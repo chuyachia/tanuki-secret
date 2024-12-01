@@ -27,7 +27,6 @@ public class CutscenePlayer : MonoBehaviour
         {
             activeDirector.stopped += OnCutsceneComplete;
             activeDirector.Play();
-            Debug.Log("Timeline played!");
         }
         
         // If there are messages to display, invoke the event
@@ -50,7 +49,6 @@ public class CutscenePlayer : MonoBehaviour
         {
             activeDirector.stopped -= OnCutsceneComplete;
             activeDirector.Stop();
-            Debug.Log("Timeline stopped!");
 
         }
             

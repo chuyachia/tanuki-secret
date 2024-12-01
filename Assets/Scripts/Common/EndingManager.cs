@@ -25,19 +25,17 @@ public class EndingManager : MonoBehaviour
         {
             AchievementManager.endingFast = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneFast);
-            Debug.Log(timeRecorded);
         }
         else if (timeRecorded <= durationMedium)
         {
             AchievementManager.endingMedium = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneMedium);
-            Debug.Log(timeRecorded);
         }
         else
         {
             AchievementManager.endingSlow = true;
             EventManager.Instance.InvokeCutsceneEvent(cutsceneSlow);
-            Debug.Log(timeRecorded);
         }
+        Debug.Log("Completed in :" + timeRecorded);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EndingManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class EndingManager : MonoBehaviour
     [SerializeField] float durationMedium = 10.0f;
     private float timeRecorded = 0;
     GameTimer gameTimer;
+    private GameObject[] flyingUFOs;
 
     private void Awake()
     {
@@ -17,6 +19,7 @@ public class EndingManager : MonoBehaviour
 
     public void ChooseEndingCutscene()
     {
+        DestroyUFO();
         InputControl.charControlEnabled = false;
         gameTimer.StopTimer();
         timeRecorded = gameTimer.GetCurrentTime();
@@ -37,5 +40,17 @@ public class EndingManager : MonoBehaviour
             EventManager.Instance.InvokeCutsceneEvent(cutsceneSlow);
         }
         Debug.Log("Completed in :" + timeRecorded);
+    }
+
+    private void DestroyUFO()
+    {
+        flyingUFOs = GameObject.FindGameObjectsWithTag("FlyingUFO");
+        if (flyingUFOs == null){
+            return;
+        }
+        foreach (GameObject flyingUFO in flyingUFOs){
+            Destroy(flyingUFO);
+        }
+
     }
 }

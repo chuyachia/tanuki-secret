@@ -46,6 +46,7 @@ public class DeerLevelManager : MonoBehaviour
     private int deerTargetId;
     private Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>> eventsToProcess;
     private GameObject levelLocator;
+    private bool tutorialFinished = false;
 
     void Start()
     {
@@ -63,9 +64,13 @@ public class DeerLevelManager : MonoBehaviour
 
     private void PlaceTriggerLocator()
     {
-        levelLocator = Instantiate(startTriggerLocator);
-        levelLocator.transform.parent = transform;
-        levelLocator.transform.position = new Vector3(playerTriggerPositon.x, playerTriggerPositon.y + 0.5f, playerTriggerPositon.z);
+            if (levelLocator != null)
+            {
+                Destroy(levelLocator);
+            }
+            levelLocator = Instantiate(startTriggerLocator);
+            levelLocator.transform.parent = transform;
+            levelLocator.transform.position = new Vector3(playerTriggerPositon.x, playerTriggerPositon.y + 0.5f, playerTriggerPositon.z);
     }
 
     void OnDestroy()
@@ -227,9 +232,11 @@ public class DeerLevelManager : MonoBehaviour
         activeWolves.Clear();
         inactiveWolves.Clear();
         PlaceDeersInPosition();
+        PlaceTriggerLocator();
         player.transform.position = new Vector3(playerTriggerPositon.x, player.transform.position.y, playerTriggerPositon.z - 5f);
         journeyStarted = false;
         deerTrackingCamera.enabled = false;
+
     }
 
     void StartDeersJoruney()
@@ -252,7 +259,7 @@ public class DeerLevelManager : MonoBehaviour
         var psEmissionMain = levelLocator.GetComponent<ParticleSystem>().main;
         psEmission.Stop(); // stop emitting and accelerate the simulation so we can witness the leaves disappearing
         psEmissionMain.simulationSpeed = 8.0f;
-        psEmissionMain.gravityModifier = 0.25f; // to do: set these two variables through a script attached to the PS prefab 
+        psEmissionMain.gravityModifier = 0.25f; // to do: set these two variables through a script attached to the PS prefab
     }
 
     private void SetupCamera()
@@ -276,10 +283,26 @@ public class DeerLevelManager : MonoBehaviour
                 return; // no more deers to assign as target, exist early
             }
         }
-        foreach (GameObject wolf in activeWolves.Values)
+        
+        if(tutorialFinished)
         {
-            wolf.GetComponent<WolfBehaviour>().DeerTarget = activeDeers[deerTargetId];
+            Debug.Log("Entering regular loop");
+            foreach (GameObject wolf in activeWolves.Values)
+            {
+                wolf.GetComponent<WolfBehaviour>().DeerTarget = activeDeers[deerTargetId];
+            }
         }
+        else 
+        {
+            Debug.Log("Entering tutorial loop");
+            foreach (GameObject wolf in activeWolves.Values){
+                var wolfComp = wolf.GetComponent<WolfBehaviour>();
+                wolfComp.DeerTarget = player;
+                wolfComp.SetSpeed(15f);
+            }
+            tutorialFinished = true;            
+        }
+
     }
 
     void WolfAppear()
@@ -315,6 +338,7 @@ public class DeerLevelManager : MonoBehaviour
 
     void PlaceDeersInPosition()
     {
+        
         int remainingObjects = numberOfDeers;
         int row = 1;
         Vector3 originPosition = transform.position;
@@ -352,5 +376,6 @@ public class DeerLevelManager : MonoBehaviour
             }
             row++;
         }
+
     }
 }

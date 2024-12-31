@@ -10,6 +10,7 @@ TagManager:
   - Deer
   - Wolf
   - FlyingUFO
+  - DeerTrigger
   layers:
   - Default
   - TransparentFX

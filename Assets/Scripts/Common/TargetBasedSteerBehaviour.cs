@@ -114,4 +114,9 @@ public abstract class TargetBasedSteerBehaviour : MonoBehaviour
     {
         return isGrounded ? speed : airSpeed;
     }
+
+    public void SetSpeed(float speedValue){
+        speed = speedValue;
+    }
+
 }

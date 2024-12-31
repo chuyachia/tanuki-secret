@@ -13277,6 +13277,8 @@ MonoBehaviour:
   doorToNextLevel: {fileID: 8681248415769370783}
   deerTrackingCamera: {fileID: 7671598860369171246}
   allowedDistanceBeforeStartJourney: 100
+  startTriggerLocator: {fileID: 6085538144746507466, guid: ed5aba8028b00c547a8e7a7d89e7962b,
+    type: 3}
 --- !u!1 &8681248415477492927
 GameObject:
   m_ObjectHideFlags: 0

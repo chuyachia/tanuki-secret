@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+//using System.Numerics; // why was this here???
+using Unity.VisualScripting;
 
 public class DeerLevelManager : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private Door doorToNextLevel;
     [SerializeField] private CinemachineVirtualCamera deerTrackingCamera;
     [SerializeField] private float allowedDistanceBeforeStartJourney = 100f;
+    [SerializeField] private GameObject startTriggerLocator;
 
 
     private GameObject leaderDeer;
@@ -52,8 +55,16 @@ public class DeerLevelManager : MonoBehaviour
         journeyStarted = false;
         eventsToProcess = new Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>>();
         PlaceDeersInPosition();
+        PlaceTriggerLocator();
         deerTargetId = numberOfDeers - 1;
         EventManager.Instance.RegisterDeerLevelEventListener(QueueEvent);
+    }
+
+    private void PlaceTriggerLocator()
+    {
+        GameObject levelLocator = Instantiate(startTriggerLocator);
+        levelLocator.transform.parent = transform;
+        levelLocator.transform.position = new Vector3(playerTriggerPositon.x, playerTriggerPositon.y + 0.5f, playerTriggerPositon.z);
     }
 
     void OnDestroy()

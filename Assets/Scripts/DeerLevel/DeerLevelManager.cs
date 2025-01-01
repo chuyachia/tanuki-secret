@@ -242,7 +242,6 @@ public class DeerLevelManager : MonoBehaviour
         journeyStarted = false;
         deerTrackingCamera.enabled = false;
         tutorialFinished = false;
-
     }
 
     void StartDeersJoruney()

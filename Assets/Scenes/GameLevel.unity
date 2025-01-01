@@ -2416,7 +2416,7 @@ PrefabInstance:
     - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: defaultLevel
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1709704548728720298, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -2427,7 +2427,7 @@ PrefabInstance:
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: defaultLevel
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2600676441830862088, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -2496,7 +2496,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.74
+      value: 61.35
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -2506,7 +2506,7 @@ PrefabInstance:
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 63.43
+      value: 280.29
       objectReference: {fileID: 0}
     - target: {fileID: 8208080634581053695, guid: 0185f1c4b8263dc4db899ba3a59ba7e6,
         type: 3}
@@ -9296,7 +9296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248414443130689
 Transform:
   m_ObjectHideFlags: 0
@@ -10546,7 +10546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248414714136227
 Transform:
   m_ObjectHideFlags: 0
@@ -10682,7 +10682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248414733825044
 Transform:
   m_ObjectHideFlags: 0
@@ -10918,7 +10918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248414933274387
 Transform:
   m_ObjectHideFlags: 0
@@ -13266,7 +13266,7 @@ MonoBehaviour:
   spacingVertical: 6
   player: {fileID: 1186104591}
   targetReachedSquaredDistance: 4
-  maxSquaredDistanceFromDeerGroup: 600
+  maxSquaredDistanceFromDeerGroup: 900
   wolfAttackInterval: 10
   wolfAttackProbability: 0.3
   wolfAppearDistance: 24
@@ -13276,7 +13276,7 @@ MonoBehaviour:
   speedDecrement: 1
   doorToNextLevel: {fileID: 8681248415769370783}
   deerTrackingCamera: {fileID: 7671598860369171246}
-  allowedDistanceBeforeStartJourney: 100
+  allowedDistanceBeforeStartJourney: 25
   startTriggerLocator: {fileID: 6085538144746507466, guid: ed5aba8028b00c547a8e7a7d89e7962b,
     type: 3}
 --- !u!1 &8681248415477492927
@@ -13295,7 +13295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1001 &8681248415537699192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14119,7 +14119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248415800409543
 Transform:
   m_ObjectHideFlags: 0
@@ -14235,7 +14235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248415811777477
 Transform:
   m_ObjectHideFlags: 0
@@ -14329,7 +14329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8681248415815010149
 Transform:
   m_ObjectHideFlags: 0
@@ -16018,7 +16018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8681248416125073684
 Transform:
   m_ObjectHideFlags: 0

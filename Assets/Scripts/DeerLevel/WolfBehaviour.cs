@@ -13,6 +13,7 @@ public class WolfBehaviour : TargetBasedSteerBehaviour
 
     public GameObject DeerTarget
     {
+        get { return target; }
         set
         {
             target = value;

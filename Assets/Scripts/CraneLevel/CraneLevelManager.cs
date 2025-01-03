@@ -18,6 +18,7 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private EndingManager endingManager;
     [SerializeField] private CinemachineVirtualCamera craneTrackingCamera;
     [SerializeField] private GameObject noteDisplayPrefab;
+    [SerializeField] private int wrongMoveTolerance = 2;
     private displayNote noteDisplayController;
 
     private List<GameObject> cranes;
@@ -37,6 +38,7 @@ public class CraneLevelManager : MonoBehaviour
     private bool shouldTrackPlayerMove;
     private bool levelCompleted;
     private float inputThrottleTimer;
+    private int wrongMoveTracker = 0;
 
     void Start()
     {
@@ -217,7 +219,11 @@ public class CraneLevelManager : MonoBehaviour
                     }
                     else
                     {
-                        playerCorrectMoves = 0;
+                        wrongMoveTracker ++;
+                        if (wrongMoveTracker >= wrongMoveTolerance | currentDance != (dances.Count - 1)){
+                            playerCorrectMoves = 0;
+                            wrongMoveTracker = 0;
+                        }
                         noteDisplayController.ShowNote(false);
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.WrongMove);
                     }

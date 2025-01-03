@@ -17,6 +17,8 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private float inputThrottleDuration = 0.2f;
     [SerializeField] private EndingManager endingManager;
     [SerializeField] private CinemachineVirtualCamera craneTrackingCamera;
+    [SerializeField] private GameObject noteDisplayPrefab;
+    private displayNote noteDisplayController;
 
     private List<GameObject> cranes;
     private List<List<DanceCommand>> dances;
@@ -50,6 +52,9 @@ public class CraneLevelManager : MonoBehaviour
         }
         playerPositionInDanceCircle = positions[positions.Count - 1];
         InitializeDanceCommands();
+
+        var noteObj = Instantiate(noteDisplayPrefab);
+        noteDisplayController = noteObj.GetComponent<displayNote>();
     }
 
     void InitializeDanceCommands()
@@ -193,6 +198,7 @@ public class CraneLevelManager : MonoBehaviour
                     if (throttledPlayerInput.Equals(currentTargetMove))
                     {
                         playerCorrectMoves++;
+                        noteDisplayController.ShowNote(true);
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.CorrectMove);
                         if (playerCorrectMoves == danceCommands.Count)
                         {
@@ -212,6 +218,7 @@ public class CraneLevelManager : MonoBehaviour
                     else
                     {
                         playerCorrectMoves = 0;
+                        noteDisplayController.ShowNote(false);
                         EventManager.Instance.InvokeCraneLevelEvent(new GameObject[] { }, EventManager.CraneLevelEvent.WrongMove);
                     }
                     throttledPlayerInput = DanceMove.NoMove;

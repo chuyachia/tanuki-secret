@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6085538144746507466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 5, z: 3}
+  m_LocalScale: {x: 4, y: 5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,11 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51192e271ebb1e438707de6913bd870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctNotesTextures:
-  - {fileID: 2800000, guid: a8702497d8a59f3449783782f5a3f64e, type: 3}
-  - {fileID: 2800000, guid: 97554eb00292463479b1ffc80f7c7b94, type: 3}
-  - {fileID: 2800000, guid: de85b7cb80b910446bec0a63237136c6, type: 3}
-  - {fileID: 2800000, guid: 83551d82251a06141a0c1f1dbff61182, type: 3}
+  correctNotesTexture: {fileID: 2800000, guid: 83551d82251a06141a0c1f1dbff61182, type: 3}
   wrongNoteTextures:
   - {fileID: 2800000, guid: 002b059786560ec40af0a0c87bf836a8, type: 3}
   - {fileID: 2800000, guid: 17d5c52f2b1d0c34bac743d989b33bd7, type: 3}

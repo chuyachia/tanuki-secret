@@ -5,7 +5,7 @@ using UnityEngine;
 public class displayNote : MonoBehaviour
 {
     
-    [SerializeField] private Texture[] correctNotesTextures; // not yet implemented
+    [SerializeField] private Texture correctNotesTexture; // not yet implemented
     [SerializeField] private Texture[] wrongNoteTextures; // not yet implemented
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Color correctColor = Color.blue;
@@ -46,7 +46,7 @@ public class displayNote : MonoBehaviour
         
         // Sample random texture
         Texture selectedTexture = isCorrect 
-            ? correctNotesTextures[Random.Range(0, correctNotesTextures.Length)] 
+            ? correctNotesTexture
             : wrongNoteTextures[Random.Range(0, wrongNoteTextures.Length)];
         material.SetTexture("_Texture", selectedTexture);
 

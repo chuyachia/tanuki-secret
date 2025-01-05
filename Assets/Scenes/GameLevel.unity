@@ -8852,6 +8852,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7671598862421330460, guid: 6c78966f2d165f14796ef31c3347b438,
+        type: 3}
+      propertyPath: m_LookaheadTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671598862421330460, guid: 6c78966f2d165f14796ef31c3347b438,
+        type: 3}
+      propertyPath: m_LookaheadIgnoreY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671598862421330460, guid: 6c78966f2d165f14796ef31c3347b438,
+        type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c78966f2d165f14796ef31c3347b438, type: 3}
 --- !u!114 &8069978528097300410 stripped

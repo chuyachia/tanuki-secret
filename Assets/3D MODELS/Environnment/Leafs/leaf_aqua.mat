@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: leaf_bend
+  m_Name: leaf_aqua
   m_Shader: {fileID: -6465566751694194690, guid: 657b4bb1d044f1b45929d185932066dd,
     type: 3}
   m_ValidKeywords: []
@@ -57,5 +57,5 @@ Material:
     - _speed: 0.5
     - _strenght: 0.5
     m_Colors:
-    - _basecolor: {r: 1.4660723, g: 0.27366683, b: 0, a: 0.6156863}
+    - _basecolor: {r: 0.9545327, g: 1.8134495, b: 1.8667986, a: 0.6156863}
   m_BuildTextureStacks: []

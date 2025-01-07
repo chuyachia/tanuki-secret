@@ -13238,7 +13238,7 @@ MonoBehaviour:
   spacingVertical: 6
   player: {fileID: 1186104591}
   targetReachedSquaredDistance: 4
-  maxSquaredDistanceFromDeerGroup: 900
+  maxSquaredDistanceFromDeerGroup: 1000
   wolfAttackInterval: 10
   wolfAttackProbability: 0.3
   wolfAppearDistance: 24

@@ -269,7 +269,7 @@ public class DeerLevelManager : MonoBehaviour
         var psEmission = levelLocator.GetComponent<ParticleSystem>();
         var psEmissionMain = levelLocator.GetComponent<ParticleSystem>().main;
         psEmission.Stop(); // stop emitting and accelerate the simulation so we can witness the leaves disappearing
-        psEmissionMain.simulationSpeed = 8.0f;
+        psEmissionMain.simulationSpeed = 2.0f;
         psEmissionMain.gravityModifier = 0.25f; // to do: set these two variables through a script attached to the PS prefab
     }
 

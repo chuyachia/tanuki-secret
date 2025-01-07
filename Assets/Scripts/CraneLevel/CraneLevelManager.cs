@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class CraneLevelManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class CraneLevelManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera craneTrackingCamera;
     [SerializeField] private GameObject noteDisplayPrefab;
     [SerializeField] private int wrongMoveTolerance = 2;
+    [SerializeField] private GameObject startTriggerLocator;
+
     private displayNote noteDisplayController;
 
     private List<GameObject> cranes;
@@ -39,6 +42,8 @@ public class CraneLevelManager : MonoBehaviour
     private bool levelCompleted;
     private float inputThrottleTimer;
     private int wrongMoveTracker = 0;
+    private GameObject levelLocator;
+
 
     void Start()
     {
@@ -57,6 +62,18 @@ public class CraneLevelManager : MonoBehaviour
 
         var noteObj = Instantiate(noteDisplayPrefab);
         noteDisplayController = noteObj.GetComponent<displayNote>();
+        PlaceTriggerLocator();
+    }
+
+    private void PlaceTriggerLocator()
+    {
+            if (levelLocator != null)
+            {
+                Destroy(levelLocator);
+            }
+            levelLocator = Instantiate(startTriggerLocator);
+            levelLocator.transform.parent = transform;
+            levelLocator.transform.position = new Vector3(playerPositionInDanceCircle.x, playerPositionInDanceCircle.y + 0.5f, playerPositionInDanceCircle.z);
     }
 
     void InitializeDanceCommands()
@@ -83,7 +100,7 @@ public class CraneLevelManager : MonoBehaviour
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
-            new DanceCommand(new DanceMove(WingPosition.DEPLOYED, BodyPosition.RIGHT), 1),
+            new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.RIGHT), 1),
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.UP), 2),
 
             new DanceCommand(new DanceMove(WingPosition.NEUTRAL, BodyPosition.DOWN), 1),
@@ -112,6 +129,7 @@ public class CraneLevelManager : MonoBehaviour
                 player.transform.position = playerPositionInDanceCircle;
                 isDancing = true;
                 craneTrackingCamera.enabled = true;
+                StopLeavesPS();
             }
         }
         else if (Utils.DistanceToTargetAboveThreshold(player.transform.position, playerPositionInDanceCircle, playerAllowedDistacneFromDancePosition))
@@ -252,4 +270,15 @@ public class CraneLevelManager : MonoBehaviour
         Destroy(player);
         endingManager.ChooseEndingCutscene();
     }
+
+    private void StopLeavesPS()
+    {
+        var psEmission = levelLocator.GetComponent<ParticleSystem>();
+        var psEmissionMain = levelLocator.GetComponent<ParticleSystem>().main;
+        psEmission.Stop(); // stop emitting and accelerate the simulation so we can witness the leaves disappearing
+        psEmissionMain.simulationSpeed = 2.0f;
+        psEmissionMain.gravityModifier = 0.25f; // to do: set these two variables through a script attached to the PS prefab
+    }
+
+
 }

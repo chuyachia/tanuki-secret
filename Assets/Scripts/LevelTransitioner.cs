@@ -10,9 +10,6 @@ public class LevelTransitioner : MonoBehaviour
     [SerializeField] private GameObject backColliderGameObject;
     private Collider transitionCollider;
 
-
-
-
     private void Start()
     {
         transitionCollider = GetComponent<Collider>();
@@ -33,7 +30,10 @@ public class LevelTransitioner : MonoBehaviour
             {
                 Destroy(tileToUnload, .1f);
             }
-            backColliderGameObject.SetActive(true);
+            
+            if (backColliderGameObject != null){
+                backColliderGameObject.SetActive(true);
+            }
         }
     }
 

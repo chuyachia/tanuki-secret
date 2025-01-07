@@ -3601,19 +3601,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1532199860}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &38833123644655822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467059572334715216}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 150, z: 128}
-  m_Center: {x: -62, y: 0, z: 64}
 --- !u!65 &38833123844583527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3721,23 +3708,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8745726909148326774}
   - component: {fileID: 38833123844583527}
-  m_Layer: 0
-  m_Name: ColliderBack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!1 &467059572334715216
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8745726908945257439}
-  - component: {fileID: 38833123644655822}
   m_Layer: 0
   m_Name: ColliderBack
   m_TagString: Untagged
@@ -4521,20 +4491,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3203576120837490116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0dcf3fc269c2f5048b537f674f42a82c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tilesToLoad:
-  - {fileID: 8681248414516778989}
-  - {fileID: 8681248415400069865}
-  tilesToUnload:
-  - {fileID: 8681248415811777476}
-  - {fileID: 8681248415800409542}
-  - {fileID: 8681248414714136226}
-  - {fileID: 8681248414733825043}
-  backColliderGameObject: {fileID: 467059572334715216}
+  - {fileID: 8681248414987305600}
+  tilesToUnload: []
+  backColliderGameObject: {fileID: 0}
 --- !u!65 &3203576120837490115
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4544,7 +4509,7 @@ BoxCollider:
   m_GameObject: {fileID: 3203576120837490116}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 150, z: 128}
   m_Center: {x: -56, y: 0, z: 64}
@@ -4559,7 +4524,6 @@ GameObject:
   - component: {fileID: 3203576120837490117}
   - component: {fileID: 3203576120837490115}
   - component: {fileID: 3203576120837490114}
-  - component: {fileID: 8681248415420239195}
   m_Layer: 0
   m_Name: C5C6LevelTransition
   m_TagString: Untagged
@@ -4580,7 +4544,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8681248416173241387}
-  - {fileID: 8745726908945257439}
   m_Father: {fileID: 8681248414933274387}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9393,6 +9356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248414453440775
 GameObject:
   m_ObjectHideFlags: 0
@@ -9793,7 +9757,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.5
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -9869,6 +9833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1001 &8681248414582088552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10604,7 +10569,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10635,6 +10600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248414716215186
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,7 +10706,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -10771,6 +10737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1001 &8681248414882420790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10977,7 +10944,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -11008,6 +10975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248414971720368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11402,7 +11370,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.6
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -11433,6 +11401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1001 &8681248415024241361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12982,7 +12951,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 1
+  m_DetailObjectDensity: 0.4
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -13039,20 +13008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8681248415420239195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3203576120837490116}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0ba3493d6f49044b504737e361893e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isOpen: 0
-  animatedRock: {fileID: 0}
+  objectsPerFrame: 10
 --- !u!1001 &8681248415434362904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14205,7 +14161,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14236,6 +14192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248415811777476
 GameObject:
   m_ObjectHideFlags: 0
@@ -14299,7 +14256,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14330,6 +14287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248415815010148
 GameObject:
   m_ObjectHideFlags: 0
@@ -14390,7 +14348,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.5
+  m_DetailObjectDensity: 0.35
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -14421,6 +14379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!135 &8681248415820160979
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16107,7 +16066,7 @@ Terrain:
   m_TreeCrossFadeLength: 50
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 0
-  m_DetailObjectDensity: 0.75
+  m_DetailObjectDensity: 0.6
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -16138,6 +16097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8c8171e9be1b446a5035978f0e5f1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectsPerFrame: 10
 --- !u!1 &8681248416173241386
 GameObject:
   m_ObjectHideFlags: 0
@@ -16327,7 +16287,7 @@ PrefabInstance:
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
       propertyPath: tilesToLoad.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6056390361438157881, guid: a6124504d2d146d4290d48286650cecc,
         type: 3}
@@ -16611,21 +16571,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 63.87, y: 5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &8745726908945257439
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 467059572334715216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3203576120837490117}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8745726909148326774
 Transform:
   m_ObjectHideFlags: 0

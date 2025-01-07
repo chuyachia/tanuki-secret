@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: leaf_bend
-  m_Shader: {fileID: -6465566751694194690, guid: 657b4bb1d044f1b45929d185932066dd,
+  m_Shader: {fileID: -6465566751694194690, guid: 04d0542aa02c7fe4d8583ae717cd1176,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -57,5 +57,5 @@ Material:
     - _speed: 0.5
     - _strenght: 0.5
     m_Colors:
-    - _basecolor: {r: 1.4660723, g: 0.27366683, b: 0, a: 0.6156863}
+    - _basecolor: {r: 1.6324834, g: 0.47389066, b: 0.157088, a: 0.6156863}
   m_BuildTextureStacks: []

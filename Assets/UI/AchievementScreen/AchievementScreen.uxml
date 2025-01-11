@@ -35,7 +35,7 @@
                 <ui:VisualElement style="-unity-font-definition: url(&quot;project://database/Assets/Fonts/Gargle%20Rg%20SDF.asset?fileID=11400000&amp;guid=04fc2e30fec72bd4fbb147079e961540&amp;type=2#Gargle Rg SDF&quot;); font-size: 24px; margin-top: 2px; margin-bottom: 2px;">
                     <ui:Label text="Corentin Bialais" class="creits--labels" />
                     <ui:Label text="Chu-Ya Chia" class="creits--labels" />
-                    <ui:Label text="Nicolas Deluncinge" class="creits--labels" />
+                    <ui:Label text="Nicolas Delucinge" class="creits--labels" />
                     <ui:Label text="Grant McLaughlin" class="creits--labels" />
                     <ui:Label text="Jean-Baptiste Vicquelin" class="creits--labels" />
                 </ui:VisualElement>

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+//using System.Numerics; // why was this here???
+using Unity.VisualScripting;
 
 public class DeerLevelManager : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class DeerLevelManager : MonoBehaviour
     [SerializeField] private Door doorToNextLevel;
     [SerializeField] private CinemachineVirtualCamera deerTrackingCamera;
     [SerializeField] private float allowedDistanceBeforeStartJourney = 100f;
+    [SerializeField] private GameObject startTriggerLocator;
 
 
     private GameObject leaderDeer;
@@ -42,6 +45,8 @@ public class DeerLevelManager : MonoBehaviour
     private float wolfAttackTimer = 0f;
     private int deerTargetId;
     private Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>> eventsToProcess;
+    private GameObject levelLocator;
+    private bool tutorialFinished = false;
 
     void Start()
     {
@@ -52,8 +57,20 @@ public class DeerLevelManager : MonoBehaviour
         journeyStarted = false;
         eventsToProcess = new Queue<KeyValuePair<GameObject[], EventManager.DeerLevelEvent>>();
         PlaceDeersInPosition();
+        PlaceTriggerLocator();
         deerTargetId = numberOfDeers - 1;
         EventManager.Instance.RegisterDeerLevelEventListener(QueueEvent);
+    }
+
+    private void PlaceTriggerLocator()
+    {
+            if (levelLocator != null)
+            {
+                Destroy(levelLocator);
+            }
+            levelLocator = Instantiate(startTriggerLocator);
+            levelLocator.transform.parent = transform;
+            levelLocator.transform.position = new Vector3(playerTriggerPositon.x, playerTriggerPositon.y + 0.5f, playerTriggerPositon.z);
     }
 
     void OnDestroy()
@@ -129,6 +146,11 @@ public class DeerLevelManager : MonoBehaviour
 
     void WolfFlee(GameObject wolf)
     {
+        if (!tutorialFinished && wolf.GetComponent<WolfBehaviour>().DeerTarget == player)
+        {
+            tutorialFinished = true;
+        }
+        
         activeWolves.Remove(wolf.GetInstanceID());
         inactiveWolves.Add(wolf);
         StartCoroutine(WolfFleeCoroutine(wolf));
@@ -215,9 +237,11 @@ public class DeerLevelManager : MonoBehaviour
         activeWolves.Clear();
         inactiveWolves.Clear();
         PlaceDeersInPosition();
+        PlaceTriggerLocator();
         player.transform.position = new Vector3(playerTriggerPositon.x, player.transform.position.y, playerTriggerPositon.z - 5f);
         journeyStarted = false;
         deerTrackingCamera.enabled = false;
+        tutorialFinished = false;
     }
 
     void StartDeersJoruney()
@@ -231,6 +255,22 @@ public class DeerLevelManager : MonoBehaviour
             FollowerDeerBehaviour followerDeerBehaviour = follower.GetComponent<FollowerDeerBehaviour>();
             followerDeerBehaviour.Target = leaderDeer;
         }
+
+        if (!tutorialFinished)
+        {
+            SpawnTutorialWolf();
+        }
+
+        StopLeavesPS();
+    }
+
+    private void StopLeavesPS()
+    {
+        var psEmission = levelLocator.GetComponent<ParticleSystem>();
+        var psEmissionMain = levelLocator.GetComponent<ParticleSystem>().main;
+        psEmission.Stop(); // stop emitting and accelerate the simulation so we can witness the leaves disappearing
+        psEmissionMain.simulationSpeed = 2.0f;
+        psEmissionMain.gravityModifier = 0.25f; // to do: set these two variables through a script attached to the PS prefab
     }
 
     private void SetupCamera()
@@ -254,9 +294,16 @@ public class DeerLevelManager : MonoBehaviour
                 return; // no more deers to assign as target, exist early
             }
         }
+        
         foreach (GameObject wolf in activeWolves.Values)
         {
-            wolf.GetComponent<WolfBehaviour>().DeerTarget = activeDeers[deerTargetId];
+            // Only set target for non-tutorial wolves
+            if (!tutorialFinished && wolf.GetComponent<WolfBehaviour>().DeerTarget == player){
+                wolf.GetComponent<WolfBehaviour>().DeerTarget = player;
+            }
+            else {
+                wolf.GetComponent<WolfBehaviour>().DeerTarget = activeDeers[deerTargetId];
+            }
         }
     }
 
@@ -283,6 +330,21 @@ public class DeerLevelManager : MonoBehaviour
         }
     }
 
+    private void SpawnTutorialWolf()
+    {
+        GameObject wolf = Instantiate(wolfPrefab);
+        activeWolves.TryAdd(wolf.GetInstanceID(), wolf);
+        wolf.transform.position = Utils.JitterPosition(leaderDeer.transform.position + Vector3.left * wolfAppearDistance, 10f);
+        wolf.transform.parent = transform;
+        
+        var wolfComp = wolf.GetComponent<WolfBehaviour>();
+        wolfComp.DeerTarget = player;
+        wolfComp.SetSpeed(15f); // Tutorial wolf is faster to ensure the player is caught
+        
+        EventManager.Instance.InvokeDeerLevelEvent(new GameObject[] { wolf }, EventManager.DeerLevelEvent.WolfAppear);
+    }
+
+
     GameObject SpawnDeer(Vector3 position)
     {
         GameObject newDeer = Instantiate(deerPrefab);
@@ -293,6 +355,7 @@ public class DeerLevelManager : MonoBehaviour
 
     void PlaceDeersInPosition()
     {
+        
         int remainingObjects = numberOfDeers;
         int row = 1;
         Vector3 originPosition = transform.position;
@@ -330,5 +393,6 @@ public class DeerLevelManager : MonoBehaviour
             }
             row++;
         }
+
     }
 }

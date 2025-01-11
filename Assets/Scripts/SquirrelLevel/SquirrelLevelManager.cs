@@ -22,6 +22,7 @@ public class SquirrelLevelManager : MonoBehaviour
     private List<ObjectPool> _nutPools;
     private List<GameObject> _squirrels;
     private HashSet<int> _playerPutCorrectBucket;
+    private HashSet<int> _filledBucketTypes = new HashSet<int>();
 
     private Queue<GameObject> _nutsToAssign;
     private Dictionary<int, GameObject> _squirrelToTarget;
@@ -214,12 +215,21 @@ public class SquirrelLevelManager : MonoBehaviour
 
     GameObject AddToSceneFromPool(List<ObjectPool> pools, out int nutType)
     {
-        nutType = Random.Range(0, pools.Count);
+        List<int> availableTypes = new List<int>();
+        for (int i = 0; i < pools.Count; i++)
+        {
+            if (!_filledBucketTypes.Contains(i))
+            {
+                availableTypes.Add(i);
+            }
+        }
+        
+        nutType = availableTypes[Random.Range(0, availableTypes.Count)];
         GameObject instance = pools[nutType].Get();
         instance.transform.position = GetRandomPositionWithinCircle(0, _nutSpawnRadius);
         instance.transform.parent = transform;
         return instance;
-    }
+        }
 
 
     Vector3 GetRandomPositionWithinCircle(float minDistance, float maxDistance)
@@ -284,6 +294,17 @@ public class SquirrelLevelManager : MonoBehaviour
         {
             EventManager.Instance.InvokeSquirrelLevelEvent(new GameObject[] { bucket }, EventManager.SquirelLevelEvent.CorrectBucket);
             _playerPutCorrectBucket.Add(bucket.GetInstanceID());
+
+            // Add the bucket type to filled set
+            for (int i = 0; i < nutBuckets.Count; i++)
+            {
+                if (nutBuckets[i].GetInstanceID() == bucket.GetInstanceID())
+                {
+                    _filledBucketTypes.Add(i);
+                    break;
+                }
+            }
+
             if (_playerPutCorrectBucket.Count == nutBuckets.Count)
             {
                 _doorToNextLevel.ToggleDoor(true);

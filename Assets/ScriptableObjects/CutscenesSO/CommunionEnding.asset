@@ -16,7 +16,7 @@ MonoBehaviour:
   scenePrefab: {fileID: 4977687842957899901, guid: ef044ec44a0b8734cb276d079d78147c,
     type: 3}
   messagesToDisplay:
-  - As I danced, try as
-  - "I might, I couldn\u2019t help but think"
+  - As I danced, try as I might
+  - I couldn't help but think
   - Something was missing.
   messagesDelay: 2
